@@ -1,0 +1,32 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f0f0f0;
+}
+#riddle-container {
+    margin: 50px auto;
+    width: 80%;
+    max-width: 600px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.letter-slot {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+    border-bottom: 2px solid #333;
+    font-size: 2em;
+    cursor: pointer;
+}
+#clue {
+    margin-top: 20px;
+    font-style: italic;
+}
+#submit-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1em;
+}
