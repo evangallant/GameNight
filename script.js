@@ -8,6 +8,8 @@ const clues = [
     'D is delicious... (D stands for something to drink)'
 ];
 
+// Here
+
 const lettersContainer = document.getElementById('letters');
 const clueDiv = document.getElementById('clue');
 const letterInput = document.getElementById('letter-input');
