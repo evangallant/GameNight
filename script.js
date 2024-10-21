@@ -1,24 +1,23 @@
-
 const acronym = 'BYOPVCAAFSIABYD';
 const answers = [
     'Bring', 'Your', 'Own', 'Personal', 'Vacuum', 'Cleaner', 'And', 'Air', 'Filtration', 'System', 'If', 'Advised', 'By', 'Your', 'Doctor'
 ];
 const clues = [
-    'Something you might need to clean up',
-    'Possessive, belonging to you',
-    'Something that is yours',
-    'Related to an individual',
-    'Cleaning tool for lint',
-    'Helps to tidy things',
-    'Connects two items',
-    'Related to cleanliness in the atmosphere',
-    'The process of removing impurities',
-    'An organized way to perform a task',
-    'Conditional word',
+    'Bring',
+    'Your',
+    'Own',
+    'Related to yourself',
+    'Suck-y',
+    'Better than dirtier!',
+    'Et, en Francais',
+    'Bet you are not able to live without it',
+    'Makes your water clean',
+    'Many parts working together',
+    '__ and only __',
     'Suggested by someone',
-    'Used to indicate the agent performing the action',
-    'Indicates possession',
-    'A professional giving advice'
+    'Opposite of hello, if you are afraid of the letter E',
+    'Not mine',
+    'Quack'
 ];
 
 const acronymContainer = document.querySelector('.acronym-container');
@@ -42,7 +41,7 @@ for (let i = 0; i < 3; i++) {
 }
 
 let currentIndex = 3;
-clueDiv.textContent = `Current letter: ${acronym[currentIndex]} - ${clues[currentIndex]}`;
+clueDiv.textContent = `${acronym[currentIndex]} - ${clues[currentIndex]}`;
 
 // Handle word submission
 submitButton.addEventListener('click', () => {
@@ -57,7 +56,7 @@ submitButton.addEventListener('click', () => {
             if (currentIndex < answers.length - 1) {
                 currentIndex++;
                 setTimeout(() => {
-                    clueDiv.textContent = `Current letter: ${acronym[currentIndex]} - ${clues[currentIndex]}`;
+                    clueDiv.textContent = `${acronym[currentIndex]} - ${clues[currentIndex]}`;
                     wordInput.value = '';
                     wordInput.focus();
                 }, 1000);
@@ -70,6 +69,9 @@ submitButton.addEventListener('click', () => {
             }
         } else {
             clueDiv.textContent = 'Incorrect. Try again!';
+            setTimeout(() => {
+                clueDiv.textContent = `${acronym[currentIndex]} - ${clues[currentIndex]}`;
+            }, 3000);
             wordInput.value = '';
             wordInput.focus();
         }
