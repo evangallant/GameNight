@@ -6,13 +6,99 @@
     <title>Game Night Riddle Solver</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script defer src="script.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400&display=swap');
+        
+        body {
+            font-family: 'Roboto Slab', serif;
+            text-align: center;
+            background-color: #F4A261 !important;
+            color: #3A2C20 !important;
+        }
+        #riddle-container {
+            margin: 80px auto;
+            width: 90%;
+            max-width: 800px;
+            background: #FFF5E4 !important;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2em;
+            color: #8B4513 !important;
+            margin-bottom: 30px;
+        }
+        #acronym-subheading {
+            font-size: 2em;
+            margin-top: 10px;
+            color: #BF5F04 !important;
+            font-weight: bold;
+        }
+        .acronym-container {
+            display: flex;
+            justify-content: start;
+            flex-direction: column;
+            text-align: left;
+        }
+        .acronym-letter {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .guess-slot {
+            font-weight: normal;
+            margin-left: 10px;
+        }
+        #guess-container {
+            display: flex;
+            align-items: start;
+            margin-top: 30px;
+        }
+        #guess-interface {
+            flex: 2;
+            padding-left: 20px;
+            border-left: 2px solid #D2691E !important;
+        }
+        #clue {
+            margin-top: 20px;
+            font-style: italic;
+            color: #8B4513 !important;
+        }
+        #word-input {
+            font-family: 'Roboto Slab', serif;
+            padding: 10px;
+            font-size: 1em;
+            border: 2px solid #BF5F04 !important;
+            border-radius: 5px;
+        }
+        #submit-button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #BF5F04 !important;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Roboto Slab', serif;
+        }
+        #submit-button:hover {
+            background-color: #A0522D !important;
+        }
+        #hint {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #5C3D2E !important;
+        }
+    </style>
 </head>
 <body>
     <div id="riddle-container" class="container">
         <h1>WHAT ARE WE BRINGING TO GAME NIGHT?</h1>
         <div id="acronym-subheading">This week's acronym: <strong>BYOPVCAAFSIABYD</strong></div>
         <div id="hint">Hint: Little pieces of lint and cat hair provided</div>
-        <div id="guess-containers" class="row">
+        <div id="guess-container" class="row">
             <div class="col-4 acronym-container">
                 <!-- The acronym with guessed words will be generated here -->
             </div>
@@ -25,5 +111,87 @@
             </div>
         </div>
     </div>
+
+    <script>
+        const acronym = 'BYOPVCAAFSIABYD';
+        const answers = [
+            'Bring', 'Your', 'Own', 'Personal', 'Vacuum', 'Cleaner', 'And', 'Air', 'Filtration', 'System', 'If', 'Advised', 'By', 'Your', 'Doctor'
+        ];
+        const clues = [
+            'Something you might need to clean up',
+            'Possessive, belonging to you',
+            'Something that is yours',
+            'Related to an individual',
+            'Cleaning tool for lint',
+            'Helps to tidy things',
+            'Connects two items',
+            'Related to cleanliness in the atmosphere',
+            'The process of removing impurities',
+            'An organized way to perform a task',
+            'Conditional word',
+            'Suggested by someone',
+            'Used to indicate the agent performing the action',
+            'Indicates possession',
+            'A professional giving advice'
+        ];
+
+        const acronymContainer = document.querySelector('.acronym-container');
+        const clueDiv = document.getElementById('clue');
+        const wordInput = document.getElementById('word-input');
+        const submitButton = document.getElementById('submit-button');
+
+        // Create acronym letters with guess slots
+        answers.forEach((answer, index) => {
+            const letterDiv = document.createElement('div');
+            letterDiv.classList.add('acronym-letter');
+            letterDiv.dataset.index = index;
+            letterDiv.innerHTML = `${acronym[index]} <span class="guess-slot">${'_'.repeat(answer.length)}</span>`;
+            acronymContainer.appendChild(letterDiv);
+        });
+
+        // Mark the first three words as correctly guessed
+        for (let i = 0; i < 3; i++) {
+            const letterDiv = document.querySelector(`.acronym-letter[data-index='${i}'] .guess-slot`);
+            letterDiv.textContent = answers[i];
+        }
+
+        let currentIndex = 3;
+        clueDiv.textContent = `${acronym[currentIndex]} - ${clues[currentIndex]}`;
+
+        // Handle word submission
+        submitButton.addEventListener('click', () => {
+            const input = wordInput.value.trim();
+            if (input) {
+                const currentWord = answers[currentIndex];
+                const currentSlot = document.querySelector(`.acronym-letter[data-index='${currentIndex}'] .guess-slot`);
+
+                if (input.toLowerCase() === currentWord.toLowerCase()) {
+                    currentSlot.textContent = currentWord;
+                    clueDiv.textContent = 'Noice!';
+                    if (currentIndex < answers.length - 1) {
+                        currentIndex++;
+                        setTimeout(() => {
+                            clueDiv.textContent = `${acronym[currentIndex]} - ${clues[currentIndex]}`;
+                            wordInput.value = '';
+                            wordInput.focus();
+                        }, 1000);
+                    } else {
+                        setTimeout(() => {
+                            clueDiv.textContent = 'Great job! You solved the riddle!';
+                            wordInput.disabled = true;
+                            submitButton.disabled = true;
+                        }, 1000);
+                    }
+                } else {
+                    clueDiv.textContent = 'Incorrect. Try again!';
+                    setTimeout(() => {
+                        clueDiv.textContent = `${acronym[currentIndex]} - ${clues[currentIndex]}`;
+                    }, 3000);
+                    wordInput.value = '';
+                    wordInput.focus();
+                }
+            }
+        });
+    </script>
 </body>
 </html>
