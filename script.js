@@ -1,26 +1,37 @@
-const acronym = 'BYOGAD';
+const acronym = 'BYOPVCAAFSIABYD';
+const answers = [
+    'Bring', 'Your', 'Own', 'Personal', 'Vacuum', 'Cleaner', 'And', 'Air', 'Filtration', 'System', 'If', 'Advised', 'By', 'Your', 'Doctor'
+];
 const clues = [
-    'Bring Your Own... (B stands for something often associated with friends)',
-    'Y is the next letter... (Y stands for something necessary for any gathering)',
-    'O is quite obvious... (O stands for something all guests bring)',
-    'G is a classic one... (G stands for something you play)',
-    'A could be tricky... (A stands for something to lighten the mood)',
-    'D is delicious... (D stands for something to drink)'
+    'Bring - Something you might need to clean up',
+    'Your - Possessive, belonging to you',
+    'Own - Something that is yours',
+    'Personal - Related to an individual',
+    'Vacuum - Cleaning tool for lint',
+    'Cleaner - Helps to tidy things',
+    'And - Connects two items',
+    'Air - Related to cleanliness in the atmosphere',
+    'Filtration - The process of removing impurities',
+    'System - An organized way to perform a task',
+    'If - Conditional word',
+    'Advised - Suggested by someone',
+    'By - Used to indicate the agent performing the action',
+    'Your - Indicates possession',
+    'Doctor - A professional giving advice'
 ];
 
-// Here
-
-const lettersContainer = document.getElementById('letters');
+const wordsContainer = document.getElementById('words');
 const clueDiv = document.getElementById('clue');
 const letterInput = document.getElementById('letter-input');
 const submitButton = document.getElementById('submit-button');
 
-// Create letter slots based on the acronym
-acronym.split('').forEach((_, index) => {
-    const letterSlot = document.createElement('div');
-    letterSlot.classList.add('letter-slot');
-    letterSlot.dataset.index = index;
-    lettersContainer.appendChild(letterSlot);
+// Create word slots based on the answers
+answers.forEach((answer, index) => {
+    const wordSlot = document.createElement('div');
+    wordSlot.classList.add('word-slot');
+    wordSlot.dataset.index = index;
+    wordSlot.textContent = '_'.repeat(answer.length);
+    wordsContainer.appendChild(wordSlot);
 });
 
 let currentIndex = 0;
@@ -30,26 +41,35 @@ clueDiv.textContent = clues[currentIndex];
 submitButton.addEventListener('click', () => {
     const input = letterInput.value.toUpperCase();
     if (input && input.length === 1) {
-        const currentSlot = document.querySelector(`.letter-slot[data-index='${currentIndex}']`);
-        currentSlot.textContent = input;
+        const currentWord = answers[currentIndex].toUpperCase();
+        const currentSlot = document.querySelector(`.word-slot[data-index='${currentIndex}']`);
+        let updatedWord = '';
+        let found = false;
 
-        if (input === acronym[currentIndex]) {
-            if (currentIndex < acronym.length - 1) {
+        // Fill in the letter in the correct positions
+        for (let i = 0; i < currentWord.length; i++) {
+            if (currentWord[i] === input) {
+                updatedWord += input;
+                found = true;
+            } else {
+                updatedWord += currentSlot.textContent[i] === '_' ? '_' : currentSlot.textContent[i];
+            }
+        }
+
+        currentSlot.textContent = updatedWord;
+
+        if (updatedWord === currentWord) {
+            if (currentIndex < answers.length - 1) {
                 currentIndex++;
                 clueDiv.textContent = clues[currentIndex];
                 letterInput.value = '';
                 letterInput.focus();
             } else {
-                const userGuess = Array.from(document.querySelectorAll('.letter-slot')).map(slot => slot.textContent).join('');
-                if (userGuess === acronym) {
-                    clueDiv.textContent = 'Great job! You solved the riddle!';
-                } else {
-                    clueDiv.textContent = 'Oops! That was not correct. Try again!';
-                }
+                clueDiv.textContent = 'Great job! You solved the riddle!';
                 letterInput.disabled = true;
                 submitButton.disabled = true;
             }
-        } else {
+        } else if (!found) {
             clueDiv.textContent = 'Incorrect letter. Try again!';
             letterInput.value = '';
             letterInput.focus();
