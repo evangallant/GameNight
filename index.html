@@ -8,18 +8,22 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-    <div id="riddle-container" class="container text-center">
+    <div id="riddle-container" class="container">
         <h1>WHAT ARE WE BRINGING TO GAME NIGHT?</h1>
         <div id="acronym-subheading">This week's acronym: <strong>BYOPVCAAFSIABYD</strong></div>
         <div id="hint">Hint: Little pieces of lint and cat hair provided</div>
-        <div id="words">
-            <!-- The word slots will be generated here -->
+        <div id="guess-container" class="row">
+            <div class="col-4 acronym-container">
+                <!-- The acronym with guessed words will be generated here -->
+            </div>
+            <div id="guess-interface" class="col-8">
+                <div id="clue"></div>
+                <div class="input-group mt-4 justify-content-center">
+                    <input type="text" id="word-input" class="form-control" placeholder="Enter your guess">
+                </div>
+                <button id="submit-button" class="btn btn-primary mt-2">Submit Word</button>
+            </div>
         </div>
-        <div id="clue"></div>
-        <div class="input-group mt-4 justify-content-center">
-            <input type="text" id="word-input" class="form-control w-50" placeholder="Enter a word">
-        </div>
-        <button id="submit-button" class="btn btn-primary mt-2">Submit Word</button>
     </div>
 </body>
 </html>
