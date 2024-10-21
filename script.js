@@ -3,21 +3,21 @@ const answers = [
     'Bring', 'Your', 'Own', 'Personal', 'Vacuum', 'Cleaner', 'And', 'Air', 'Filtration', 'System', 'If', 'Advised', 'By', 'Your', 'Doctor'
 ];
 const clues = [
-    'Bring',
-    'Your',
-    'Own',
-    'Related to yourself',
-    'Suck-y',
-    'Better than dirtier!',
-    'Et, en Francais',
-    'Bet you are not able to live without it',
-    'Makes your water clean',
-    'Many parts working together',
-    '__ and only __',
+    'Something you might need to clean up',
+    'Possessive, belonging to you',
+    'Something that is yours',
+    'Related to an individual',
+    'Cleaning tool for lint',
+    'Helps to tidy things',
+    'Connects two items',
+    'Related to cleanliness in the atmosphere',
+    'The process of removing impurities',
+    'An organized way to perform a task',
+    'Conditional word',
     'Suggested by someone',
-    'Opposite of hello, if you are afraid of the letter E',
-    'Not mine',
-    'Quack'
+    'Used to indicate the agent performing the action',
+    'Indicates possession',
+    'A professional giving advice'
 ];
 
 const acronymContainer = document.querySelector('.acronym-container');
