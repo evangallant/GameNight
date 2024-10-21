@@ -1,48 +1,55 @@
+
 const acronym = 'BYOPVCAAFSIABYD';
 const answers = [
     'Bring', 'Your', 'Own', 'Personal', 'Vacuum', 'Cleaner', 'And', 'Air', 'Filtration', 'System', 'If', 'Advised', 'By', 'Your', 'Doctor'
 ];
 const clues = [
-    'Bring - Something you might need to clean up',
-    'Your - Possessive, belonging to you',
-    'Own - Something that is yours',
-    'Personal - Related to an individual',
-    'Vacuum - Cleaning tool for lint',
-    'Cleaner - Helps to tidy things',
-    'And - Connects two items',
-    'Air - Related to cleanliness in the atmosphere',
-    'Filtration - The process of removing impurities',
-    'System - An organized way to perform a task',
-    'If - Conditional word',
-    'Advised - Suggested by someone',
-    'By - Used to indicate the agent performing the action',
-    'Your - Indicates possession',
-    'Doctor - A professional giving advice'
+    'Something you might need to clean up',
+    'Possessive, belonging to you',
+    'Something that is yours',
+    'Related to an individual',
+    'Cleaning tool for lint',
+    'Helps to tidy things',
+    'Connects two items',
+    'Related to cleanliness in the atmosphere',
+    'The process of removing impurities',
+    'An organized way to perform a task',
+    'Conditional word',
+    'Suggested by someone',
+    'Used to indicate the agent performing the action',
+    'Indicates possession',
+    'A professional giving advice'
 ];
 
-const wordsContainer = document.getElementById('words');
+const acronymContainer = document.querySelector('.acronym-container');
 const clueDiv = document.getElementById('clue');
 const wordInput = document.getElementById('word-input');
 const submitButton = document.getElementById('submit-button');
 
-// Create word slots based on the answers
+// Create acronym letters with guess slots
 answers.forEach((answer, index) => {
-    const wordSlot = document.createElement('div');
-    wordSlot.classList.add('word-slot');
-    wordSlot.dataset.index = index;
-    wordSlot.textContent = '_'.repeat(answer.length);
-    wordsContainer.appendChild(wordSlot);
+    const letterDiv = document.createElement('div');
+    letterDiv.classList.add('acronym-letter');
+    letterDiv.dataset.index = index;
+    letterDiv.innerHTML = `${acronym[index]} <span class="guess-slot">${'_'.repeat(answer.length)}</span>`;
+    acronymContainer.appendChild(letterDiv);
 });
 
-let currentIndex = 0;
-clueDiv.textContent = clues[currentIndex];
+// Mark the first three words as correctly guessed
+for (let i = 0; i < 3; i++) {
+    const letterDiv = document.querySelector(`.acronym-letter[data-index='${i}'] .guess-slot`);
+    letterDiv.textContent = answers[i];
+}
+
+let currentIndex = 3;
+clueDiv.textContent = `Current letter: ${acronym[currentIndex]} - ${clues[currentIndex]}`;
 
 // Handle word submission
 submitButton.addEventListener('click', () => {
     const input = wordInput.value.trim();
     if (input) {
         const currentWord = answers[currentIndex];
-        const currentSlot = document.querySelector(`.word-slot[data-index='${currentIndex}']`);
+        const currentSlot = document.querySelector(`.acronym-letter[data-index='${currentIndex}'] .guess-slot`);
 
         if (input.toLowerCase() === currentWord.toLowerCase()) {
             currentSlot.textContent = currentWord;
@@ -50,7 +57,7 @@ submitButton.addEventListener('click', () => {
             if (currentIndex < answers.length - 1) {
                 currentIndex++;
                 setTimeout(() => {
-                    clueDiv.textContent = clues[currentIndex];
+                    clueDiv.textContent = `Current letter: ${acronym[currentIndex]} - ${clues[currentIndex]}`;
                     wordInput.value = '';
                     wordInput.focus();
                 }, 1000);
