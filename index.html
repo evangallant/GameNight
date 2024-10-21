@@ -87,7 +87,7 @@
             background-color: #A0522D !important;
         }
         #hint {
-            margin-top: 20px;
+            margin-top: 30px;
             font-weight: bold;
             color: #5C3D2E !important;
         }
@@ -95,14 +95,15 @@
 </head>
 <body>
     <div id="riddle-container" class="container">
-        <h1>WHAT ARE WE BRINGING TO GAME NIGHT?</h1>
-        <div id="acronym-subheading">This week's acronym: <strong>BYOPVCAAFSIABYD</strong></div>
-        <div id="hint">Hint: Little pieces of lint and cat hair provided</div>
         <div id="guess-container" class="row">
             <div class="col-4 acronym-container">
                 <!-- The acronym with guessed words will be generated here -->
             </div>
             <div id="guess-interface" class="col-8">
+                <h1><strong>WHAT ARE WE BRINGING TO GAME NIGHT?</strong></h1>
+                <div id="acronym-subheading">This week's acronym:</div>
+                <div id="acronym-subheading"><strong>BYOPVCAAFSIABYD</strong></div>
+                <div id="hint">Hint: Little pieces of lint and cat hair provided</div>
                 <div id="clue"></div>
                 <div class="input-group mt-4 justify-content-center">
                     <input type="text" id="word-input" class="form-control" placeholder="Enter your guess">
@@ -156,7 +157,7 @@
         }
 
         let currentIndex = 3;
-        clueDiv.textContent = `${acronym[currentIndex]} - ${clues[currentIndex]}`;
+        clueDiv.innerHTML = `<strong>${acronym[currentIndex]}:</strong>\u00A0\u00A0${clues[currentIndex]}`;
 
         // Handle word submission
         submitButton.addEventListener('click', () => {
@@ -171,7 +172,7 @@
                     if (currentIndex < answers.length - 1) {
                         currentIndex++;
                         setTimeout(() => {
-                            clueDiv.textContent = `${acronym[currentIndex]} - ${clues[currentIndex]}`;
+                            clueDiv.innerHTML = `<strong>${acronym[currentIndex]}:</strong>\u00A0\u00A0${clues[currentIndex]}`;
                             wordInput.value = '';
                             wordInput.focus();
                         }, 1000);
@@ -185,7 +186,7 @@
                 } else {
                     clueDiv.textContent = 'Incorrect. Try again!';
                     setTimeout(() => {
-                        clueDiv.textContent = `${acronym[currentIndex]} - ${clues[currentIndex]}`;
+                        clueDiv.innerHTML = `<strong>${acronym[currentIndex]}:</strong>\u00A0\u00A0${clues[currentIndex]}`;
                     }, 3000);
                     wordInput.value = '';
                     wordInput.focus();
