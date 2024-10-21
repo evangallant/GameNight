@@ -1,64 +1,64 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400&display=swap');
         
-body {
-    font-family: 'Roboto Slab', serif;
-    text-align: center;
-    background-color: #F4E1D2;
-    color: #5C3D2E;
-}
-#riddle-container {
-    margin: 50px auto;
-    width: 80%;
-    max-width: 600px;
-    background: #FFF5E4;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-h1 {
-    font-size: 2em;
-    color: #8B4513;
-}
-#acronym-subheading {
-    font-size: 1.5em;
-    margin-top: 10px;
-    color: #D2691E;
-}
-.word-slot {
-    display: block;
-    margin: 20px;
-    font-size: 1.5em;
-    font-weight: bold;
-    text-decoration: underline;
-}
-#clue {
-    margin-top: 20px;
-    font-style: italic;
-    color: #8B4513;
-}
-#letter-input {
-    font-family: 'Roboto Slab', serif;
-    padding: 10px;
-    font-size: 1em;
-    border: 2px solid #D2691E;
-    border-radius: 5px;
-}
-#submit-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 1em;
-    background-color: #D2691E;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-family: 'Roboto Slab', serif;
-}
-#submit-button:hover {
-    background-color: #A0522D;
-}
-#hint {
-    margin-top: 20px;
-    font-weight: bold;
-    color: #5C3D2E;
-}
+        body {
+            font-family: 'Roboto Slab', serif;
+            text-align: center;
+            background-color: #F4E1D2;
+            color: #5C3D2E;
+        }
+        #riddle-container {
+            margin: 50px auto;
+            width: 80%;
+            max-width: 600px;
+            background: #FFF5E4;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2em;
+            color: #8B4513;
+        }
+        #acronym-subheading {
+            font-size: 1.5em;
+            margin-top: 10px;
+            color: #D2691E;
+        }
+        .word-slot {
+            display: block;
+            margin: 20px;
+            font-size: 1.5em;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+        #clue {
+            margin-top: 20px;
+            font-style: italic;
+            color: #8B4513;
+        }
+        #word-input {
+            font-family: 'Roboto Slab', serif;
+            padding: 10px;
+            font-size: 1em;
+            border: 2px solid #D2691E;
+            border-radius: 5px;
+        }
+        #submit-button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #D2691E;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Roboto Slab', serif;
+        }
+        #submit-button:hover {
+            background-color: #A0522D;
+        }
+        #hint {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #5C3D2E;
+        }
