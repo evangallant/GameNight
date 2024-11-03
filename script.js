@@ -40,7 +40,7 @@ submitButton.addEventListener('click', () => {
 
         if (input.toLowerCase() === currentWord.toLowerCase()) {
             currentSlot.textContent = currentWord;
-            clueDiv.textContent = 'Noice!';
+            clueDiv.textContent = 'Duh';
             if (currentIndex < answers.length - 1) {
                 currentIndex++;
                 setTimeout(() => {
@@ -50,7 +50,7 @@ submitButton.addEventListener('click', () => {
                 }, 1000);
             } else {
                 setTimeout(() => {
-                    clueDiv.textContent = 'You got it :)';
+                    clueDiv.textContent = 'Seriously, why did I bother with this';
                     wordInput.disabled = true;
                     submitButton.disabled = true;
                 }, 1000);
