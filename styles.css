@@ -17,13 +17,13 @@ body {
 }
 h1 {
     font-size: 2em;
-    color: #8f3708 !important;
+    color: #486e09 !important;
     margin-bottom: 30px;
 }
 #acronym-subheading {
     font-size: 2em;
     margin-top: 10px;
-    color: #BF5F04 !important;
+    color: #156b5e !important;
     font-weight: bold;
 }
 .acronym-container {
@@ -49,7 +49,7 @@ h1 {
 #guess-interface {
     flex: 2;
     padding-left: 20px;
-    border-left: 2px solid #8f3708 !important;
+    border-left: 2px solid #156b5e !important;
 }
 #clue {
     margin-top: 20px;
@@ -60,14 +60,14 @@ h1 {
     font-family: 'Roboto Slab', serif;
     padding: 10px;
     font-size: 1em;
-    border: 2px solid #BF5F04 !important;
+    border: 2px solid #156b5e !important;
     border-radius: 5px;
 }
 #submit-button {
     margin-top: 10px;
     padding: 10px 20px;
     font-size: 1em;
-    background-color: #BF5F04 !important;
+    background-color: #156b5e !important;
     color: white;
     border: none;
     border-radius: 5px;
@@ -75,7 +75,7 @@ h1 {
     font-family: 'Roboto Slab', serif;
 }
 #submit-button:hover {
-    background-color: #A0522D !important;
+    background-color: #1fa792 !important;
 }
 #hint {
     margin-top: 30px;
