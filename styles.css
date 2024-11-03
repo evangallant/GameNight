@@ -3,21 +3,21 @@
 body {
     font-family: 'Roboto Slab', serif;
     text-align: center;
-    background-color: #F4A261 !important;
-    color: #3A2C20 !important;
+    background-color: #182e3d !important;
+    color: #cfd3d7 !important;
 }
 #riddle-container {
     margin: 80px auto;
     width: 90%;
     max-width: 800px;
-    background: #FFF5E4 !important;
+    background: #2f4f60 !important;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 h1 {
     font-size: 2em;
-    color: #8B4513 !important;
+    color: #8f3708 !important;
     margin-bottom: 30px;
 }
 #acronym-subheading {
@@ -49,12 +49,12 @@ h1 {
 #guess-interface {
     flex: 2;
     padding-left: 20px;
-    border-left: 2px solid #D2691E !important;
+    border-left: 2px solid #8f3708 !important;
 }
 #clue {
     margin-top: 20px;
     font-style: italic;
-    color: #8B4513 !important;
+    color: #cfd3d7 !important;
 }
 #word-input {
     font-family: 'Roboto Slab', serif;
@@ -80,5 +80,5 @@ h1 {
 #hint {
     margin-top: 30px;
     font-weight: bold;
-    color: #5C3D2E !important;
+    color: #cfd3d7 !important;
 }
