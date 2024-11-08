@@ -1,29 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400&display=swap');
-        
 body {
     font-family: 'Roboto Slab', serif;
     text-align: center;
-    background-color: #182e3d !important;
-    color: #cfd3d7 !important;
+    background-color: #3d2e1e !important; /* warm, dark brown background */
+    color: #eae2b7 !important; /* light tan color for text */
 }
 #riddle-container {
-    margin: 40px auto;
+    margin: 80px auto;
     width: 90%;
     max-width: 800px;
-    background: #2f4f60 !important;
+    background: #fff3b0 !important; /* soft, warm yellow */
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 h1 {
     font-size: 2em;
-    color: #7eb22a !important;
+    color: #d62828 !important; /* rich, warm red for the header */
     margin-bottom: 30px;
 }
 #acronym-subheading {
     font-size: 2em;
     margin-top: 10px;
-    color: #249c8a !important;
+    color: #f77f00 !important; /* bright, orange color for the acronym heading */
     font-weight: bold;
 }
 .acronym-container {
@@ -33,7 +31,7 @@ h1 {
     text-align: left;
 }
 .acronym-letter {
-    font-size: 1.2em;
+    font-size: 1.5em;
     font-weight: bold;
     margin-bottom: 10px;
 }
@@ -49,25 +47,25 @@ h1 {
 #guess-interface {
     flex: 2;
     padding-left: 20px;
-    border-left: 2px solid #249c8a !important;
+    border-left: 2px solid #f77f00 !important; /* same bright orange as acronym heading */
 }
 #clue {
     margin-top: 20px;
     font-style: italic;
-    color: #cfd3d7 !important;
+    color: #eae2b7 !important; /* light tan for clue text */
 }
 #word-input {
     font-family: 'Roboto Slab', serif;
     padding: 10px;
     font-size: 1em;
-    border: 2px solid #249c8a !important;
+    border: 2px solid #f77f00 !important; /* bright orange border for input */
     border-radius: 5px;
 }
 #submit-button {
     margin-top: 10px;
     padding: 10px 20px;
     font-size: 1em;
-    background-color: #249c8a !important;
+    background-color: #f77f00 !important; /* bright orange background for button */
     color: white;
     border: none;
     border-radius: 5px;
@@ -75,10 +73,10 @@ h1 {
     font-family: 'Roboto Slab', serif;
 }
 #submit-button:hover {
-    background-color: #2ed2b9 !important;
+    background-color: #d62828 !important; /* warm red on hover */
 }
 #hint {
     margin-top: 30px;
     font-weight: bold;
-    color: #cfd3d7 !important;
+    color: #eae2b7 !important; /* light tan for hint text */
 }
