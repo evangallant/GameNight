@@ -1,11 +1,19 @@
-const acronym = 'BYO';
+const acronym = 'BYOMWWTDSTP';
 const answers = [
-    'Bring', 'Your', 'Own'
+    'Bring', 'Your', 'Own', 'Mouth', 'With', 'Which', 'To', 'Drink', 'Said', 'Tap', 'Water'
 ];
 const clues = [
-    'I think you know',
-    'Yeah you got it',
-    'I mean, of course, right?'
+    'image_clues/bring.png',
+    'image_clues/your.png',
+    'image_clues/own.png',
+    'image_clues/mouth.jpg',
+    'image_clues/with.png',
+    'image_clues/which.png',
+    'image_clues/to.png',
+    'image_clues/drink.png',
+    'image_clues/said.png',
+    'image_clues/tap.png',
+    'image_clues/water.png'
 ];
 
 const acronymContainer = document.querySelector('.acronym-container');
@@ -23,13 +31,17 @@ answers.forEach((answer, index) => {
 });
 
 // Mark the first three words as correctly guessed
-for (let i = 0; i < 0; i++) {
+for (let i = 0; i < 3; i++) {
     const letterDiv = document.querySelector(`.acronym-letter[data-index='${i}'] .guess-slot`);
     letterDiv.textContent = answers[i];
 }
 
-let currentIndex = 0;
-clueDiv.innerHTML = `<strong>${acronym[currentIndex]}:</strong>\u00A0\u00A0${clues[currentIndex]}`;
+let currentIndex = 3;
+// For image clues, use this line:
+clueDiv.innerHTML = `${acronym[currentIndex]}:<br><img src="${clues[currentIndex]}" alt="Clue Image" class="img-fluid">`;
+
+// For text clues, comment out the image clues line and use this one
+// clueDiv.innerHTML = `<strong>${acronym[currentIndex]}:</strong>\u00A0\u00A0${clues[currentIndex]}`;
 
 // Handle word submission
 submitButton.addEventListener('click', () => {
@@ -40,7 +52,7 @@ submitButton.addEventListener('click', () => {
 
         if (input.toLowerCase() === currentWord.toLowerCase()) {
             currentSlot.textContent = currentWord;
-            clueDiv.textContent = 'Duh';
+            clueDiv.textContent = 'Good job, nerd';
             if (currentIndex < answers.length - 1) {
                 currentIndex++;
                 setTimeout(() => {
@@ -50,13 +62,13 @@ submitButton.addEventListener('click', () => {
                 }, 1000);
             } else {
                 setTimeout(() => {
-                    clueDiv.textContent = 'Seriously, why did I bother with this';
+                    clueDiv.textContent = 'Chugalug, baby';
                     wordInput.disabled = true;
                     submitButton.disabled = true;
                 }, 1000);
             }
         } else {
-            clueDiv.textContent = 'Incorrect. Try again!';
+            clueDiv.textContent = 'Nope, NERD';
             setTimeout(() => {
                 clueDiv.innerHTML = `<strong>${acronym[currentIndex]}:</strong>\u00A0\u00A0${clues[currentIndex]}`;
             }, 3000);
