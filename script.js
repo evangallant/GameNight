@@ -3,17 +3,17 @@ const answers = [
     'Bring', 'Your', 'Own', 'Mouth', 'With', 'Which', 'To', 'Drink', 'Said', 'Tap', 'Water'
 ];
 const clues = [
-    'image_clues/bring.png',
-    'image_clues/your.png',
-    'image_clues/own.png',
-    'image_clues/mouth.jpg',
-    'image_clues/with.png',
-    'image_clues/which.png',
-    'image_clues/to.png',
-    'image_clues/drink.png',
-    'image_clues/said.png',
-    'image_clues/tap.png',
-    'image_clues/water.png'
+    'imageClues/bring.png',
+    'imageClues/your.png',
+    'imageClues/own.png',
+    'imageClues/mouth.jpg',
+    'imageClues/with.jpg',
+    'imageClues/which.jpg',
+    'imageClues/to.jpg',
+    'imageClues/drink.jpg',
+    'imageClues/said.jpg',
+    'imageClues/tap.jpg',
+    'imageClues/water.jpg'
 ];
 
 const acronymContainer = document.querySelector('.acronym-container');
@@ -38,7 +38,7 @@ for (let i = 0; i < 3; i++) {
 
 let currentIndex = 3;
 // For image clues, use this line:
-clueDiv.innerHTML = `${acronym[currentIndex]}:<br><img src="${clues[currentIndex]}" alt="Clue Image" class="img-fluid">`;
+clueDiv.innerHTML = `<strong>${acronym[currentIndex]}</strong>:<br><img src="${clues[currentIndex]}" alt="Clue Image" class="img-fluid">`;
 
 // For text clues, comment out the image clues line and use this one
 // clueDiv.innerHTML = `<strong>${acronym[currentIndex]}:</strong>\u00A0\u00A0${clues[currentIndex]}`;
@@ -52,25 +52,33 @@ submitButton.addEventListener('click', () => {
 
         if (input.toLowerCase() === currentWord.toLowerCase()) {
             currentSlot.textContent = currentWord;
-            clueDiv.textContent = 'Good job, nerd';
+            clueDiv.innerHTML = 'Good job, nerd';
             if (currentIndex < answers.length - 1) {
                 currentIndex++;
                 setTimeout(() => {
-                    clueDiv.innerHTML = `<strong>${acronym[currentIndex]}:</strong>\u00A0\u00A0${clues[currentIndex]}`;
+                    // For image clues, use the following line:
+                    clueDiv.innerHTML = `<strong>${acronym[currentIndex]}</strong>:<br><img src="${clues[currentIndex]}" alt="Clue Image" class="img-fluid">`;
+
+                    // For text clues, use the following line:
+                    // clueDiv.innerHTML = `<strong>${acronym[currentIndex]}:</strong>\u00A0\u00A0${clues[currentIndex]}`;
                     wordInput.value = '';
                     wordInput.focus();
                 }, 1000);
             } else {
                 setTimeout(() => {
-                    clueDiv.textContent = 'Chugalug, baby';
+                    clueDiv.innerHTML = 'Chugalug, baby';
                     wordInput.disabled = true;
                     submitButton.disabled = true;
                 }, 1000);
             }
         } else {
-            clueDiv.textContent = 'Nope, NERD';
+            clueDiv.innerHTML = 'Nope, NERD';
             setTimeout(() => {
-                clueDiv.innerHTML = `<strong>${acronym[currentIndex]}:</strong>\u00A0\u00A0${clues[currentIndex]}`;
+                // For image clues, use this line:
+                clueDiv.innerHTML = `<strong>${acronym[currentIndex]}</strong>:<br><img src="${clues[currentIndex]}" alt="Clue Image" class="img-fluid">`;
+
+                // For text clues, use this line:
+                // clueDiv.innerHTML = `<strong>${acronym[currentIndex]}:</strong>\u00A0\u00A0${clues[currentIndex]}`;
             }, 3000);
             wordInput.value = '';
             wordInput.focus();
