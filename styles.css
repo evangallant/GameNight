@@ -8,7 +8,7 @@ body {
     margin: 80px auto;
     width: 90%;
     max-width: 800px;
-    background: #fff3b0 !important; /* soft, warm yellow */
+    background: #592e0a !important; /* soft, warm yellow */
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -23,6 +23,11 @@ h1 {
     margin-top: 10px;
     color: #f77f00 !important; /* bright, orange color for the acronym heading */
     font-weight: bold;
+}
+@media (max-width: 768px) {
+    #acronym-subheading {
+        font-size: 1em; /* Smaller size for mobile */
+    }
 }
 .acronym-container {
     display: flex;
@@ -52,7 +57,7 @@ h1 {
 #clue {
     margin-top: 20px;
     font-style: italic;
-    color: #eae2b7 !important; /* light tan for clue text */
+    color: #fbde02 !important; /* light tan for clue text */
 }
 #word-input {
     font-family: 'Roboto Slab', serif;
