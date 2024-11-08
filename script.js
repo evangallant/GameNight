@@ -1,4 +1,4 @@
-const acronym = 'BYOMWWTDSTP';
+const acronym = 'BYOMWWTDSTW';
 const answers = [
     'Bring', 'Your', 'Own', 'Mouth', 'With', 'Which', 'To', 'Drink', 'Said', 'Tap', 'Water'
 ];
