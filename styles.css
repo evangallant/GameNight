@@ -1,9 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=FreeMono:wght@400&display=swap');
+
 body {
-    font-family: 'Roboto Slab', serif;
+    font-family: 'FreeMono', serif;
     text-align: center;
     background-color: #3d2e1e !important; /* warm, dark brown background */
     color: #eae2b7 !important; /* light tan color for text */
 }
+
+button, input, textarea, select {
+    font-family: 'FreeMono', serif;
+}
+
 #riddle-container {
     margin: 80px auto;
     width: 90%;

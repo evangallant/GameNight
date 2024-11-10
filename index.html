@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
 </head>
-<body>
+<body onload="updateLeaderboard()">
     <div id="riddle-container" class="container">
         <div id="guess-container" class="row">
             <div class="col-4 acronym-container">
@@ -19,15 +19,41 @@
                 <div id="acronym-subheading">This week's acronym:</div>
                 <div id="acronym-subheading"><strong>BYOMWWTDSTW</strong></div>
                 <div id="hint">Hint: Free tap water provided</div>
-                <div id="clue"></div>
-                <div class="input-group mt-4 justify-content-center">
-                    <input type="text" id="word-input" class="form-control" placeholder="Enter your guess">
+                <!-- Start Button to initiate the game -->
+                <div id="start-container" class="text-center">
+                    <button id="start-button" class="btn btn-lg btn-warning mt-5">Start Game</button>
                 </div>
-                <button id="submit-button" class="btn btn-primary mt-2">Submit Word</button>
-                <div id="guess-count" class="mt-2 justify-content-center"></div>
-                <!-- add a div showing a smiley face -->
-                
+                <!-- Timer Display -->
+                <div id="time-container" class="mt-4 text-center" style="font-size: 1.5em; color: #d62828; display: none;">
+                    <span id="time-taken">0:00</span>
+                </div>
+                <div id="clue-and-input" style="display: none;">
+                    <div id="clue"></div>
+                    <div class="input-group mt-4 justify-content-center">
+                        <input type="text" id="word-input" class="form-control" placeholder="Enter your guess">
+                    </div>
+                    <button id="submit-button" class="btn btn-primary mt-2">Submit Word</button>
+                    <div id="name-input-container" style="display: none;">
+                        <label for="user-name">Enter your name to appear on the leaderboard:</label>
+                        <input type="text" id="user-name" class="form-control mt-2">
+                        <button id="submit-name-button" class="btn btn-success mt-2">Add Score to Leaderboard</button>
+                    </div>
+                </div>
             </div>
+        </div>
+        <div id="leaderboard-container" class="mt-5">
+            <h2>Leaderboard</h2>
+            <table id="leaderboard-table" class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Time Taken (s)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Leaderboard entries will be dynamically populated here -->
+                </tbody>
+            </table>
         </div>
     </div>
 </body>

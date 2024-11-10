@@ -1,3 +1,57 @@
+// Add functions to track time, update leaderboard, and submit name
+let startTime;
+let timerInterval;
+let timeTaken;
+
+// Add event listener for start button after DOM is fully loaded
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById('start-button').addEventListener('click', startGame);
+    updateLeaderboard(); // Fetch leaderboard when the page loads
+});
+
+// Start button to initiate the timer
+function startGame() {
+    startTime = Date.now();
+    document.getElementById('clue-and-input').style.display = 'block';
+    document.getElementById('time-container').style.display = 'block';
+    document.getElementById('start-button').style.display = 'none';
+    startTimer();
+    console.log("start game button pressed, function called all the way through");
+}
+
+// Start the timer
+function startTimer() {
+    timerInterval = setInterval(updateTimeDisplay, 1000);
+}
+
+// Stop the timer
+function stopTimer() {
+    clearInterval(timerInterval);
+}
+
+// Update the displayed time
+function updateTimeDisplay() {
+    const currentTime = Math.floor((Date.now() - startTime) / 1000);
+    const minutes = Math.floor(currentTime / 60);
+    const seconds = currentTime % 60;
+    document.getElementById('time-taken').textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+}
+
+// Fetch and update the leaderboard dynamically
+function updateLeaderboard() {
+    fetch('http://localhost:3000/leaderboard')
+        .then(response => response.json())
+        .then(data => {
+            const leaderboardTable = document.getElementById('leaderboard-table').querySelector('tbody');
+            leaderboardTable.innerHTML = '';
+            data.forEach(user => {
+                const row = `<tr><td>${user.name}</td><td>${user.time_taken}</td></tr>`;
+                leaderboardTable.innerHTML += row;
+            });
+        })
+        .catch(error => console.error('Error fetching leaderboard:', error));
+}
+
 const acronym = 'BYOMWWTDSTW';
 const answers = [
     'Bring', 'Your', 'Own', 'Mouth', 'With', 'Which', 'To', 'Drink', 'Said', 'Tap', 'Water'
@@ -40,9 +94,6 @@ let currentIndex = 3;
 // For image clues, use this line:
 clueDiv.innerHTML = `<strong>${acronym[currentIndex]}</strong>:<br><img src="${clues[currentIndex]}" alt="Clue Image" class="img-fluid">`;
 
-// For text clues, comment out the image clues line and use this one
-// clueDiv.innerHTML = `<strong>${acronym[currentIndex]}:</strong>\u00A0\u00A0${clues[currentIndex]}`;
-
 // Handle word submission
 submitButton.addEventListener('click', () => {
     const input = wordInput.value.trim();
@@ -56,11 +107,7 @@ submitButton.addEventListener('click', () => {
             if (currentIndex < answers.length - 1) {
                 currentIndex++;
                 setTimeout(() => {
-                    // For image clues, use the following line:
                     clueDiv.innerHTML = `<strong>${acronym[currentIndex]}</strong>:<br><img src="${clues[currentIndex]}" alt="Clue Image" class="img-fluid">`;
-
-                    // For text clues, use the following line:
-                    // clueDiv.innerHTML = `<strong>${acronym[currentIndex]}:</strong>\u00A0\u00A0${clues[currentIndex]}`;
                     wordInput.value = '';
                     wordInput.focus();
                 }, 1000);
@@ -69,19 +116,48 @@ submitButton.addEventListener('click', () => {
                     clueDiv.innerHTML = 'Chugalug, baby';
                     wordInput.disabled = true;
                     submitButton.disabled = true;
+
+                    // Timer stop logic here when puzzle is complete
+                    stopTimer();
+                    timeTaken = Math.floor((Date.now() - startTime) / 1000); // Calculate final time
+                    document.getElementById('name-input-container').style.display = 'block';
                 }, 1000);
             }
         } else {
             clueDiv.innerHTML = 'Nope, NERD';
             setTimeout(() => {
-                // For image clues, use this line:
                 clueDiv.innerHTML = `<strong>${acronym[currentIndex]}</strong>:<br><img src="${clues[currentIndex]}" alt="Clue Image" class="img-fluid">`;
-
-                // For text clues, use this line:
-                // clueDiv.innerHTML = `<strong>${acronym[currentIndex]}:</strong>\u00A0\u00A0${clues[currentIndex]}`;
+                wordInput.value = '';
+                wordInput.focus();
             }, 3000);
-            wordInput.value = '';
-            wordInput.focus();
         }
+    }
+});
+
+// Add event listener for submitting name to leaderboard
+document.getElementById('submit-name-button').addEventListener('click', () => {
+    const userName = document.getElementById('user-name').value;
+    if (userName) {
+        const data = {
+            name: userName,
+            timeTaken: timeTaken
+        };
+
+        // AJAX POST request to store the user's session data
+        fetch('http://localhost:3000/submit-session', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(result => {
+            if (result.success) {
+                // Reload the leaderboard to reflect the new score
+                updateLeaderboard();
+            } else {
+                console.error('Error saving leaderboard data:', result.error);
+            }
+        })
+        .catch(error => console.error('Error:', error));
     }
 });
