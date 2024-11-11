@@ -52,12 +52,23 @@ function updateLeaderboard() {
             const leaderboardTable = document.getElementById('leaderboard-table').querySelector('tbody');
             leaderboardTable.innerHTML = '';
             data.forEach(user => {
-                const row = `<tr><td>${user.name}</td><td>${user.time_taken}</td></tr>`;
+                let time = user.time_taken;
+
+                // If time is not already formatted as mm:ss, convert it from seconds
+                if (!time.includes(':')) {
+                    const totalSeconds = parseInt(time, 10);
+                    const minutes = Math.floor(totalSeconds / 60);
+                    const seconds = totalSeconds % 60;
+                    time = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                }
+
+                const row = `<tr><td>${user.name}</td><td>${time}</td></tr>`;
                 leaderboardTable.innerHTML += row;
             });
         })
         .catch(error => console.error('Error fetching leaderboard:', error));
 }
+
 
 const acronym = 'BYOMWWTDSTW';
 const answers = [
@@ -126,7 +137,11 @@ submitButton.addEventListener('click', () => {
 
                     // Timer stop logic here when puzzle is complete
                     stopTimer();
-                    timeTaken = Math.floor((Date.now() - startTime) / 1000); // Calculate final time
+                    const totalSeconds = Math.floor((Date.now() - startTime) / 1000);
+                    const minutes = Math.floor(totalSeconds / 60);
+                    const seconds = totalSeconds % 60;
+                    timeTaken = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`; // Format as mm:ss
+
                     document.getElementById('name-input-container').style.display = 'block';
                 }, 1000);
             }
