@@ -159,6 +159,7 @@ submitButton.addEventListener('click', () => {
 // Add event listener for submitting name to leaderboard
 document.getElementById('submit-name-button').addEventListener('click', () => {
     const userName = document.getElementById('user-name').value;
+    document.getElementById('submit-name-button').style.display = 'none';
     if (userName) {
         const data = {
             name: userName,
