@@ -15,8 +15,21 @@ const db = new sqlite3.Database('leaderboard.db', (err) => {
 });
 
 // Middleware setup
+const allowedOrigins = [
+    'http://localhost:8000', // Local development
+    'https://your-github-username.github.io' // GitHub Pages deployment
+];
+
 const corsOptions = {
-    origin: 'http://localhost:8000', // Allow only requests from your frontend
+    origin: (origin, callback) => {
+        // Allow requests with no origin, like mobile apps or curl requests
+        if (!origin) return callback(null, true);
+        if (allowedOrigins.includes(origin)) {
+            return callback(null, true);
+        } else {
+            return callback(new Error('Not allowed by CORS'));
+        }
+    },
     methods: 'GET,POST', // Allow only GET and POST requests
     optionsSuccessStatus: 200, // Some legacy browsers choke on 204
 };

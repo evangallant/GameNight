@@ -3,10 +3,17 @@ let startTime;
 let timerInterval;
 let timeTaken;
 
-// Add event listener for start button after DOM is fully loaded
 document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById('start-button').addEventListener('click', startGame);
-    updateLeaderboard(); // Fetch leaderboard when the page loads
+    const startButton = document.getElementById('start-button');
+    
+    if (startButton) {
+        // Listen for click events (desktop and some mobile devices)
+        startButton.addEventListener('click', startGame);
+
+        // Listen for touch events (mobile devices)
+        startButton.addEventListener('touchstart', startGame);
+    }
+    updateLeaderboard();
 });
 
 // Start button to initiate the timer
@@ -39,7 +46,7 @@ function updateTimeDisplay() {
 
 // Fetch and update the leaderboard dynamically
 function updateLeaderboard() {
-    fetch('http://localhost:3000/leaderboard')
+    fetch('https://gamenight-backend.onrender.com/leaderboard')
         .then(response => response.json())
         .then(data => {
             const leaderboardTable = document.getElementById('leaderboard-table').querySelector('tbody');
@@ -144,7 +151,7 @@ document.getElementById('submit-name-button').addEventListener('click', () => {
         };
 
         // AJAX POST request to store the user's session data
-        fetch('http://localhost:3000/submit-session', {
+        fetch('https://gamenight-backend.onrender.com/submit-session', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
