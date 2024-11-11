@@ -41,7 +41,7 @@ function updateTimeDisplay() {
     const currentTime = Math.floor((Date.now() - startTime) / 1000);
     const minutes = Math.floor(currentTime / 60);
     const seconds = currentTime % 60;
-    document.getElementById('time-taken').textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+    document.getElementById('time-taken').textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 }
 
 // Fetch and update the leaderboard dynamically
