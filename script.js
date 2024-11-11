@@ -54,9 +54,9 @@ function updateLeaderboard() {
             data.forEach(user => {
                 let time = user.time_taken;
 
-                // If time is not already formatted as mm:ss, convert it from seconds
-                if (!time.includes(':')) {
-                    const totalSeconds = parseInt(time, 10);
+                // Check if `time` is a number (in seconds) and format it to mm:ss
+                if (typeof time === 'number') {
+                    const totalSeconds = time;
                     const minutes = Math.floor(totalSeconds / 60);
                     const seconds = totalSeconds % 60;
                     time = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
@@ -68,6 +68,7 @@ function updateLeaderboard() {
         })
         .catch(error => console.error('Error fetching leaderboard:', error));
 }
+
 
 
 const acronym = 'BYOMWWTDSTW';
