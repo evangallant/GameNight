@@ -1,14 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=FreeMono:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
 body {
-    font-family: 'FreeMono', serif;
+    font-family: 'Bebas Neue', sans-serif;
     text-align: center;
     background-color: #3d2e1e !important; /* warm, dark brown background */
     color: #eae2b7 !important; /* light tan color for text */
 }
 
 button, input, textarea, select {
-    font-family: 'FreeMono', serif;
+    font-family: 'Bebas Neue', sans-serif;
 }
 
 #riddle-container {
