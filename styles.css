@@ -21,19 +21,19 @@ button, input, textarea, select {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 h1 {
-    font-size: 2em;
+    font-size: 2.5em;
     color: #d62828 !important; /* rich, warm red for the header */
     margin-bottom: 30px;
 }
 #acronym-subheading {
-    font-size: 2em;
+    font-size: 2.5em;
     margin-top: 10px;
     color: #f77f00 !important; /* bright, orange color for the acronym heading */
     font-weight: bold;
 }
 @media (max-width: 768px) {
     #acronym-subheading {
-        font-size: 1em; /* Smaller size for mobile */
+        font-size: 1.5em; /* Smaller size for mobile */
     }
 }
 .acronym-container {
@@ -69,14 +69,14 @@ h1 {
 #word-input {
     font-family: 'Roboto Slab', serif;
     padding: 10px;
-    font-size: 1em;
+    font-size: 1.5em;
     border: 2px solid #f77f00 !important; /* bright orange border for input */
     border-radius: 5px;
 }
 #submit-button {
     margin-top: 10px;
     padding: 10px 20px;
-    font-size: 1em;
+    font-size: 1.5em;
     background-color: #f77f00 !important; /* bright orange background for button */
     color: white;
     border: none;
