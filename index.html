@@ -38,7 +38,7 @@
                         algebraic chess notation</a>.<br>
                         Over the course of the 4 puzzles, the alphabetical letters in the notation of the correct moves will 
                         spell out the answer!<br><br>
-                        Below is an example.<br> In this position we can play checkmate with the move 're8', moving the rook to the back rank. 
+                        Below is an example.<br> In this position we can play checkmate with the move 're8#', moving the rook to the back rank. 
                         The King has no squares to move to, and no pieces can block, so it's mate in 1.<br>
                         From this puzzle we would get the letters 'R' and 'E', meaning the first 2 letters of the answer would be RE.<br>
                         <div id="example-board" class="my-4" style="margin: auto;"></div>
@@ -75,12 +75,20 @@
                     <div id="clue"></div>
                     <div id="chesswindow">
                         <div id="chessboard" class="my-4" style="margin: auto;"></div>
-                        
+                        <div id="to-move">White to move</div>
                         <!-- Input for the user's best move -->
                         <div class="input-group mt-4 justify-content-center">
                             <input type="text" id="move-input" class="form-control" placeholder="Enter the best move (e.g., e4)">
                         </div>
                         <button id="submit-move-button" class="btn btn-primary mt-2">Submit Move</button>
+                        <div id="notation-tips">
+                            <li>Pawn moves: list the square they move to (i.e. c3, b5)</li>
+                            <li>Piece moves: letter (k - king, q - queen, b - bishop, n - knight, r - rook) + square (i.e. bc3, qh2)</li>
+                            <li>Pawn captures: put an 'x' between the file (column) and the target square (i.e. exd4, fxg7)</le>
+                            <li>Piece captures: put an 'x' between the piece and the target square (i.e. bxc3, qxh2)</li>
+                            <li>Checkmate: Add an '#' after the move (i.e. re7#, bxh3#)</li>
+                            <li>Castling: Kingside castling - O-O, queenside castline - O-O-O</li>
+                        </div>
                     </div>
                     <div id="letters-guessed"></div>
                     <!-- Leaderboard name input -->

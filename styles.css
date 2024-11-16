@@ -72,6 +72,11 @@ h1 {
     font-style: italic;
     color: #fbde02 !important; /* light tan for clue text */
 }
+#to-move {
+    margin-top: 20px;
+    font-style: italic;
+    color: #fbde02 !important; /* light tan for clue text */
+}
 #word-input {
     font-family: 'Bebas Neue', sans-serif;
     padding: 10px;
