@@ -17,7 +17,7 @@ const db = new sqlite3.Database('leaderboard.db', (err) => {
 // Middleware setup
 const allowedOrigins = [
     'http://localhost:8000', // Local development
-    'https://your-github-username.github.io' // GitHub Pages deployment
+    'https://evangallant.github.io' // GitHub Pages deployment
 ];
 
 const corsOptions = {

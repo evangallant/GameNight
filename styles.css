@@ -153,10 +153,10 @@ h1 {
     color: #fbde02 !important; /* Font color for table body cells */
 }
 #chessboard {
-    width: 400px; /* Set this to adjust board size */
-    max-width: 100%;
+    width: 300px; /* Set this to adjust board size */
+    max-width: auto;
 }
 #example-board {
-    width: 400px;
-    max-width: 100%
+    width: 300px;
+    max-width: auto
 }
