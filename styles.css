@@ -59,19 +59,41 @@ h1 {
 #guess-interface {
     flex: 2;
     padding-left: 20px;
-    border-left: 2px solid #f77f00 !important; /* same bright orange as acronym heading */
+    /* BORDER BETWEEN RIDDLE CONTAINER AND LETTER BOX FOR INITIALISMS VVVVV */
+    /* border-left: 2px solid #f77f00 !important;   */
 }
 #clue {
     margin-top: 20px;
     font-style: italic;
     color: #fbde02 !important; /* light tan for clue text */
 }
+#letters-guessed {
+    margin-top: 20px;
+    font-style: italic;
+    color: #fbde02 !important; /* light tan for clue text */
+}
 #word-input {
-    font-family: 'Roboto Slab', serif;
+    font-family: 'Bebas Neue', sans-serif;
     padding: 10px;
     font-size: 1.5em;
     border: 2px solid #f77f00 !important; /* bright orange border for input */
     border-radius: 5px;
+    text-align: center;
+}
+#submit-word {
+    font-family: 'Bebas Neue', sans-serif;
+    padding: 10px;
+    font-size: 1.5em;
+    border: 2px solid #f77f00 !important; /* bright orange border for input */
+    border-radius: 5px;
+    text-align: center;
+}
+#move-input {
+    font-family: 'Bebas Neue', sans-serif;
+    padding: 10px;
+    border: 2px solid #f77f00 !important; /* bright orange border for input */
+    border-radius: 5px;
+    text-align: center;
 }
 #submit-button {
     margin-top: 10px;
@@ -84,13 +106,39 @@ h1 {
     cursor: pointer;
     font-family: 'Roboto Slab', serif;
 }
+#submit-move-button {
+    font-family: 'Bebas Neue', sans-serif;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #f77f00 !important; /* bright orange background for button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#submit-word-button {
+    font-family: 'Bebas Neue', sans-serif;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #f77f00 !important; /* bright orange background for button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
 #submit-button:hover {
     background-color: #d62828 !important; /* warm red on hover */
 }
 #hint {
     margin-top: 30px;
+    font-size: 1.5em;
     font-weight: bold;
     color: #eae2b7 !important; /* light tan for hint text */
+}
+#instructions {
+    margin-top: 30px;
+    font-weight: lighter;
+    color: #ffffff !important
 }
 #leaderboard-table {
     color: #fbde02; /* Change this to your desired color code */
@@ -98,11 +146,17 @@ h1 {
 #leaderboard-table tbody tr:nth-child(odd) {
     background-color: #2a2a2a !important; /* Light gray for odd rows */
 }
-
 #leaderboard-table tbody tr:nth-child(even) {
     background-color: #676767 !important; /* White for even rows */
 }
-
 #leaderboard-table tbody tr td {
     color: #fbde02 !important; /* Font color for table body cells */
+}
+#chessboard {
+    width: 400px; /* Set this to adjust board size */
+    max-width: 100%;
+}
+#example-board {
+    width: 400px;
+    max-width: 100%
 }

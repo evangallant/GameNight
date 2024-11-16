@@ -69,8 +69,6 @@ function updateLeaderboard() {
         .catch(error => console.error('Error fetching leaderboard:', error));
 }
 
-
-
 const acronym = 'BYOMWWTDSTW';
 const answers = [
     'Bring', 'Your', 'Own', 'Mouth', 'With', 'Which', 'To', 'Drink', 'Said', 'Tap', 'Water'
@@ -88,6 +86,13 @@ const clues = [
     'imageClues/tap.jpg',
     'imageClues/water.jpg'
 ];
+
+const puzzleAnswers = [
+    'c7#',
+    'o-o#',
+    'kxe8',
+    'd4'
+]
 
 const acronymContainer = document.querySelector('.acronym-container');
 const clueDiv = document.getElementById('clue');
@@ -129,7 +134,7 @@ submitButton.addEventListener('click', () => {
                     clueDiv.innerHTML = `<strong>${acronym[currentIndex]}</strong>:<br><img src="${clues[currentIndex]}" alt="Clue Image" class="img-fluid">`;
                     wordInput.value = '';
                     wordInput.focus();
-                }, 1000);
+                }, 500);
             } else {
                 setTimeout(() => {
                     clueDiv.innerHTML = 'Chugalug, baby';
@@ -152,7 +157,7 @@ submitButton.addEventListener('click', () => {
                 clueDiv.innerHTML = `<strong>${acronym[currentIndex]}</strong>:<br><img src="${clues[currentIndex]}" alt="Clue Image" class="img-fluid">`;
                 wordInput.value = '';
                 wordInput.focus();
-            }, 3000);
+            }, 1000);
         }
     }
 });

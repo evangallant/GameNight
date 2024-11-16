@@ -6,28 +6,57 @@
     <title>Game Night Riddle Solver</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/@chrisoakman/chessboardjs/dist/chessboard-1.0.0.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/@chrisoakman/chessboardjs/dist/chessboard-1.0.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
+    <!-- FOR CHESS -->
+    <script defer src="puzzlescript.js"></script>
+    <!-- FOR REGULAR PUZZLES -->
+    <!-- <script defer scr="script.js"></script> -->
 </head>
 <body onload="updateLeaderboard()">
     <div id="riddle-container" class="container">
         <div id="guess-container" class="row">
-            <div class="col-4 acronym-container">
+            <!-- COLUMN FOR INITIALISM LETTERS -->
+            <!-- <div class="col-4 acronym-container"> -->
                 <!-- The acronym with guessed words will be generated here -->
-            </div>
-            <div id="guess-interface" class="col-8">
+            <!-- </div> -->
+             <!-- SWITCH COL LENGTH TO 8 FOR INITIALISMS TO MAKE ROOM FOR THE LETTER COLUMN -->
+            <div id="guess-interface" class="col-12">
                 <h1><strong>WHAT ARE WE BRINGING TO GAME NIGHT?</strong></h1>
-                <div id="acronym-subheading">This week's initialism:</div>
-                <div id="acronym-subheading"><strong>BYOMWWTDSTW</strong></div>
-                <div id="hint">Hint: Free tap water provided</div>
+                <!-- FOR INITIALISM CLUES -->
+                <!-- <div id="acronym-subheading">This week's initialism:</div>
+                <div id="acronym-subheading"><strong>BYOMWWTDSTW</strong></div> -->
+                <div id="hint">Hint: Like prepared food or Nate on chess night</div>
                 <!-- Start Button to initiate the game -->
                 <div id="start-container" class="text-center">
+                    <div id="instructions">Alright, this week is a little different - we're doing chess puzzles!<br>
+                        The answer this week is a single word. You will solve the puzzles to learn the letters of the word.<br><br>
+                        Each puzzle has 1 correct move, which can be represented via <a href="https://en.wikipedia.org/wiki/Algebraic_notation_(chess)" target="_blank">
+                        algebraic chess notation</a>.<br>
+                        Over the course of the 4 puzzles, the alphabetical letters in the notation of the correct moves will 
+                        spell out the answer!<br><br>
+                        Below is an example.<br> In this position we can play checkmate with the move 're8', moving the rook to the back rank. 
+                        The King has no squares to move to, and no pieces can block, so it's mate in 1.<br>
+                        From this puzzle we would get the letters 'R' and 'E', meaning the first 2 letters of the answer would be RE.<br>
+                        <div id="example-board" class="my-4" style="margin: auto;"></div>
+                        The notation is pretty intuitive, but if you're confused take a look at the wikipedia article linked above.<br><br>
+                        Some tips:<br>
+                        <li>Assume white to move for all puzzles</li>
+                        <li>The puzzles spell the word out in order</li>
+                        <li>There is a single, obvious best move in each position</li>
+                        <li>The word is 6 letters long, and there are 4 puzzles</li>
+                        Good luck!
+                    </div>
                     <button id="start-button" class="btn btn-lg btn-warning mt-5">Start Game</button>
                 </div>
                 <!-- Timer Display -->
                 <div id="time-container" class="mt-4 text-center" style="font-size: 1.5em; color: #f77f00; display: none;">
                     <span id="time-taken">0:00</span>
                 </div>
-                <div id="clue-and-input" style="display: none;">
+                <!-- FOR TEXT OR PICTURE CLUES -->
+                <!-- <div id="clue-and-input" style="display: none;">
                     <div id="clue"></div>
                     <div class="input-group mt-4 justify-content-center">
                         <input type="text" id="word-input" class="form-control" placeholder="Enter your guess">
@@ -37,6 +66,34 @@
                         <label for="user-name">Enter your name to appear on the leaderboard:</label>
                         <input type="text" id="user-name" class="form-control mt-2">
                         <button id="submit-name-button" class="btn btn-success mt-2">Add Score to Leaderboard</button>
+                    </div>
+                </div> -->
+                <!-- FOR CHESSBOARD CLUES -->
+                <div id="clue-and-input" style="display: none;">
+                    <!-- Chessboard -->
+                    <div id="clue"></div>
+                    <div id="chesswindow">
+                        <div id="chessboard" class="my-4" style="margin: auto;"></div>
+                        
+                        <!-- Input for the user's best move -->
+                        <div class="input-group mt-4 justify-content-center">
+                            <input type="text" id="move-input" class="form-control" placeholder="Enter the best move (e.g., e4)">
+                        </div>
+                        <button id="submit-move-button" class="btn btn-primary mt-2">Submit Move</button>
+                    </div>
+                    <div id="letters-guessed"></div>
+                    <!-- Leaderboard name input -->
+                    <div id="name-input-container" style="display: none;">
+                        <label for="user-name">Enter your name to appear on the leaderboard:</label>
+                        <input type="text" id="user-name" class="form-control mt-2">
+                        <button id="submit-name-button" class="btn btn-success mt-2">Add Score to Leaderboard</button>
+                    </div>
+                    <div id="word-guess-window">
+                        <!-- Input for the user's word guess -->
+                        <div class="input-group mt-4 justify-content-center">
+                            <input type="text" id="submit-word" class="form-control" placeholder="Guess the full word here whenever!">
+                        </div>
+                        <button id="submit-word-button" class="btn btn-primary mt-2">Guess Word</button>                        
                     </div>
                 </div>
             </div>
