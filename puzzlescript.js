@@ -33,11 +33,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Chessboard and Puzzle Variables
     let board;
-    const puzzleAnswers = [
-        'c7#',
-        'O-O#',
-        'kxe8',
-        'd4'
+    const puzzleAnswers1 = [
+        'c7#', 'c7'
+    ];
+    const puzzleAnswers2 = [
+        'O-O#', 'OO', 'O-O', '0-0#', '00', '0-0'
+    ];
+    const puzzleAnswers3 = [
+        'kxe8', 'ke8', 'kex8', 'e8'
+    ];
+    const puzzleAnswers4 = [
+        'd4', 'dx4'
     ];
     const fullAnswer = 'cooked'
     const boardPositions = [
@@ -109,30 +115,25 @@ document.addEventListener("DOMContentLoaded", function () {
         const userMove = document.getElementById('move-input').value.trim();
         
         if (userMove) {
-            const correctMove = puzzleAnswers[currentPuzzleIndex];
+            const correctMovesList = [
+                puzzleAnswers1,
+                puzzleAnswers2,
+                puzzleAnswers3,
+                puzzleAnswers4
+            ];
 
-            if (userMove.toLowerCase() === correctMove.toLowerCase()) {
+            const correctMoves = correctMovesList[currentPuzzleIndex];
+
+            if (correctMoves.includes(userMove.toLowerCase())) {
                 // Correct move
                 console.log('Correct move:', userMove);
                 currentPuzzleIndex++;
 
-                if (currentPuzzleIndex === 1) {
-                    document.getElementById('letters-guessed').innerHTML = 'Answers: &nbsp;&nbsp;&nbsp; c7#';
-                }
+                // Update the letters guessed display
+                const answersDisplay = correctMovesList.slice(0, currentPuzzleIndex).map((answers, index) => correctMovesList[index][0]).join(', ');
+                document.getElementById('letters-guessed').innerHTML = `Answers: &nbsp;&nbsp;&nbsp; ${answersDisplay}`;
 
-                if (currentPuzzleIndex === 2) {
-                    document.getElementById('letters-guessed').innerHTML = 'Answers: &nbsp;&nbsp;&nbsp; c7#, O-O#';
-                }                
-
-                if (currentPuzzleIndex === 3) {
-                    document.getElementById('letters-guessed').innerHTML = 'Answers: &nbsp;&nbsp;&nbsp; c7#, O-O#, kxe8';
-                }
-
-                if (currentPuzzleIndex === 4) {
-                    document.getElementById('letters-guessed').innerHTML = 'Answers: &nbsp;&nbsp;&nbsp; c7#, O-O#, kxe8, d4';
-                }
-
-                if (currentPuzzleIndex < puzzleAnswers.length) {
+                if (currentPuzzleIndex < correctMovesList.length) {
                     // Load the next puzzle if available
                     loadPuzzle(currentPuzzleIndex);
                     document.getElementById('move-input').value = '';
