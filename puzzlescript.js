@@ -112,8 +112,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Handle move submission for the current puzzle
     document.getElementById('submit-move-button').addEventListener('click', () => {
-        const userMove = document.getElementById('move-input').value.trim();
-        
+        let userMove = document.getElementById('move-input').value.trim().toLowerCase();
+
+        // Remove special characters like hyphens, spaces, and trailing pound symbols (#)
+        userMove = userMove.replace(/[-\s]/g, "").replace(/#$/, "");
+
         if (userMove) {
             const correctMovesList = [
                 puzzleAnswers1,
@@ -122,15 +125,24 @@ document.addEventListener("DOMContentLoaded", function () {
                 puzzleAnswers4
             ];
 
-            const correctMoves = correctMovesList[currentPuzzleIndex];
+            // Normalize each move in correctMoves to match the format of userMove
+            const correctMoves = correctMovesList[currentPuzzleIndex].map(move => 
+                move.trim().toLowerCase().replace(/[-\s]/g, "").replace(/#$/, "")
+            );
 
-            if (correctMoves.includes(userMove.toLowerCase())) {
+            console.log('Current puzzle index:', currentPuzzleIndex);
+            console.log('Correct Moves:', correctMoves);
+            console.log('User Move:', userMove);
+
+            if (correctMoves.includes(userMove)) {
                 // Correct move
                 console.log('Correct move:', userMove);
                 currentPuzzleIndex++;
 
                 // Update the letters guessed display
-                const answersDisplay = correctMovesList.slice(0, currentPuzzleIndex).map((answers, index) => correctMovesList[index][0]).join(', ');
+                const answersDisplay = correctMovesList.slice(0, currentPuzzleIndex)
+                    .map((answers) => answers[0]) // Get the first answer from each correctMoves list
+                    .join(', ');
                 document.getElementById('letters-guessed').innerHTML = `Answers: &nbsp;&nbsp;&nbsp; ${answersDisplay}`;
 
                 if (currentPuzzleIndex < correctMovesList.length) {
@@ -144,6 +156,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             } else {
                 // Incorrect move
+                console.log('Incorrect move:', userMove);
                 document.getElementById('clue').innerHTML = 'Incorrect move, try again.';
                 setTimeout(() => {
                     document.getElementById('clue').innerHTML = '';
@@ -153,6 +166,7 @@ document.addEventListener("DOMContentLoaded", function () {
             alert("Please enter a move in algebraic notation (e.g., e4, Nf3, etc.)");
         }
     });
+
 
     document.getElementById('submit-word-button').addEventListener('click', () => {
         const wordGuess = document.getElementById('submit-word').value
