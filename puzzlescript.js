@@ -107,7 +107,6 @@ document.addEventListener("DOMContentLoaded", function () {
         loadPuzzle(currentPuzzleIndex); // Load the first puzzle
         startTimer();
         console.log("start game button pressed, function called all the way through");
-        window.scrollTo(0, 0);
         disableScroll();
     }
 
