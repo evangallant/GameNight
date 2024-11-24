@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
         'ba7#'
     ];
     const puzzleAnswers4 = [
-        'g4'
+        'g4+'
     ];
     const puzzleAnswers5 = [
         'e6#'
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
         'r6k/8/3p4/r2Q4/8/2P1PP1q/1BB3P1/1K6 w - - 0 1',  // FEN for 'c''
         'k7/8/1Q6/1p5q/P7/R7/6r1/4K3 w - - 0 1', // FEN for 'ab'
         '1k1r4/7R/8/8/5q1q/8/5BB1/2R3K1 w - - 0 1', // FEN for 'ba''
-        '5rk1/3p1pp1/7p/p4r1r/P7/4P3/5PPP/5RK1 w - - 0 1',  // FEN for 'g'
+        '1k6/8/8/p4r1q/P7/4P1P1/5P1B/5K1Q w - - 0 1',  // FEN for 'g'
         'qq1qqqqq/qqq1bkqq/5bqq/qqq1P1qq/qq1q1q1q/q1qq1qq1/PPqq1qqq/K3Rqqq w - - 0 1' // FEN for 'e'
     ];
 
