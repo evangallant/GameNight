@@ -23,6 +23,15 @@ function updateLeaderboard() {
         .catch(error => console.error('Error fetching leaderboard:', error));
 }
 
+function disableScroll() {
+    document.body.style.overflow = 'hidden';
+}
+
+// Function to enable scrolling
+function enableScroll() {
+    document.body.style.overflow = '';
+}
+
 document.addEventListener("DOMContentLoaded", function () {
     const startButton = document.getElementById('start-button');
 
@@ -98,6 +107,8 @@ document.addEventListener("DOMContentLoaded", function () {
         loadPuzzle(currentPuzzleIndex); // Load the first puzzle
         startTimer();
         console.log("start game button pressed, function called all the way through");
+        window.scrollTo(0, 0);
+        disableScroll();
     }
 
     // Start the timer
@@ -164,6 +175,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 loadPuzzle(currentPuzzleIndex);
             } else {
                 // All puzzles completed
+                enableScroll();
                 document.getElementById('chesswindow').style.display = 'none';
                 document.getElementById('clue').innerHTML = 'Congratulations! You have completed all the puzzles!<br>Now input the word!';
             }
