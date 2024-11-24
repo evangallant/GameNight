@@ -25,6 +25,16 @@ function updateLeaderboard() {
 
 function disableScroll() {
     document.body.style.overflow = 'hidden';
+    // Get the chessboard element and its position
+    const chessboardElement = document.getElementById('chessboard');
+    if (chessboardElement) {
+        // Scroll the window to the chessboard element so it's centralized
+        chessboardElement.scrollIntoView({
+            behavior: 'smooth', // Smooth scrolling animation
+            block: 'center',    // Align to the vertical center of the screen
+            inline: 'center'    // Align to the horizontal center (if applicable)
+        });
+    }
 }
 
 // Function to enable scrolling
