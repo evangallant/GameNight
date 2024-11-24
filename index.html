@@ -29,7 +29,7 @@
                 <!-- <h1><strong>WHAT ARE WE BRINGING TO GAME NIGHT?</strong></h1> -->
                 <!-- <div id="acronym-subheading">This week's initialism:</div>
                 <div id="acronym-subheading"><strong>BYOMWWTDSTW</strong></div> -->
-                <div id="hint">Hint: Like prepared food or Nate on chess night</div>
+                <div id="hint">Hint: Unfortunate victim of the Avatar</div>
                 <!-- Start Button to initiate the game -->
                 <div id="start-container" class="text-center">
                     <div id="instructions">Alright, this week is a little different - we're doing chess puzzles!<br>
@@ -38,28 +38,16 @@
                         algebraic chess notation</a>.<br>
                         Over the course of the 4 puzzles, the alphabetical letters in the notation of the correct moves will 
                         spell out the answer!<br><br>
-                        ***I made a mistake here - notation for a capture includes an 'x' - this is not part of the answer.<br>
-                        Only the letters corresponding to the pieces (K, Q, B, N, R), and the board squares (A-H) are part of the answer. Sorry!***
-                        <br><br>
                         Below is an example.<br> In this position we can play checkmate with the move 're8#', moving the rook to the back rank. 
                         The King has no squares to move to, and no pieces can block, so it's mate in 1.<br>
-                        From this puzzle we would get the letters 'R' and 'E', meaning the first 2 letters of the answer would be RE.<br>
+                        From this puzzle we would get the letters 'R' and 'E', meaning the first 2 letters of the answer would be RE (you don't have to write out the move, you can just make it on the board now).<br>
                         <div id="example-board" class="my-4" style="margin: auto;"></div>
-                        The notation is pretty intuitive, but if you're confused take a look at the wikipedia article linked above.<br><br>
                         Some tips:<br>
                         <li>Assume white to move for all puzzles</li>
                         <li>The puzzles spell the word out in order</li>
                         <li>There is a single, obvious best move in each position</li>
-                        <li>The word is 6 letters long, and there are 4 puzzles</li>
+                        <li>The word is 7 letters long, and there are 5 puzzles</li>
                         Good luck!
-                    </div>
-                    <div id="notation-tips">
-                        <li>Pawn moves: list the square they move to (i.e. c3, b5)</li>
-                        <li>Piece moves: letter (k - king, q - queen, b - bishop, n - knight, r - rook) + square (i.e. bc3, qh2)</li>
-                        <li>Pawn captures: put an 'x' between the file (column) and the target square (i.e. exd4, fxg7)</le>
-                        <li>Piece captures: put an 'x' between the piece and the target square (i.e. bxc3, qxh2)</li>
-                        <li>Checkmate: Add an '#' after the move (i.e. re7#, bxh3#)</li>
-                        <li>Castling: Kingside castling - O-O, queenside castline - O-O-O</li>
                     </div>
                     <button id="start-button" class="btn btn-lg btn-warning mt-5">Start Game</button>
                 </div>
@@ -87,19 +75,6 @@
                     <div id="chesswindow">
                         <div id="chessboard" class="my-4" style="margin: auto;"></div>
                         <div id="to-move">White to move</div>
-                        <!-- Input for the user's best move -->
-                        <div class="input-group mt-4 justify-content-center">
-                            <input type="text" id="move-input" class="form-control" placeholder="Enter the best move (e.g., e4)">
-                        </div>
-                        <button id="submit-move-button" class="btn btn-primary mt-2">Submit Move</button>
-                        <div id="notation-tips">
-                            <li>Pawn moves: list the square they move to (i.e. c3, b5)</li>
-                            <li>Piece moves: letter (k - king, q - queen, b - bishop, n - knight, r - rook) + square (i.e. bc3, qh2)</li>
-                            <li>Pawn captures: put an 'x' between the file (column) and the target square (i.e. exd4, fxg7)</le>
-                            <li>Piece captures: put an 'x' between the piece and the target square (i.e. bxc3, qxh2)</li>
-                            <li>Checkmate: Add an '#' after the move (i.e. re7#, bxh3#)</li>
-                            <li>Castling: Kingside castling - O-O, queenside castline - O-O-O</li>
-                        </div>
                     </div>
                     <div id="letters-guessed"></div>
                     <!-- Leaderboard name input -->
@@ -115,7 +90,7 @@
                         </div>
                         <button id="submit-word-button" class="btn btn-primary mt-2">Guess Word</button>                        
                     </div>
-                </div>
+                </div>                
             </div>
         </div>
         <div id="leaderboard-container" class="mt-5">

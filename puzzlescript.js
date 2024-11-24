@@ -33,32 +33,38 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Chessboard and Puzzle Variables
     let board;
+    let game = new Chess(); // Using Chess.js to track the game
     const puzzleAnswers1 = [
-        'c7#', 'c7'
+        'c4#'
     ];
     const puzzleAnswers2 = [
-        'O-O#', 'OO', 'O-O', '0-0#', '00', '0-0'
+        'axb5#'
     ];
     const puzzleAnswers3 = [
-        'kxe8', 'ke8', 'kex8', 'e8'
+        'ba7#'
     ];
     const puzzleAnswers4 = [
-        'd4', 'dx4'
+        'g4'
     ];
-    const fullAnswer = 'cooked'
+    const puzzleAnswers5 = [
+        'e6#'
+    ]
+    const fullAnswer = 'cabbage'
     const boardPositions = [
-        '2nkb3/3pp1q1/2P5/8/1P6/P7/5KR1/2R5 b - - 0 1',  // FEN for puzzle 1
-        '8/7p/4Q3/8/8/5kp1/8/4K2R w K - 0 1', // FEN for puzzle 2
-        '4q3/1k1K1p2/6pp/5n2/7P/1P4P1/P4P2/3R4 w - - 0 1', // FEN for puzzle 3
-        'r1bqkbnr/pppp2pp/5p2/4n3/8/8/PPPPQPPP/RNB1KBNR w KQkq - 0 1'  // FEN for puzzle 4
+        'r6k/8/3p4/r2Q4/8/2P1PP1q/1BB3P1/1K6 w - - 0 1',  // FEN for 'c''
+        'k7/8/1Q6/1p5q/P7/R7/6r1/4K3 w - - 0 1', // FEN for 'ab'
+        '1k1r4/7R/8/8/5q1q/8/5BB1/2R3K1 w - - 0 1', // FEN for 'ba''
+        '5rk1/3p1pp1/7p/p4r1r/P7/4P3/5PPP/5RK1 w - - 0 1',  // FEN for 'g'
+        'qq1qqqqq/qqq1bkqq/5bqq/qqq1P1qq/qq1q1q1q/q1qq1qq1/PPqq1qqq/K3Rqqq w - - 0 1' // FEN for 'e'
     ];
 
     let currentPuzzleIndex = 0;
 
     // Initialize the chessboard
     board = Chessboard('chessboard', {
-        draggable: false,
-        position: 'start'
+        draggable: true,
+        position: 'start',
+        onDrop: handleMove // This function will be called when a piece is dropped
     });
 
     exampleBoard = Chessboard('example-board', {
@@ -68,7 +74,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Load the first puzzle on start
     function loadPuzzle(index) {
-        board.position(boardPositions[index]);
+        const fen = boardPositions[index];
+        board.position(fen);
+        game.load(fen); // Load the FEN into the chess.js game instance
     }
 
     if (startButton) {
@@ -111,62 +119,71 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Handle move submission for the current puzzle
-    document.getElementById('submit-move-button').addEventListener('click', () => {
-        let userMove = document.getElementById('move-input').value.trim().toLowerCase();
+    function handleMove(source, target) {
+        const move = game.move({
+            from: source,
+            to: target,
+            promotion: 'q' // Assume promotion to a queen if applicable
+        });
 
-        // Remove special characters like hyphens, spaces, and trailing pound symbols (#)
-        userMove = userMove.replace(/[-\s]/g, "").replace(/#$/, "");
+        if (move === null) {
+            return 'snapback'; // Invalid move, return the piece to its original square
+        }
 
-        if (userMove) {
-            const correctMovesList = [
-                puzzleAnswers1,
-                puzzleAnswers2,
-                puzzleAnswers3,
-                puzzleAnswers4
-            ];
+        const correctMovesList = [
+            puzzleAnswers1,
+            puzzleAnswers2,
+            puzzleAnswers3,
+            puzzleAnswers4,
+            puzzleAnswers5
+        ];
 
-            // Normalize each move in correctMoves to match the format of userMove
-            const correctMoves = correctMovesList[currentPuzzleIndex].map(move => 
-                move.trim().toLowerCase().replace(/[-\s]/g, "").replace(/#$/, "")
-            );
+        // Convert move to algebraic notation
+        const userMove = move.san.toLowerCase().replace(/[-\s]/g, "").replace(/#$/, "");
+        const correctMoves = correctMovesList[currentPuzzleIndex].map(m =>
+            m.trim().toLowerCase().replace(/[-\s]/g, "").replace(/#$/, "")
+        );
 
-            console.log('Current puzzle index:', currentPuzzleIndex);
-            console.log('Correct Moves:', correctMoves);
-            console.log('User Move:', userMove);
+        console.log('Current puzzle index:', currentPuzzleIndex);
+        console.log('Correct Moves:', correctMoves);
+        console.log('User Move:', userMove);
 
-            if (correctMoves.includes(userMove)) {
-                // Correct move
-                console.log('Correct move:', userMove);
-                currentPuzzleIndex++;
+        if (correctMoves.includes(userMove)) {
+            // Correct move
+            console.log('Correct move:', userMove);
+            currentPuzzleIndex++;
 
-                // Update the letters guessed display
-                const answersDisplay = correctMovesList.slice(0, currentPuzzleIndex)
-                    .map((answers) => answers[0]) // Get the first answer from each correctMoves list
-                    .join(', ');
-                document.getElementById('letters-guessed').innerHTML = `Answers: &nbsp;&nbsp;&nbsp; ${answersDisplay}`;
+            // Update the letters guessed display
+            const answersDisplay = correctMovesList.slice(0, currentPuzzleIndex)
+                .map((answers) => answers[0]) // Get the first answer from each correctMoves list
+                .join(', ');
+            document.getElementById('letters-guessed').innerHTML = `Answers: &nbsp;&nbsp;&nbsp; ${answersDisplay}`;
 
-                if (currentPuzzleIndex < correctMovesList.length) {
-                    // Load the next puzzle if available
-                    loadPuzzle(currentPuzzleIndex);
-                    document.getElementById('move-input').value = '';
-                } else {
-                    // All puzzles completed
-                    document.getElementById('chesswindow').style.display = 'none';
-                    document.getElementById('clue').innerHTML = 'Congratulations! You have completed all the puzzles!<br>Now input the word!';
-                }
+            if (currentPuzzleIndex < correctMovesList.length) {
+                // Load the next puzzle if available
+                loadPuzzle(currentPuzzleIndex);
             } else {
-                // Incorrect move
-                console.log('Incorrect move:', userMove);
-                document.getElementById('clue').innerHTML = 'Incorrect move, try again.';
-                setTimeout(() => {
-                    document.getElementById('clue').innerHTML = '';
-                }, 1000);
+                // All puzzles completed
+                document.getElementById('chesswindow').style.display = 'none';
+                document.getElementById('clue').innerHTML = 'Congratulations! You have completed all the puzzles!<br>Now input the word!';
             }
         } else {
-            alert("Please enter a move in algebraic notation (e.g., e4, Nf3, etc.)");
-        }
-    });
-
+            // Incorrect move
+            console.log('Incorrect move:', userMove);
+            document.getElementById('clue').innerHTML = 'Incorrect move, try again.';
+        
+            // Reset the puzzle to its initial state
+            setTimeout(() => {
+                // Clear the "Incorrect move" message after 1 second
+                document.getElementById('clue').innerHTML = '';
+        
+                // Reload the current puzzle's initial position
+                loadPuzzle(currentPuzzleIndex);
+                game.load(boardPositions[currentPuzzleIndex]);  // Reset the game logic to the FEN state as well
+        
+            }, 1000);
+        }        
+    }
 
     document.getElementById('submit-word-button').addEventListener('click', () => {
         const wordGuess = document.getElementById('submit-word').value
@@ -184,7 +201,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById('clue').style.fontSize = '1.5em';
                 document.getElementById('clue').innerHTML = 'You got it!!!';
                 document.getElementById('letters-guessed').style.fontSize = '2em';
-                document.getElementById('letters-guessed').innerHTML = 'Cooked';
+                document.getElementById('letters-guessed').innerHTML = 'Cabbage';
             }
             else {
                 // Incorrect guess
@@ -194,7 +211,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }, 1000);                
             }
         }
-    })
+    });
 
     // Add event listener for submitting name to leaderboard
     document.getElementById('submit-name-button').addEventListener('click', () => {
