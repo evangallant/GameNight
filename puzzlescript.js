@@ -24,7 +24,6 @@ function updateLeaderboard() {
 }
 
 function disableScroll() {
-    document.body.style.overflow = 'hidden';
     // Get the chessboard element and its position
     const chessboardElement = document.getElementById('chessboard');
     if (chessboardElement) {
@@ -35,6 +34,8 @@ function disableScroll() {
             inline: 'center'    // Align to the horizontal center (if applicable)
         });
     }
+
+    document.body.style.overflow = 'hidden';
 }
 
 // Function to enable scrolling
