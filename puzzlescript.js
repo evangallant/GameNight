@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const puzzleAnswers4 = [
         'd6'
     ];
-    const fullAnswer = 'cabbage'
+    const fullAnswer = 'bread'
     const boardPositions = [
         '5k1r/n1p1pbp1/B5Rp/2qr4/2Npp3/1P6/Q1N2PPP/6K1 w - - 0 1',  //
         '1r2kr2/1np2p2/8/3R4/1R6/1b6/5PPP/6K1 w - - 0 1', //
@@ -218,11 +218,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById('clue').style.fontSize = '1.5em';
                 document.getElementById('clue').innerHTML = 'You got it!!!';
                 document.getElementById('letters-guessed').style.fontSize = '2em';
-                document.getElementById('letters-guessed').innerHTML = 'Cabbage';
+                document.getElementById('letters-guessed').innerHTML = 'Bread';
             }
             else {
                 // Incorrect guess
-                document.getElementById('clue').innerHTML = 'Incorrect guess, try again.';
+                document.getElementById('clue').innerHTML = 'Incorrect, try again.';
                 setTimeout(() => {
                     document.getElementById('clue').innerHTML = '';
                 }, 1000);                
