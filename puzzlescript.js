@@ -68,9 +68,9 @@ document.addEventListener("DOMContentLoaded", function () {
     ];
     const fullAnswer = 'bread'
     const boardPositions = [
-        '5k1r/n1p1pbp1/B5Rp/2qr4/2Npp3/1P6/Q1N2PPP/6K1 w - - 0 1',  //
-        '1r2kr2/1np2p2/8/3R4/1R6/1b6/5PPP/6K1 w - - 0 1', //
-        '3Br3/1p3ppp/p1p5/1kb5/7n/2Q1r3/P1P3PP/7K w - - 0 1', //
+        '5k1r/n1p1pbp1/B5Rp/2qr4/2Npp3/1P6/Q1N2PPP/6K1 w - - 0 1',
+        '1r2kr2/1np2p2/8/3R4/1R6/1b6/5PPP/6K1 w - - 0 1',
+        '3Br3/1p3ppp/p1p5/1kb5/7n/2Q1r3/P1P3PP/7K w - - 0 1',
         '8/8/6p1/3P1p1k/5P2/5KP1/8/8 w - - 0 1'
     ];
 
