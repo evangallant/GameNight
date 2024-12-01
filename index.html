@@ -18,29 +18,12 @@
 <body onload="updateLeaderboard()">
     <div id="riddle-container" class="container">
         <div id="guess-container" class="row">
-            <!-- COLUMN FOR INITIALISM LETTERS -->
-            <!-- <div class="col-4 acronym-container"> -->
-                <!-- The acronym with guessed words will be generated here -->
-            <!-- </div> -->
-             <!-- SWITCH COL LENGTH TO 8 FOR INITIALISMS TO MAKE ROOM FOR THE LETTER COLUMN -->
             <div id="guess-interface" class="col-12">
                 <h1><strong>WHAT ARE WE BRINGING TO GAME NIGHT?</strong></h1>
-                <!-- FOR INITIALISM CLUES -->
-                <!-- <h1><strong>WHAT ARE WE BRINGING TO GAME NIGHT?</strong></h1> -->
-                <!-- <div id="acronym-subheading">This week's initialism:</div>
-                <div id="acronym-subheading"><strong>BYOMWWTDSTW</strong></div> -->
                 <div id="hint">Hint: Unfortunate victim of the Avatar</div>
-                <!-- Start Button to initiate the game -->
                 <div id="start-container" class="text-center">
                     <div id="instructions">Chess puzzles!<br>
                         The answer this week is a single word. You will solve the puzzles to learn the letters of the word.<br><br>
-                        Each puzzle has 1 correct move, which can be represented via <a href="https://en.wikipedia.org/wiki/Algebraic_notation_(chess)" target="_blank">
-                        algebraic chess notation</a>.<br>
-                        Over the course of the 4 puzzles, the alphabetical letters in the notation of the correct moves will 
-                        spell out the answer! Below is an example.<br> In this position we can play checkmate with the move 're8#', moving the rook to the back rank. 
-                        The King has no squares to move to, and no pieces can block, so it's mate in 1.<br>
-                        From this puzzle we would get the letters 'R' and 'E', meaning the first 2 letters of the answer would be RE (you don't have to write out the move, you can just make it on the board now).<br>
-                        <div id="example-board" class="my-4" style="margin: auto;"></div>
                         Some tips:<br>
                         <li>Assume white to move for all puzzles</li>
                         <li>The puzzles spell the word out in order</li>
@@ -54,20 +37,6 @@
                 <div id="time-container" class="mt-4 text-center" style="font-size: 1.5em; color: #f77f00; display: none;">
                     <span id="time-taken">0:00</span>
                 </div>
-                <!-- FOR TEXT OR PICTURE CLUES -->
-                <!-- <div id="clue-and-input" style="display: none;">
-                    <div id="clue"></div>
-                    <div class="input-group mt-4 justify-content-center">
-                        <input type="text" id="word-input" class="form-control" placeholder="Enter your guess">
-                    </div>
-                    <button id="submit-button" class="btn btn-primary mt-2">Submit Word</button>
-                    <div id="name-input-container" style="display: none;">
-                        <label for="user-name">Enter your name to appear on the leaderboard:</label>
-                        <input type="text" id="user-name" class="form-control mt-2">
-                        <button id="submit-name-button" class="btn btn-success mt-2">Add Score to Leaderboard</button>
-                    </div>
-                </div> -->
-                <!-- FOR CHESSBOARD CLUES -->
                 <div id="clue-and-input" style="display: none;">
                     <!-- Chessboard -->
                     <div id="clue"></div>

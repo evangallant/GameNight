@@ -55,27 +55,23 @@ document.addEventListener("DOMContentLoaded", function () {
     let board;
     let game = new Chess(); // Using Chess.js to track the game
     const puzzleAnswers1 = [
-        'c4#'
+        'b4'
     ];
     const puzzleAnswers2 = [
-        'axb5#'
+        'Re4#'
     ];
     const puzzleAnswers3 = [
-        'ba7#'
+        'a4+'
     ];
     const puzzleAnswers4 = [
-        'g4+'
+        'd6'
     ];
-    const puzzleAnswers5 = [
-        'e6#'
-    ]
     const fullAnswer = 'cabbage'
     const boardPositions = [
-        'r6k/8/3p4/r2Q4/8/2P1PP1q/1BB3P1/1K6 w - - 0 1',  // FEN for 'c''
-        'k7/8/1Q6/1p5q/P7/R7/6r1/4K3 w - - 0 1', // FEN for 'ab'
-        '1k1r4/7R/8/8/5q1q/8/5BB1/2R3K1 w - - 0 1', // FEN for 'ba''
-        '1k6/8/8/p4r1q/P7/4P1P1/5P1B/5K1Q w - - 0 1',  // FEN for 'g'
-        'qq1qqqqq/qqq1bkqq/5bqq/qqq1P1qq/qq1q1q1q/q1qq1qq1/PPqq1qqq/K3Rqqq w - - 0 1' // FEN for 'e'
+        '5k1r/n1p1pbp1/B5Rp/2qr4/2Npp3/1P6/Q1N2PPP/6K1 w - - 0 1',  //
+        '1r2kr2/1np2p2/8/3R4/1R6/1b6/5PPP/6K1 w - - 0 1', //
+        '3Br3/1p3ppp/p1p5/1kb5/7n/2Q1r3/P1P3PP/7K w - - 0 1', //
+        '8/8/6p1/3P1p1k/5P2/5KP1/8/8 w - - 0 1'
     ];
 
     let currentPuzzleIndex = 0;
@@ -155,8 +151,7 @@ document.addEventListener("DOMContentLoaded", function () {
             puzzleAnswers1,
             puzzleAnswers2,
             puzzleAnswers3,
-            puzzleAnswers4,
-            puzzleAnswers5
+            puzzleAnswers4
         ];
 
         // Convert move to algebraic notation
