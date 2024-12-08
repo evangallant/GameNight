@@ -71,22 +71,20 @@ function updateLeaderboard() {
 
 
 
-const acronym = 'BYOMWWTDSTW';
+const acronym = 'BYOCFRRPP';
 const answers = [
-    'Bring', 'Your', 'Own', 'Mouth', 'With', 'Which', 'To', 'Drink', 'Said', 'Tap', 'Water'
+    'Bring', 'Your', 'Own', 'Curiosity', 'For', 'Regenerative', 'Rubber', 'Production', 'Practices'
 ];
 const clues = [
     'imageClues/bring.png',
     'imageClues/your.png',
     'imageClues/own.png',
-    'imageClues/mouth.jpg',
-    'imageClues/with.jpg',
-    'imageClues/which.jpg',
-    'imageClues/to.jpg',
-    'imageClues/drink.jpg',
-    'imageClues/said.jpg',
-    'imageClues/tap.jpg',
-    'imageClues/water.jpg'
+    'imageClues/curiosity.jpg',
+    'imageClues/for.jpg',
+    'imageClues/regenerative.jpg',
+    'imageClues/rubber.jpg',
+    'imageClues/production.jpg',
+    'imageClues/practices.jpg'
 ];
 
 const acronymContainer = document.querySelector('.acronym-container');
@@ -132,7 +130,7 @@ submitButton.addEventListener('click', () => {
                 }, 1000);
             } else {
                 setTimeout(() => {
-                    clueDiv.innerHTML = 'Chugalug, baby';
+                    clueDiv.innerHTML = 'Not sure about you, but I keep mine with me at all times';
                     wordInput.disabled = true;
                     submitButton.disabled = true;
 
@@ -147,7 +145,7 @@ submitButton.addEventListener('click', () => {
                 }, 1000);
             }
         } else {
-            clueDiv.innerHTML = 'Nope, NERD';
+            clueDiv.innerHTML = 'NUH UH';
             setTimeout(() => {
                 clueDiv.innerHTML = `<strong>${acronym[currentIndex]}</strong>:<br><img src="${clues[currentIndex]}" alt="Clue Image" class="img-fluid">`;
                 wordInput.value = '';

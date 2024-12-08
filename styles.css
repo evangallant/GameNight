@@ -3,8 +3,8 @@
 body {
     font-family: 'Bebas Neue', sans-serif;
     text-align: center;
-    background-color: #3d2e1e !important; /* warm, dark brown background */
-    color: #eae2b7 !important; /* light tan color for text */
+    background-color: #1e3d59 !important; /* deep, cool blue background */
+    color: #f5f5f5 !important; /* soft white for text */
 }
 
 button, input, textarea, select {
@@ -15,94 +15,113 @@ button, input, textarea, select {
     margin: 80px auto;
     width: 90%;
     max-width: 800px;
-    background: #592e0a !important; /* soft, warm yellow */
+    background: #3d5a80 !important; /* muted winter blue */
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
+
 h1 {
     font-size: 2.5em;
-    color: #d62828 !important; /* rich, warm red for the header */
+    color: #98c1d9 !important; /* light icy blue for the header */
     margin-bottom: 30px;
 }
+
 #acronym-subheading {
     font-size: 2.5em;
     margin-top: 10px;
-    color: #f77f00 !important; /* bright, orange color for the acronym heading */
+    color: #e0fbfc !important; /* frosty white for the acronym heading */
     font-weight: bold;
 }
+
 @media (max-width: 768px) {
     #acronym-subheading {
         font-size: 1.5em; /* Smaller size for mobile */
     }
 }
+
 .acronym-container {
     display: flex;
     justify-content: start;
     flex-direction: column;
     text-align: left;
 }
+
 .acronym-letter {
     font-size: 1.5em;
     font-weight: bold;
     margin-bottom: 10px;
+    color: #f5f5f5; /* soft white for letters */
 }
+
 .guess-slot {
     font-weight: normal;
     margin-left: 10px;
+    color: #98c1d9; /* light icy blue */
 }
+
 #guess-container {
     display: flex;
     align-items: start;
     margin-top: 30px;
 }
+
 #guess-interface {
     flex: 2;
     padding-left: 20px;
-    border-left: 2px solid #f77f00 !important; /* same bright orange as acronym heading */
+    border-left: 2px solid #98c1d9 !important; /* same light blue as other elements */
 }
+
 #clue {
     margin-top: 20px;
     font-style: italic;
-    color: #fbde02 !important; /* light tan for clue text */
+    color: #e0fbfc !important; /* frosty white for clue text */
 }
+
 #word-input {
     font-family: 'Roboto Slab', serif;
     padding: 10px;
     font-size: 1.5em;
-    border: 2px solid #f77f00 !important; /* bright orange border for input */
+    border: 2px solid #98c1d9 !important; /* icy blue border */
     border-radius: 5px;
+    background-color: #f5f5f5; /* soft white background */
+    color: #1e3d59; /* deep blue text */
 }
+
 #submit-button {
     margin-top: 10px;
     padding: 10px 20px;
     font-size: 1.5em;
-    background-color: #f77f00 !important; /* bright orange background for button */
+    background-color: #3d5a80 !important; /* muted winter blue background */
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-family: 'Roboto Slab', serif;
 }
+
 #submit-button:hover {
-    background-color: #d62828 !important; /* warm red on hover */
+    background-color: #98c1d9 !important; /* light blue on hover */
 }
+
 #hint {
     margin-top: 30px;
     font-weight: bold;
-    color: #eae2b7 !important; /* light tan for hint text */
+    color: #e0fbfc !important; /* frosty white for hint text */
 }
+
 #leaderboard-table {
-    color: #fbde02; /* Change this to your desired color code */
+    color: #f5f5f5; /* Soft white for table text */
 }
+
 #leaderboard-table tbody tr:nth-child(odd) {
-    background-color: #2a2a2a !important; /* Light gray for odd rows */
+    background-color: #293241 !important; /* Dark blue-gray for odd rows */
 }
 
 #leaderboard-table tbody tr:nth-child(even) {
-    background-color: #676767 !important; /* White for even rows */
+    background-color: #3d5a80 !important; /* Muted winter blue for even rows */
 }
 
 #leaderboard-table tbody tr td {
-    color: #fbde02 !important; /* Font color for table body cells */
+    color: #e0fbfc !important; /* Frosty white for table body cells */
 }
