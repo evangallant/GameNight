@@ -79,12 +79,12 @@ const clues = [
     'imageClues/bring.png',
     'imageClues/your.png',
     'imageClues/own.png',
-    'imageClues/curiosity.jpg',
-    'imageClues/for.jpg',
-    'imageClues/regenerative.jpg',
-    'imageClues/rubber.jpg',
-    'imageClues/production.jpg',
-    'imageClues/practices.jpg'
+    'imageClues/curiosity.png',
+    'imageClues/for.png',
+    'imageClues/regenerative.png',
+    'imageClues/rubber.png',
+    'imageClues/production.png',
+    'imageClues/practices.png'
 ];
 
 const acronymContainer = document.querySelector('.acronym-container');

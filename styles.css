@@ -79,7 +79,6 @@ h1 {
 }
 
 #word-input {
-    font-family: 'Roboto Slab', serif;
     padding: 10px;
     font-size: 1.5em;
     border: 2px solid #98c1d9 !important; /* icy blue border */
@@ -97,7 +96,6 @@ h1 {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-family: 'Roboto Slab', serif;
 }
 
 #submit-button:hover {
