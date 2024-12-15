@@ -69,22 +69,20 @@ function updateLeaderboard() {
         .catch(error => console.error('Error fetching leaderboard:', error));
 }
 
-
-
-const acronym = 'BYOCFRRPP';
+const acronym = 'BYOSRTSWF';
 const answers = [
-    'Bring', 'Your', 'Own', 'Curiosity', 'For', 'Regenerative', 'Rubber', 'Production', 'Practices'
+    'Bring', 'Your', 'Own', 'Solstice', 'Rituals', 'To', 'Share', 'With', 'Friends'
 ];
 const clues = [
-    'imageClues/bring.png',
-    'imageClues/your.png',
-    'imageClues/own.png',
-    'imageClues/curiosity.png',
-    'imageClues/for.png',
-    'imageClues/regenerative.png',
-    'imageClues/rubber.png',
-    'imageClues/production.png',
-    'imageClues/practices.png'
+    'Bring',
+    'Your',
+    'Own',
+    'December 21st',
+    'i.e. charging your moon water',
+    'Part of the envelope where you say who should receive it.',
+    'Doing it is caring',
+    'Avec',
+    'All of yall <3'
 ];
 
 const acronymContainer = document.querySelector('.acronym-container');
@@ -108,8 +106,7 @@ for (let i = 0; i < 3; i++) {
 }
 
 let currentIndex = 3;
-// For image clues, use this line:
-clueDiv.innerHTML = `<strong>${acronym[currentIndex]}</strong>:<br><img src="${clues[currentIndex]}" alt="Clue Image" class="img-fluid">`;
+clueDiv.innerHTML = `<strong>${acronym[currentIndex]}:</strong>\u00A0\u00A0${clues[currentIndex]}`;
 
 // Handle word submission
 submitButton.addEventListener('click', () => {
@@ -120,11 +117,11 @@ submitButton.addEventListener('click', () => {
 
         if (input.toLowerCase() === currentWord.toLowerCase()) {
             currentSlot.textContent = currentWord;
-            clueDiv.innerHTML = 'Good job, nerd';
+            clueDiv.textContent = 'Noice!';
             if (currentIndex < answers.length - 1) {
                 currentIndex++;
                 setTimeout(() => {
-                    clueDiv.innerHTML = `<strong>${acronym[currentIndex]}</strong>:<br><img src="${clues[currentIndex]}" alt="Clue Image" class="img-fluid">`;
+                    clueDiv.innerHTML = `<strong>${acronym[currentIndex]}:</strong>\u00A0\u00A0${clues[currentIndex]}`;
                     wordInput.value = '';
                     wordInput.focus();
                 }, 1000);
@@ -145,12 +142,12 @@ submitButton.addEventListener('click', () => {
                 }, 1000);
             }
         } else {
-            clueDiv.innerHTML = 'NUH UH';
+            clueDiv.textContent = 'Incorrect. Try again!';
             setTimeout(() => {
-                clueDiv.innerHTML = `<strong>${acronym[currentIndex]}</strong>:<br><img src="${clues[currentIndex]}" alt="Clue Image" class="img-fluid">`;
-                wordInput.value = '';
-                wordInput.focus();
+                clueDiv.innerHTML = `<strong>${acronym[currentIndex]}:</strong>\u00A0\u00A0${clues[currentIndex]}`;
             }, 3000);
+            wordInput.value = '';
+            wordInput.focus();
         }
     }
 });

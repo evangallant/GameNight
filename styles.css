@@ -91,7 +91,18 @@ h1 {
     margin-top: 10px;
     padding: 10px 20px;
     font-size: 1.5em;
-    background-color: #3d5a80 !important; /* muted winter blue background */
+    background-color: #10458a !important; /* muted winter blue background */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#submit-name-button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 1.5em;
+    background-color: #022859 !important; /* muted winter blue background */
     color: white;
     border: none;
     border-radius: 5px;
