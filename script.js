@@ -117,7 +117,7 @@ submitButton.addEventListener('click', () => {
 
         if (input.toLowerCase() === currentWord.toLowerCase()) {
             currentSlot.textContent = currentWord;
-            clueDiv.textContent = 'Noice!';
+            clueDiv.textContent = 'Yassss queen';
             if (currentIndex < answers.length - 1) {
                 currentIndex++;
                 setTimeout(() => {
@@ -127,7 +127,7 @@ submitButton.addEventListener('click', () => {
                 }, 1000);
             } else {
                 setTimeout(() => {
-                    clueDiv.innerHTML = 'Not sure about you, but I keep mine with me at all times';
+                    clueDiv.innerHTML = 'Mine is DEMOLISHING an oat milk advent calendar in seconds';
                     wordInput.disabled = true;
                     submitButton.disabled = true;
 
@@ -142,7 +142,7 @@ submitButton.addEventListener('click', () => {
                 }, 1000);
             }
         } else {
-            clueDiv.textContent = 'Incorrect. Try again!';
+            clueDiv.textContent = 'Nooooope';
             setTimeout(() => {
                 clueDiv.innerHTML = `<strong>${acronym[currentIndex]}:</strong>\u00A0\u00A0${clues[currentIndex]}`;
             }, 3000);
