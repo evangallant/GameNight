@@ -18,10 +18,9 @@ class NotePlayer {
     // Play a single note
     playNote(noteName, duration = 0.5) {
         const oscillator = this.audioContext.createOscillator();
-        oscillator.type = 'square';
+        oscillator.type = 'sine';
         const gainNode = this.audioContext.createGain();
 
-        oscillator.type = 'sine';
         oscillator.frequency.setValueAtTime(this.getNoteFrequency(noteName), this.audioContext.currentTime);
 
         // Create soft attack and release
