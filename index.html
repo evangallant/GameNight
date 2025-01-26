@@ -3,57 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Night Riddle Solver</title>
+    <title>Musical Word Riddle Solver</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css">
+    <script defer src="musical-note-player.js"></script>
     <script defer src="script.js"></script>
 </head>
-<body onload="updateLeaderboard()">
+<body>
     <div id="riddle-container" class="container">
         <div id="guess-container" class="row">
             <div class="col-4 acronym-container">
                 <!-- The acronym with guessed words will be generated here -->
+                <div id="hint">Instructions:</div>
+                <div>
+                    This week is music!<br>
+                    <br>
+                    Each word of the initialism can be spelled out with notes.<br>
+                    Once you start, click the 'Play Word' button, and a series of notes will play out loud.<br>
+                    Figure out the word based on what notes are played.<br>
+                    <br>
+                    <b>Tip: the first note is the letter you're guessing for</b>
+                </div>
             </div>
             <div id="guess-interface" class="col-8">
                 <h1><strong>WHAT ARE WE BRINGING TO GAME NIGHT?</strong></h1>
-                <div id="acronym-subheading">This week's initialism:</div>
-                <div id="acronym-subheading"><strong>BYOSRTSWF</strong></div>
-                <div id="hint">Hint: Almost the shortest day of the year provided</div>
+                <div id="acronym-subheading1">This week's initialism:</div>
+                <div id="acronym-subheading2"><strong>BYOFBOBB</strong></div>
+                <div id="hint">Hint: It's hard to spell words with musical notes, makes me want a stale baguette out of distressed tote...</div>
+                
                 <!-- Start Button to initiate the game -->
                 <div id="start-container" class="text-center">
                     <button id="start-button" class="btn btn-lg btn-warning mt-5">Start Game</button>
                 </div>
+                
                 <!-- Timer Display -->
                 <div id="time-container" class="mt-4 text-center" style="font-size: 1.5em; color: #f77f00; display: none;">
                     <span id="time-taken">0:00</span>
                 </div>
-                <div id="clue-and-input" style="display: none;">
-                    <div id="clue"></div>
-                    <div class="input-group mt-4 justify-content-center">
-                        <input type="text" id="word-input" class="form-control" placeholder="Enter your guess">
+                
+                <!-- Musical Gameplay Container -->
+                <div id="musical-game" style="display: none;">
+                    <div id="current-letter" class="mt-3 text-center" style="font-size: 1.5em;">
+                        Current Letter: <span id="letter-display"></span>
                     </div>
-                    <button id="submit-button" class="btn btn-primary mt-2">Submit Word</button>
-                    <div id="name-input-container" style="display: none;">
-                        <label for="user-name">Enter your name to appear on the leaderboard:</label>
-                        <input type="text" id="user-name" class="form-control mt-2">
-                        <button id="submit-name-button" class="btn btn-success mt-2">Add Score to Leaderboard</button>
+                    
+                    <div class="text-center mt-3">
+                        <button id="play-notes-button" class="btn btn-primary">Play Word</button>
+                    </div>
+                    
+                    <div id="clue-and-input" class="mt-4">
+                        <div class="input-group justify-content-center">
+                            <input type="text" id="word-input" class="form-control" placeholder="Enter your guess">
+                        </div>
+                        <div class="text-center">
+                            <button id="submit-button" class="btn btn-success mt-2">Submit Word</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div id="leaderboard-container" class="mt-5">
-            <h2>Leaderboard</h2>
-            <table id="leaderboard-table" class="table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Time</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Leaderboard entries will be dynamically populated here -->
-                </tbody>
-            </table>
         </div>
     </div>
 </body>
