@@ -119,6 +119,12 @@ h1 {
     color: #e0fbfc !important; /* frosty white for hint text */
 }
 
+.hint {
+    margin-top: 30px;
+    font-weight: bold;
+    color: #e0fbfc !important; /* frosty white for hint text */
+}
+
 #play-notes-button {
     margin-top: 20px;
     padding: 10px 20px;

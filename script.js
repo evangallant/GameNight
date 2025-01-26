@@ -89,7 +89,7 @@ function startGame() {
     document.getElementById('start-container').style.display = 'none';
     document.getElementById('musical-game').style.display = 'block';
     document.getElementById('time-container').style.display = 'block';
-    document.getElementById('hint').innerHTML = ``;
+    document.getElementById('instructions').innerHTML = ``;
     
     // Setup first word
     setupNextWord();
