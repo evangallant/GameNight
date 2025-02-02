@@ -1,55 +1,58 @@
-// Musical Note Player
 class NotePlayer {
     constructor() {
-        // Create audio context
-        this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        // Create a polyphonic synthesizer with slightly more piano-like settings
+        this.synth = new Tone.PolySynth(Tone.Synth, {
+            oscillator: {
+                type: "triangle"
+            },
+            envelope: {
+                attack: 0.02,
+                decay: 0.2,
+                sustain: 0.22,
+                release: 0.75
+            }
+        }).toDestination();
+
+        // Adjust volume
+        this.synth.volume.value = -8;
     }
 
-    // Map of note names to frequencies
+    // Map of note names to frequencies (kept for reference)
     getNoteFrequency(noteName) {
         const notes = {
             'C': 261.63, 'D': 293.66, 'E': 329.63, 
             'F': 349.23, 'G': 392.00, 'A': 440.00, 
             'B': 493.88
         };
-        return notes[noteName.toUpperCase()] || 440; // Default to A if not found
+        return notes[noteName.toUpperCase()] || 440;
     }
 
     // Play a single note
-    playNote(noteName, duration = 0.5) {
-        const oscillator = this.audioContext.createOscillator();
-        oscillator.type = 'sine';
-        const gainNode = this.audioContext.createGain();
-
-        oscillator.frequency.setValueAtTime(this.getNoteFrequency(noteName), this.audioContext.currentTime);
-
-        // Create soft attack and release
-        gainNode.gain.setValueAtTime(0, this.audioContext.currentTime);
-        gainNode.gain.linearRampToValueAtTime(0.9, this.audioContext.currentTime + 0.1);
-        gainNode.gain.linearRampToValueAtTime(0, this.audioContext.currentTime + duration);
-
-        oscillator.connect(gainNode);
-        gainNode.connect(this.audioContext.destination);
-
-        oscillator.start();
-        oscillator.stop(this.audioContext.currentTime + duration);
+    async playNote(noteName, duration = 0.5) {
+        await Tone.start();
+        // Add "4" to specify middle octave
+        this.synth.triggerAttackRelease(`${noteName}4`, duration);
     }
 
     // Play a sequence of notes
-    playSequence(notes, duration = 0.5) {
+    async playSequence(notes, duration = 0.5) {
+        await Tone.start();
+        const now = Tone.now();
         notes.forEach((note, index) => {
-            setTimeout(() => {
-                this.playNote(note, duration);
-            }, index * (duration * 1000));
+            this.synth.triggerAttackRelease(
+                `${note}4`, 
+                duration, 
+                now + (index * duration)
+            );
         });
     }
 
     // Play word by converting letters to notes (A=A, B=B, etc.)
-    playWord(word) {
+    async playWord(word) {
         const notes = word.toUpperCase().split('').map(letter => {
             // Map letters to notes (A->A, B->B, etc.)
             return /[A-G]/.test(letter) ? letter : 'A';
         });
-        this.playSequence(notes);
+        await this.playSequence(notes);
     }
 }

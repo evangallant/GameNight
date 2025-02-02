@@ -17,9 +17,9 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-const acronym = 'BYOFBOBB';
+const acronym = 'BYODB';
 const answers = [
-    'Bring', 'Your', 'Own', 'Faded', 'Bag', 'Of', 'Bad', 'Bread'
+    'Bring', 'Your', 'Own', 'Dad', 'Baggage'
 ];
 
 // Special musical note mappings for each word
@@ -27,11 +27,8 @@ const wordNoteMappings = {
     'Bring': [],
     'Your': [],
     'Own': [],
-    'Faded': ['F', 'A', 'D', 'E', 'D'],
-    'Bag': ['B', 'A', 'G'],
-    'Of': [],
-    'Bad': ['B', 'A', 'D'],
-    'Bread': ['B', 'E', 'A', 'D']
+    'Dad': ['D', 'A', 'D'],
+    'Baggage': ['B', 'A', 'G', 'G', 'A', 'G', 'E']
 };
 
 const acronymContainer = document.querySelector('.acronym-container');
@@ -45,12 +42,10 @@ function initializeAcronymDisplay() {
         letterDiv.dataset.index = index;
         
         // Pre-fill first three words, use underscores for others
-        if (index < 3 || index == 5) {
+        if (index < 3) {
             letterDiv.innerHTML = `${acronym[index]} <span class="guess-slot">${answer}</span>`;
         } else if (index == 3) {
             letterDiv.innerHTML = `${acronym[index]} <span class="guess-slot" style="background-color: #4a7b8c;">${'_'.repeat(answer.length)}</span>`;
-        } else if (index == 7) {
-            letterDiv.innerHTML = `${acronym[index]} <span class="guess-slot">r___</span>`;
         } else {
             letterDiv.innerHTML = `${acronym[index]} <span class="guess-slot">${'_'.repeat(answer.length)}</span>`;
         }
@@ -68,10 +63,7 @@ function updateAcronymDisplay(index, word) {
         letterDiv.style.backgroundColor = "transparent";
     }
 
-    // Determine next index to highlight
-    let nextIndex = index === 4 ? 6 : index + 1;
-
-    const nextLetterDiv = document.querySelector(`.acronym-letter[data-index='${nextIndex}'] .guess-slot`);
+    const nextLetterDiv = document.querySelector(`.acronym-letter[data-index='${index + 1}'] .guess-slot`);
     if (nextLetterDiv) {
         nextLetterDiv.style.backgroundColor = "#4a7b8c";
     }
@@ -98,9 +90,6 @@ function startGame() {
 
 // Setup next word to guess
 function setupNextWord() {
-    if (currentIndex == 5) {
-        currentIndex += 1;
-    }
     if (currentIndex < answers.length) {
         currentWord = answers[currentIndex];
         currentNotes = wordNoteMappings[currentWord];
@@ -116,11 +105,6 @@ function setupNextWord() {
         // Reset play notes button
         const playNotesButton = document.getElementById('play-notes-button');
         playNotesButton.disabled = false;
-
-        if (currentIndex == 7) {
-            const hintDiv = document.getElementById('hint');
-            hintDiv.innerHTML = `<span>Sorry about this one. There's no 'R', so the notes played are the 1st, 3rd, 4th, and 5th letters of the word.<br><br>You still have to submit the full word when you guess.</span>`
-        }
     } else {
         // Game completed
         completeGame();
@@ -147,7 +131,7 @@ document.getElementById('submit-button').addEventListener('click', () => {
             setupNextWord();
         } else {
             // Incorrect word
-            alert('Incorrect! Try again.');
+            alert('NOOOOOOPE');
             wordInput.value = '';
         }
     }
@@ -179,7 +163,7 @@ function completeGame() {
     // Display completion message
     document.getElementById('time-container').style.color = "#649c40";
     document.getElementById('hint').innerHTML = '';
-    document.getElementById('acronym-subheading2').innerHTML = 'Bring Your Own Faded Bag of Bad Bread';
+    document.getElementById('acronym-subheading2').innerHTML = 'Bring Your Own Dad Baggage';
     document.getElementById('acronym-subheading1').innerHTML = '';
-    document.getElementById('musical-game').innerHTML = `<br><span><b>Good job fren</b></span>`;
+    document.getElementById('musical-game').innerHTML = `<br><span><b>Mentally ill goth girls also accepted, if you have one</b></span>`;
 }
