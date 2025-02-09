@@ -101,12 +101,12 @@ function handleKeyPress(event) {
     const currentWord = answers[currentIndex];
 
     // If the letter is correct, add it to the input value
-    if (event.key == currentWord(len(inputValue))) {
+    if (event.key == currentWord(inputValue.length)) {
         wordInput.value = inputValue + event.key;
     } else {
         // Otherwise, take a letter back from them
         wordInput.value = currentValue.slice(0, -1);
-    }
+    };
 }
 
 
