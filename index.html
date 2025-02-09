@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Night Riddle Solver</title>
+    <title>Musical Word Riddle Solver</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://unpkg.com/@chrisoakman/chessboardjs/dist/chessboard-1.0.0.min.css" />
@@ -15,12 +15,22 @@
     <!-- FOR REGULAR PUZZLES -->
     <!-- <script defer scr="script.js"></script> -->
 </head>
-<body onload="updateLeaderboard()">
+<body>
     <div id="riddle-container" class="container">
         <div id="guess-container" class="row">
             <div id="guess-interface" class="col-12">
                 <h1><strong>WHAT ARE WE BRINGING TO GAME NIGHT?</strong></h1>
-                <div id="hint">Hint: A Glutenous Pitt</div>
+                <div id="acronym-subheading1">This week's initialism:</div>
+                <div id="acronym-subheading2"><strong>BYODTCTTGMGR</strong></div>
+                <div id="instructions">
+                    <br>Instructions:<br><br>
+                    Here at GaymNight we pride ourselves on providing only the best games, which is why we regret to inform you that we have run out of good ideas.<br><br>
+                    You yourself may have enjoyed classic editions of GaymNight in the past, such as "GUESS CHESS", "WORDS WITH PICTURES", and "LETTERS!!!".<br><br>
+                    This week, in contrast to the elegeant execution and creative basis of those games, we bring you "FUCK YOU"<br><br>
+                    No instructions. Figure it out :)<br>
+                </div>
+                <div id="hint">Hint: git clone https://github.com/evangallant/GameNight.git</div>
+                
                 <!-- Start Button to initiate the game -->
                 <div id="start-container" class="text-center">
                     <div id="instructions">Alright, this week is a little different - we're doing chess puzzles!<br>
@@ -42,24 +52,26 @@
                     </div>
                     <button id="start-button" class="btn btn-lg btn-warning mt-5">Start Game</button>
                 </div>
+                
                 <!-- Timer Display -->
                 <div id="time-container" class="mt-4 text-center" style="font-size: 1.5em; color: #f77f00; display: none;">
                     <span id="time-taken">0:00</span>
                 </div>
-
-                <div id="clue-and-input" style="display: none;">
-                    <!-- Chessboard -->
-                    <div id="clue"></div>
-                    <div id="chesswindow">
-                        <div id="chessboard" class="my-4" style="margin: auto;"></div>
-                        <div id="to-move">White to move</div>
+                
+                <div id="game-mode" style="display: none;">
+                    <div id="current-letter" class="mt-3 text-center" style="font-size: 1.5em;">
+                        Current Letter: <span id="letter-display"></span>
                     </div>
-                    <div id="letters-guessed"></div>
-                    <!-- Leaderboard name input -->
-                    <div id="name-input-container" style="display: none;">
-                        <label for="user-name">Enter your name to appear on the leaderboard:</label>
-                        <input type="text" id="user-name" class="form-control mt-2">
-                        <button id="submit-name-button" class="btn btn-success mt-2">Add Score to Leaderboard</button>
+
+                    <div class="guessing-window"></div>
+                    
+                    <div id="clue-and-input" class="mt-4">
+                        <div class="input-group justify-content-center">
+                            <input type="text" id="word-input" class="form-control" placeholder="Enter your guess">
+                        </div>
+                        <div class="text-center">
+                            <button id="submit-button" class="btn btn-success mt-2">Submit Word</button>
+                        </div>
                     </div>
                     <div id="word-guess-window">
                         <!-- Input for the user's word guess -->
@@ -70,20 +82,6 @@
                     </div>
                 </div>                
             </div>
-        </div>
-        <div id="leaderboard-container" class="mt-5">
-            <h2>Leaderboard</h2>
-            <table id="leaderboard-table" class="table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Time</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Leaderboard entries will be dynamically populated here -->
-                </tbody>
-            </table>
         </div>
     </div>
 </body>
