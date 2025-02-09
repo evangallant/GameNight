@@ -2,11 +2,9 @@
 let startTime;
 let timerInterval;
 let timeTaken;
-const notePlayer = new NotePlayer();
 
 document.addEventListener("DOMContentLoaded", function() {
     const startButton = document.getElementById('start-button');
-    const playNotesButton = document.getElementById('play-notes-button');
     const submitButton = document.getElementById('submit-button');
     
     if (startButton) {
@@ -17,18 +15,20 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
+// TO DO
+
 const acronym = 'BYODB';
 const answers = [
-    'Bring', 'Your', 'Own', 'Dad', 'Baggage'
+    'Bring', 'Your', 'Own', 'Desire', 'To', 'Contribute', 'To', 'The', 'Game', 'Night', 'Github', 'Repo'
 ];
 
-// Special musical note mappings for each word
-const wordNoteMappings = {
+// TO DO
+''
+const letters = {
     'Bring': [],
     'Your': [],
     'Own': [],
-    'Dad': ['D', 'A', 'D'],
-    'Baggage': ['B', 'A', 'G', 'G', 'A', 'G', 'E']
+    'Desire': []
 };
 
 const acronymContainer = document.querySelector('.acronym-container');
@@ -44,8 +44,6 @@ function initializeAcronymDisplay() {
         // Pre-fill first three words, use underscores for others
         if (index < 3) {
             letterDiv.innerHTML = `${acronym[index]} <span class="guess-slot">${answer}</span>`;
-        } else if (index == 3) {
-            letterDiv.innerHTML = `${acronym[index]} <span class="guess-slot" style="background-color: #4a7b8c;">${'_'.repeat(answer.length)}</span>`;
         } else {
             letterDiv.innerHTML = `${acronym[index]} <span class="guess-slot">${'_'.repeat(answer.length)}</span>`;
         }
@@ -60,26 +58,18 @@ function updateAcronymDisplay(index, word) {
     const letterDiv = document.querySelector(`.acronym-letter[data-index='${index}'] .guess-slot`);
     if (letterDiv) {
         letterDiv.textContent = word;
-        letterDiv.style.backgroundColor = "transparent";
-    }
-
-    const nextLetterDiv = document.querySelector(`.acronym-letter[data-index='${index + 1}'] .guess-slot`);
-    if (nextLetterDiv) {
-        nextLetterDiv.style.backgroundColor = "#4a7b8c";
     }
 }
 
 // Game state variables
 let currentIndex = 3;
 let currentWord = '';
-let currentNotes = [];
 
 // Start button to initiate the game
 function startGame() {
     startTime = Date.now();
     initializeAcronymDisplay(); // Initialize the acronym display
     document.getElementById('start-container').style.display = 'none';
-    document.getElementById('musical-game').style.display = 'block';
     document.getElementById('time-container').style.display = 'block';
     document.getElementById('instructions').innerHTML = ``;
     
@@ -92,7 +82,7 @@ function startGame() {
 function setupNextWord() {
     if (currentIndex < answers.length) {
         currentWord = answers[currentIndex];
-        currentNotes = wordNoteMappings[currentWord];
+        currentNotes = letters[currentWord];
         
         // Update letter display
         document.getElementById('letter-display').textContent = acronym[currentIndex];
@@ -102,21 +92,13 @@ function setupNextWord() {
         wordInput.value = '';
         wordInput.disabled = false;
         
-        // Reset play notes button
-        const playNotesButton = document.getElementById('play-notes-button');
-        playNotesButton.disabled = false;
+        // GAME UPDATES HERE     TO DO
+
     } else {
         // Game completed
         completeGame();
     }
 }
-
-// Play musical notes for current word
-document.getElementById('play-notes-button').addEventListener('click', function() {
-    notePlayer.playSequence(currentNotes);
-    this.disabled = true; // Prevent multiple plays
-    setTimeout(function(){document.getElementById('play-notes-button').disabled = false;},4000);
-});
 
 // Handle word submission
 document.getElementById('submit-button').addEventListener('click', () => {
@@ -160,10 +142,12 @@ function completeGame() {
     const seconds = totalSeconds % 60;
     timeTaken = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
     
-    // Display completion message
+    // Display completion message 
+    
+    // TODO
     document.getElementById('time-container').style.color = "#649c40";
     document.getElementById('hint').innerHTML = '';
-    document.getElementById('acronym-subheading2').innerHTML = 'Bring Your Own Dad Baggage';
+    document.getElementById('acronym-subheading2').innerHTML = 'Bring Your Own Dad Baggage'; // TO DO
     document.getElementById('acronym-subheading1').innerHTML = '';
-    document.getElementById('musical-game').innerHTML = `<br><span><b>Mentally ill goth girls also accepted, if you have one</b></span>`;
+    document.getElementById('musical-game').innerHTML = `<br><span><b>Mentally ill goth girls also accepted, if you have one</b></span>`; // TO DO
 }
