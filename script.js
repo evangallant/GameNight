@@ -168,7 +168,7 @@ function completeGame() {
     // TODO
     document.getElementById('time-container').style.color = "#649c40";
     document.getElementById('hint').innerHTML = '';
-    document.getElementById('acronym-subheading2').innerHTML = 'Bring Your Own Dad Baggage'; // TO DO
+    document.getElementById('acronym-subheading2').innerHTML = 'Bring Your Desire To Contribute To The Game Night Github Repo'; // TO DO
     document.getElementById('acronym-subheading1').innerHTML = '';
-    document.getElementById('musical-game').innerHTML = `<br><span><b>Mentally ill goth girls also accepted, if you have one</b></span>`; // TO DO
+    document.getElementById('game-mode').innerHTML = `<br><span><b>Or just game format ideas! I'm honestly running out of ideas...</b></span>`; // TO DO
 }
