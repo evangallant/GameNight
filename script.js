@@ -109,7 +109,7 @@ function handleKeyPress(event) {
 
     // Check if the pressed key matches the next expected letter 
     const nextLetterIndex = currentValue.length; 
-    if (event.key === correctWord[nextLetterIndex]) { 
+    if (event.key.toLowerCase() === correctWord[nextLetterIndex].toLowerCase()) { 
         // Show the letter 
         wordInput.value = currentValue + event.key; 
     } else { 
