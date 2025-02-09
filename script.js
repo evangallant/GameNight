@@ -1,8 +1,18 @@
-// Add functions to track time and submit name
+// Initialism constants
+const acronym = 'BYODTCTTGNGR';
+const answers = [
+    'Bring', 'Your', 'Own', 'Desire', 'To', 'Contribute', 'To', 'The', 'Game', 'Night', 'Github', 'Repo'
+];
+
+// Game state variables
 let startTime;
 let timerInterval;
 let timeTaken;
+let currentIndex = 3;
+let currentWord = '';
 
+
+// ON PAGE LOAD:
 document.addEventListener("DOMContentLoaded", function() {
     const startButton = document.getElementById('start-button');
     const submitButton = document.getElementById('submit-button');
@@ -15,22 +25,8 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-// TO DO
 
-const acronym = 'BYODB';
-const answers = [
-    'Bring', 'Your', 'Own', 'Desire', 'To', 'Contribute', 'To', 'The', 'Game', 'Night', 'Github', 'Repo'
-];
-
-// TO DO
-''
-const letters = {
-    'Bring': [],
-    'Your': [],
-    'Own': [],
-    'Desire': []
-};
-
+// ACRONYM DISPLAY MANAGEMENT:
 const acronymContainer = document.querySelector('.acronym-container');
 
 // Create acronym letters with guess slots
@@ -52,20 +48,8 @@ function initializeAcronymDisplay() {
     });
 }
 
-// Update specific word in acronym display
-function updateAcronymDisplay(index, word) {
-    console.log(`${index}`)
-    const letterDiv = document.querySelector(`.acronym-letter[data-index='${index}'] .guess-slot`);
-    if (letterDiv) {
-        letterDiv.textContent = word;
-    }
-}
 
-// Game state variables
-let currentIndex = 3;
-let currentWord = '';
-
-// Start button to initiate the game
+// ON PRESS OF START BUTTON:
 function startGame() {
     startTime = Date.now();
     initializeAcronymDisplay(); // Initialize the acronym display
@@ -78,11 +62,11 @@ function startGame() {
     startTimer();
 }
 
-// Setup next word to guess
+
+// CHANGE TO NEXT WORD:
 function setupNextWord() {
     if (currentIndex < answers.length) {
         currentWord = answers[currentIndex];
-        currentNotes = letters[currentWord];
         
         // Update letter display
         document.getElementById('letter-display').textContent = acronym[currentIndex];
@@ -100,7 +84,12 @@ function setupNextWord() {
     }
 }
 
-// Handle word submission
+
+// MAIN GAME LOOP
+
+
+
+// ON PRESS OF SUBMIT BUTTON
 document.getElementById('submit-button').addEventListener('click', () => {
     const wordInput = document.getElementById('word-input');
     const input = wordInput.value.trim();
@@ -119,7 +108,14 @@ document.getElementById('submit-button').addEventListener('click', () => {
     }
 });
 
-// Existing timer functions remain the same
+// STATIC HELPER FUNCTIONS VVVVVVVVVVVVV
+function updateAcronymDisplay(index, word) {
+    const letterDiv = document.querySelector(`.acronym-letter[data-index='${index}'] .guess-slot`);
+    if (letterDiv) {
+        letterDiv.textContent = word;
+    }
+}
+
 function startTimer() {
     timerInterval = setInterval(updateTimeDisplay, 1000);
 }
