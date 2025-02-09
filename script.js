@@ -55,8 +55,12 @@ function startGame() {
     initializeAcronymDisplay(); // Initialize the acronym display
     document.getElementById('start-container').style.display = 'none';
     document.getElementById('time-container').style.display = 'block';
+    document.getElementById('game-mode').style.display = 'block';
     document.getElementById('instructions').innerHTML = ``;
     
+    // Event listener for cruelty game mode
+    wordInput.addEventListener('keydown', handleKeyPress);
+
     // Setup first word
     setupNextWord();
     startTimer();
@@ -86,12 +90,28 @@ function setupNextWord() {
 
 
 // MAIN GAME LOOP
+const wordInput = document.getElementById('word-input');
 
+function handleKeyPress(event) {
+    event.preventDefault();
+
+    // wordInput.value contains the exact string at the moment of the keypress
+    // So, we need to compare the last letter of their input with the corresponding index of the correct word
+    const inputValue = wordInput.value;
+    const currentWord = answers[currentIndex];
+
+    // If the letter is correct, add it to the input value
+    if (event.key == currentWord(len(inputValue))) {
+        wordInput.value = inputValue + event.key;
+    } else {
+        // Otherwise, take a letter back from them
+        wordInput.value = currentValue.slice(0, -1);
+    }
+}
 
 
 // ON PRESS OF SUBMIT BUTTON
 document.getElementById('submit-button').addEventListener('click', () => {
-    const wordInput = document.getElementById('word-input');
     const input = wordInput.value.trim();
     
     if (input) {
