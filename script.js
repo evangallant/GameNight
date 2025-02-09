@@ -41,7 +41,7 @@ function initializeAcronymDisplay() {
         if (index < 3) {
             letterDiv.innerHTML = `${acronym[index]} <span class="guess-slot">${answer}</span>`;
         } else {
-            letterDiv.innerHTML = `${acronym[index]} <span class="guess-slot">${'_'.repeat(answer.length)}</span>`;
+            letterDiv.innerHTML = `${acronym[index]} <span class="guess-slot"></span>`;
         }
         
         acronymContainer.appendChild(letterDiv);
@@ -79,8 +79,7 @@ function setupNextWord() {
         const wordInput = document.getElementById('word-input');
         wordInput.value = '';
         wordInput.disabled = false;
-        
-        // GAME UPDATES HERE     TO DO
+        wordInput.focus();
 
     } else {
         // Game completed
@@ -93,19 +92,25 @@ function setupNextWord() {
 const wordInput = document.getElementById('word-input');
 
 function handleKeyPress(event) {
-    event.preventDefault();
+    if (event.key.length === 1 && event.key.toLowerCase != event.key.toUpperCase) {
+        event.preventDefault();
 
-    // wordInput.value contains the exact string at the moment of the keypress
-    // So, we need to compare the last letter of their input with the corresponding index of the correct word
-    const inputValue = wordInput.value;
-    const currentWord = answers[currentIndex];
-
-    // If the letter is correct, add it to the input value
-    if (event.key == currentWord(inputValue.length)) {
-        wordInput.value = inputValue + event.key;
-    } else {
-        // Otherwise, take a letter back from them
-        wordInput.value = currentValue.slice(0, -1);
+        // wordInput.value contains the exact string at the moment of the keypress
+        // So, we need to compare the last letter of their input with the corresponding index of the correct word
+        const inputValue = wordInput.value;
+        const currentWord = answers[currentIndex];
+        
+        // If the letter is correct, add it to the input value
+        if (currentWord[inputValue.length]) {
+            if (event.key.toLowerCase() == currentWord[inputValue.length].toLowerCase()) {
+                wordInput.value = inputValue + event.key;
+            } else {
+                // Otherwise, take a letter back from them
+                wordInput.value = inputValue.slice(0, -1);
+            };
+        } else {
+            wordInput.value = inputValue.slice (0, -1);
+        };
     };
 }
 

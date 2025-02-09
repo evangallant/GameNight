@@ -11,6 +11,13 @@ button, input, textarea, select {
     font-family: 'JetBrains Mono';
 }
 
+h1 {
+    font-size: 2.5em;
+    color: #98c1d9 !important; /* light icy blue for the header */
+    margin-bottom: 30px;
+}
+
+/* General riddle container */
 #riddle-container {
     margin: 80px auto;
     width: 90%;
@@ -21,13 +28,15 @@ button, input, textarea, select {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-h1 {
-    font-size: 2.5em;
-    color: #98c1d9 !important; /* light icy blue for the header */
-    margin-bottom: 30px;
+/* Acronym stuff */
+#acronym-subheading1 {
+    font-size: 1.5em;
+    margin-top: 10px;
+    color: #e0fbfc !important; /* frosty white for the acronym heading */
+    font-weight: bold;
 }
 
-#acronym-subheading {
+#acronym-subheading2 {
     font-size: 1.5em;
     margin-top: 10px;
     color: #e0fbfc !important; /* frosty white for the acronym heading */
@@ -60,6 +69,7 @@ h1 {
     color: #98c1d9; /* light icy blue */
 }
 
+/* Guess container stuff */
 #guess-container {
     display: flex;
     align-items: start;
@@ -72,7 +82,7 @@ h1 {
     border-left: 2px solid #98c1d9 !important; /* same light blue as other elements */
 }
 
-#clue {
+#instructions {
     margin-top: 20px;
     font-style: italic;
     color: #e0fbfc !important; /* frosty white for clue text */
@@ -98,28 +108,11 @@ h1 {
     cursor: pointer;
 }
 
-#submit-name-button {
-    margin-top: 10px;
-    padding: 10px 20px;
-    font-size: 1em;
-    background-color: #022859 !important; /* muted winter blue background */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
 #submit-button:hover {
     background-color: #98c1d9 !important; /* light blue on hover */
 }
 
 #hint {
-    margin-top: 30px;
-    font-weight: bold;
-    color: #e0fbfc !important; /* frosty white for hint text */
-}
-
-.hint {
     margin-top: 30px;
     font-weight: bold;
     color: #e0fbfc !important; /* frosty white for hint text */
