@@ -97,6 +97,10 @@ wordInput.addEventListener('input', handleInput);
 wordInput.addEventListener('beforeinput', handleBeforeInput);
 
 function handleKeyPress(event) {
+    //Check android keydown
+    if (event.keyCode === 229) {
+        document.getElementById('instructions').innerHTML = 'Sorry fellow Android user, please continue on a computer :(';
+    }
     // Only prevent default for keyboard events
     if (!event.inputType) {
         event.preventDefault();
