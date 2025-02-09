@@ -91,27 +91,43 @@ function setupNextWord() {
 // MAIN GAME LOOP
 const wordInput = document.getElementById('word-input');
 
-function handleKeyPress(event) {
-    if (event.key.length === 1 && event.key.toLowerCase != event.key.toUpperCase) {
-        event.preventDefault();
+// Handle both keyboard and input events
+wordInput.addEventListener('keydown', handleKeyPress);
+wordInput.addEventListener('input', handleInput);
+wordInput.addEventListener('beforeinput', handleBeforeInput);
 
-        // wordInput.value contains the exact string at the moment of the keypress
-        // So, we need to compare the last letter of their input with the corresponding index of the correct word
-        const inputValue = wordInput.value;
-        const currentWord = answers[currentIndex];
-        
-        // If the letter is correct, add it to the input value
-        if (currentWord[inputValue.length]) {
-            if (event.key.toLowerCase() == currentWord[inputValue.length].toLowerCase()) {
-                wordInput.value = inputValue + event.key;
-            } else {
-                // Otherwise, take a letter back from them
-                wordInput.value = inputValue.slice(0, -1);
-            };
-        } else {
-            wordInput.value = inputValue.slice (0, -1);
-        };
-    };
+function handleKeyPress(event) {
+    // Only prevent default for keyboard events
+    if (!event.inputType) {
+        event.preventDefault();
+        handleCharacter(event.key);
+    }
+}
+
+function handleBeforeInput(event) {
+    // Prevent default behavior for mobile inputs
+    event.preventDefault();
+}
+
+function handleInput(event) {
+    // Handle mobile input
+    const inputData = event.data;
+    if (inputData) {
+        handleCharacter(inputData);
+    }
+}
+
+function handleCharacter(char) {
+    const currentValue = wordInput.value;
+    const correctWord = answers[currentIndex];
+    const nextLetterIndex = currentValue.length;
+
+    if (char === correctWord[nextLetterIndex]) {
+        wordInput.value = currentValue + char;
+    } else {
+        wordInput.value = currentValue.slice(0, -1);
+    }
+    attempts++;
 }
 
 
