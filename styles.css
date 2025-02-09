@@ -125,21 +125,6 @@ h1 {
     color: #e0fbfc !important; /* frosty white for hint text */
 }
 
-#play-notes-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 1em;
-    background-color: #10458a !important;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-#play-notes-button:hover {
-    background-color: #98c1d9 !important;
-}
-
 #current-letter {
     color: #e0fbfc !important;
     margin-bottom: 20px;
