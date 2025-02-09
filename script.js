@@ -93,47 +93,31 @@ const wordInput = document.getElementById('word-input');
 
 // Handle both keyboard and input events
 wordInput.addEventListener('keydown', handleKeyPress);
-wordInput.addEventListener('input', handleInput);
-wordInput.addEventListener('beforeinput', handleBeforeInput);
 
-function handleKeyPress(event) {
-    //Check android keydown
+function handleKeyPress(event) { 
     if (event.keyCode === 229) {
-        document.getElementById('instructions').innerHTML = 'Sorry fellow Android user, please continue on a computer :(';
+        document.getElementById('instructions').innerHTML = 'Sorry fellow Android user, you will need to play on a computer :(';
         document.getElementById('hint').style.display = 'none';
         document.getElementById('game-mode').style.display = 'none';
     }
-    // Only prevent default for keyboard events
-    if (!event.inputType) {
-        event.preventDefault();
-        handleCharacter(event.key);
-    }
-}
+    // Prevent default behavior 
+    event.preventDefault(); 
+    
+    // Get current input value and correct word 
+    const currentValue = wordInput.value; 
+    const correctWord = answers[currentIndex]; 
 
-function handleBeforeInput(event) {
-    // Prevent default behavior for mobile inputs
-    event.preventDefault();
-}
-
-function handleInput(event) {
-    // Handle mobile input
-    const inputData = event.data;
-    if (inputData) {
-        handleCharacter(inputData);
-    }
-}
-
-function handleCharacter(char) {
-    const currentValue = wordInput.value;
-    const correctWord = answers[currentIndex];
-    const nextLetterIndex = currentValue.length;
-
-    if (char === correctWord[nextLetterIndex]) {
-        wordInput.value = currentValue + char;
-    } else {
-        wordInput.value = currentValue.slice(0, -1);
-    }
-    attempts++;
+    // Check if the pressed key matches the next expected letter 
+    const nextLetterIndex = currentValue.length; 
+    if (event.key === correctWord[nextLetterIndex]) { 
+        // Show the letter 
+        wordInput.value = currentValue + event.key; 
+    } else { 
+        // Remove last correct letter 
+        wordInput.value = currentValue.slice(0, -1); 
+    } 
+    // Increment attempt counter 
+    attempts++; 
 }
 
 
