@@ -1,7 +1,7 @@
 // Initialism constants
-const acronym = 'BYODTCTTGNGR';
+const acronym = 'BYO____ TO DO ____';
 const answers = [
-    'Bring', 'Your', 'Own', 'Desire', 'To', 'Contribute', 'To', 'The', 'Game', 'Night', 'Github', 'Repo'
+    'Bring', 'Your', 'TO DO'
 ];
 
 // Game state variables
@@ -60,6 +60,8 @@ function startGame() {
     // Setup first word
     setupNextWord();
     startTimer();
+
+    // TO DO anything else that should initialize on game start
 }
 
 
@@ -87,6 +89,7 @@ function setupNextWord() {
 
 // MAIN GAME LOOP
 
+// TO DO
 
 
 // ON PRESS OF SUBMIT BUTTON

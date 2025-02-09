@@ -1,7 +1,6 @@
-Cruelty:
-
-Users must guess one letter of each word at a time where:
-- If they get the letter correct, they can guess the next letter
-- If they get the letter incorrect, the last correct letter they guessed disappears and they have to retype it
-
-Simple!
+Updates to make:
+Acronym/hint/instructions in html
+Acronym in script
+Game start logic in script
+Change to next word logic in script
+Main game loop in script
