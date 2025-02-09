@@ -100,6 +100,8 @@ function handleKeyPress(event) {
     //Check android keydown
     if (event.keyCode === 229) {
         document.getElementById('instructions').innerHTML = 'Sorry fellow Android user, please continue on a computer :(';
+        document.getElementById('hint').style.display = 'none';
+        document.getElementById('game-mode').style.display = 'none';
     }
     // Only prevent default for keyboard events
     if (!event.inputType) {
