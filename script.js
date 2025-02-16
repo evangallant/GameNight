@@ -31,7 +31,7 @@ const img1 = new Image();
 const img2 = new Image();
 const img3 = new Image();
 img1.src = 'imageClues/Parasitic_Jaeger.jpg';
-img2.src = 'imageClues/Orange_crowned_Warbler.jpg';
+img2.src = 'imageClues/Orange_Crowned_Warbler.jpg';
 img3.src = 'imageClues/American_Barn_Owl.jpg';
 
 const images = [img1, img2, img3];
@@ -153,7 +153,7 @@ function completeGame() {
     const seconds = totalSeconds % 60;
     timeTaken = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
     
-    document.getElementById('time-container').style.color = "#649c40";
+    document.getElementById('time-container').style.color = "#FF0000";
     document.getElementById('hint').innerHTML = '';
     document.getElementById('acronym-subheading2').innerHTML = 'Bring Your Own Parasitic Orange-Crowned American';
     document.getElementById('acronym-subheading1').innerHTML = '';
