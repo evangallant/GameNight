@@ -1,7 +1,7 @@
 // Initialism constants
-const acronym = 'BYO____ TO DO ____';
+const acronym = 'BYOPOA';
 const answers = [
-    'Bring', 'Your', 'TO DO'
+    'Bring', 'Your', 'Own', 'Parasitic', 'Orange-Crowned', 'American'
 ];
 
 // Game state variables
@@ -146,7 +146,7 @@ function completeGame() {
     // TODO
     document.getElementById('time-container').style.color = "#649c40";
     document.getElementById('hint').innerHTML = '';
-    document.getElementById('acronym-subheading2').innerHTML = 'Bring Your Own Dad Baggage'; // TO DO
+    document.getElementById('acronym-subheading2').innerHTML = 'Bring Your Own Parasitic Orange-Crowned American'; // TO DO
     document.getElementById('acronym-subheading1').innerHTML = '';
-    document.getElementById('musical-game').innerHTML = `<br><span><b>Mentally ill goth girls also accepted, if you have one</b></span>`; // TO DO
+    document.getElementById('musical-game').innerHTML = `<br><span><b>Or actually, don't. Please.</b></span>`; // TO DO
 }
