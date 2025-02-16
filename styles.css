@@ -51,9 +51,12 @@ h1 {
 
 .acronym-container {
     display: flex;
-    justify-content: start;
+    justify-content: center;
     flex-direction: column;
     text-align: left;
+    vertical-align: middle;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .acronym-letter {
