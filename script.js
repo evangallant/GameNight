@@ -1,8 +1,11 @@
 // Initialism constants
-const acronym = 'BYO____ TO DO ____';
+const acronym = 'BYOBCBB';
 const answers = [
-    'Bring', 'Your', 'TO DO'
+    'Bring', 'Your', 'Own', 'Boulder', 'Community', 'Big', 'Boy'
 ];
+const trailNames = [
+    'Bring', 'Your', 'Own', 'South _______ Creek Trail', '_________ Ditch Trail', '___ Bluestem Trail', '___ Scout Trail'
+]
 
 // Game state variables
 let startTime;
@@ -56,12 +59,11 @@ function startGame() {
     document.getElementById('start-container').style.display = 'none';
     document.getElementById('time-container').style.display = 'block';
     document.getElementById('instructions').innerHTML = ``;
+    document.getElementById('trails').style.display = 'block';
     
     // Setup first word
     setupNextWord();
     startTimer();
-
-    // TO DO anything else that should initialize on game start
 }
 
 
@@ -78,18 +80,20 @@ function setupNextWord() {
         wordInput.value = '';
         wordInput.disabled = false;
         
-        // GAME UPDATES HERE     TO DO
+        // Update the image clue
+        const currentImage = document.getElementById('current-image');
+        const currentImageSrc = `imageClues/clue${currentIndex - 2}.png`;
+        currentImage.innerHTML = `<img src="${currentImageSrc}">`;
+
+        // Update the trail name
+        const currentTrail = document.getElementById('trail-name');
+        currentTrail.textContent = trailNames[currentIndex]
 
     } else {
         // Game completed
         completeGame();
     }
 }
-
-
-// MAIN GAME LOOP
-
-// TO DO
 
 
 // ON PRESS OF SUBMIT BUTTON
@@ -146,7 +150,8 @@ function completeGame() {
     // TODO
     document.getElementById('time-container').style.color = "#649c40";
     document.getElementById('hint').innerHTML = '';
-    document.getElementById('acronym-subheading2').innerHTML = 'Bring Your Own Dad Baggage'; // TO DO
+    document.getElementById('trails').style.display = 'none';
+    document.getElementById('acronym-subheading2').innerHTML = 'Bring Your Own Boulder Community, Big Boy'; // TO DO
     document.getElementById('acronym-subheading1').innerHTML = '';
-    document.getElementById('ending-note').innerHTML = `<br><span><b>Mentally ill goth girls also accepted, if you have one</b></span>`; // TO DO
+    document.getElementById('ending-note').innerHTML = `<br><span><b>We all make game night happen together <3</b></span>`; // TO DO
 }

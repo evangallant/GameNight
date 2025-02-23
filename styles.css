@@ -3,7 +3,7 @@
 body {
     font-family: 'JetBrains Mono';
     text-align: center;
-    background-color: #1e3d59 !important; /* deep, cool blue background */
+    background-color: #59391e !important; /* deep, cool blue background */
     color: #f5f5f5 !important; /* soft white for text */
 }
 
@@ -13,7 +13,7 @@ button, input, textarea, select {
 
 h1 {
     font-size: 2.5em;
-    color: #98c1d9 !important; /* light icy blue for the header */
+    color: #d9c898 !important; /* light icy blue for the header */
     margin-bottom: 30px;
 }
 
@@ -22,7 +22,7 @@ h1 {
     margin: 80px auto;
     width: 90%;
     max-width: 800px;
-    background: #3d5a80 !important; /* muted winter blue */
+    background: #80673d !important; /* muted winter blue */
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -32,14 +32,14 @@ h1 {
 #acronym-subheading1 {
     font-size: 1.5em;
     margin-top: 10px;
-    color: #e0fbfc !important; /* frosty white for the acronym heading */
+    color: #fcfae0 !important; /* frosty white for the acronym heading */
     font-weight: bold;
 }
 
 #acronym-subheading2 {
     font-size: 1.5em;
     margin-top: 10px;
-    color: #e0fbfc !important; /* frosty white for the acronym heading */
+    color: #fcf8e0 !important; /* frosty white for the acronym heading */
     font-weight: bold;
 }
 
@@ -69,7 +69,7 @@ h1 {
 .guess-slot {
     font-weight: normal;
     margin-left: 10px;
-    color: #98c1d9; /* light icy blue */
+    color: #d9c998; /* light icy blue */
 }
 
 /* Guess container stuff */
@@ -82,29 +82,29 @@ h1 {
 #guess-interface {
     flex: 2;
     padding-left: 20px;
-    border-left: 2px solid #98c1d9 !important; /* same light blue as other elements */
+    border-left: 2px solid #d9cd98 !important; /* same light blue as other elements */
 }
 
 #instructions {
     margin-top: 20px;
     font-style: italic;
-    color: #e0fbfc !important; /* frosty white for clue text */
+    color: #fcf8e0 !important; /* frosty white for clue text */
 }
 
 #word-input {
     padding: 10px;
     font-size: 1em;
-    border: 2px solid #98c1d9 !important; /* icy blue border */
+    border: 2px solid #d9c198 !important; /* icy blue border */
     border-radius: 5px;
     background-color: #f5f5f5; /* soft white background */
-    color: #1e3d59; /* deep blue text */
+    color: #593a1e; /* deep blue text */
 }
 
 #submit-button {
     margin-top: 10px;
     padding: 10px 20px;
     font-size: 1em;
-    background-color: #10458a !important; /* muted winter blue background */
+    background-color: #8a5710 !important; /* muted winter blue background */
     color: white;
     border: none;
     border-radius: 5px;
@@ -112,16 +112,31 @@ h1 {
 }
 
 #submit-button:hover {
-    background-color: #98c1d9 !important; /* light blue on hover */
+    background-color: #d9bd98 !important; /* light blue on hover */
 }
 
 #hint {
     margin-top: 30px;
     font-weight: bold;
-    color: #e0fbfc !important; /* frosty white for hint text */
+    color: #fcf5e0 !important; /* frosty white for hint text */
 }
 
 #current-letter {
-    color: #e0fbfc !important;
+    color: #fcf6e0 !important;
     margin-bottom: 20px;
+}
+
+#current-image {
+    width: 100%;  /* Ensure the div takes full available width */
+    height: 100%; /* Ensure the div takes full available height */
+    display: flex; /* Center the image if needed */
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Prevents overflow if the image is too large */
+}
+
+#current-image img {
+    width: 100%;  /* Make the image stretch to fit the container width */
+    height: 100%; /* Make the image stretch to fit the container height */
+    object-fit: cover; /* Ensures the image fills the container without distortion */
 }
