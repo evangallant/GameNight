@@ -3,55 +3,257 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Night!</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>CONVERGENCE™ - Reimagining Sunday</title>
     <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
 </head>
 <body>
-    <div id="riddle-container" class="container">
-        <div id="guess-container" class="row">
-            <div class="col-4 acronym-container">
-                <!-- The acronym with guessed words will be generated here -->
-            </div>
-            <div id="guess-interface" class="col-8">
-                <h1><strong>WHAT ARE WE BRINGING TO GAME NIGHT?</strong></h1>
-                <div id="acronym-subheading1">This week's initialism:</div>
-                <div id="acronym-subheading2"><strong>BYO___TO DO____</strong></div>
-                <div id="instructions">
-                    <div class="hint">Instructions:</div>
-                    <div class="hint">
-                        TO DO
-                    </div>
-                </div>
-                <div id="hint">Hint: TO DO</div>
-                <div id="ending-note"></div>
-                
-                <!-- Start Button to initiate the game -->
-                <div id="start-container" class="text-center">
-                    <button id="start-button" class="btn btn-lg btn-warning mt-5">Start Game</button>
-                </div>
-                
-                <!-- Timer Display -->
-                <div id="time-container" class="mt-4 text-center" style="font-size: 1.5em; color: #f77f00; display: none;">
-                    <span id="time-taken">0:00</span>
-                </div>
-                
-                <div id="cruelty" style="display: none;">
-                    <div id="current-letter" class="mt-3 text-center" style="font-size: 1.5em;">
-                    Current Letter: <span id="letter-display"></span>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">CONVERGENCE™</div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#vision" class="nav-link">Vision</a></li>
+                <li><a href="#framework" class="nav-link">Framework</a></li>
+                <li><a href="#ecosystem" class="nav-link">Ecosystem</a></li>
+                <li><a href="#impact" class="nav-link">Impact</a></li>
+                <li><a href="#join" class="nav-link">Join</a></li>
+            </ul>
+        </div>
+    </nav>
 
-                    <div id="clue-and-input" class="mt-4">
-                        <div class="input-group justify-content-center">
-                            <input type="text" id="word-input" class="form-control" placeholder="Enter your guess">
-                        </div>
-                        <div class="text-center">
-                            <button id="submit-button" class="btn btn-success mt-2">Submit Word</button>
-                        </div>
-                    </div>
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="glitch" data-text="CONVERGENCE™">CONVERGENCE™</h1>
+            <p class="tagline">Orchestrating Human Potential Through Collaborative Engagement Paradigms</p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number" data-target="100">0</span>
+                    <span class="stat-label">% Synergy Achieved</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" data-target="7">0</span>
+                    <span class="stat-label">Days Per Cycle</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" data-target="∞">0</span>
+                    <span class="stat-label">Potential Unlocked</span>
+                </div>
+            </div>
+            <button class="cta-button">Experience the Future</button>
+        </div>
+        <div class="hero-background"></div>
+    </section>
+
+    <section id="vision" class="section">
+        <div class="container">
+            <h2 class="section-title">Our Vision</h2>
+            <p class="section-subtitle">Building Tomorrow's Communities, Today</p>
+            <div class="content-grid">
+                <div class="content-block">
+                    <h3>The Challenge</h3>
+                    <p>In an increasingly fragmented world, traditional engagement models fail to deliver the holistic, human-centered experiences that drive meaningful transformation. We recognized a fundamental gap in the Sunday optimization space.</p>
+                </div>
+                <div class="content-block">
+                    <h3>Our Solution</h3>
+                    <p>CONVERGENCE™ leverages proprietary methodologies to create immersive, recurring touchpoints that foster authentic connection while scaling impact. Through our revolutionary framework, we're not just changing Sundays—we're reimagining the entire weekly cadence.</p>
+                </div>
+                <div class="content-block">
+                    <h3>The Impact</h3>
+                    <p>By synthesizing cross-functional engagement streams with dynamic challenge architectures, we empower participants to unlock their full potential within a carefully curated temporal ecosystem. This isn't just participation—it's transformation.</p>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+
+    <section id="framework" class="section dark">
+        <div class="container">
+            <h2 class="section-title">The CONVERGENCE Framework™</h2>
+            <p class="section-subtitle">A Proprietary Approach to Synchronous Engagement</p>
+            
+            <div class="framework-grid">
+                <div class="framework-card">
+                    <div class="framework-icon">◈</div>
+                    <h3>Adaptive Challenge Matrix</h3>
+                    <p>Our algorithmically-curated challenge sequences leverage machine learning to optimize for maximum engagement density while maintaining optimal flow states across all participant cohorts.</p>
+                    <span class="framework-badge">PATENTED</span>
+                </div>
+                
+                <div class="framework-card">
+                    <div class="framework-icon">◆</div>
+                    <h3>Temporal Optimization Engine</h3>
+                    <p>By anchoring experiences to weekly recurring intervals, we create psychological anticipation loops that drive sustained engagement and compound community value over time.</p>
+                    <span class="framework-badge">PROPRIETARY</span>
+                </div>
+                
+                <div class="framework-card">
+                    <div class="framework-icon">◇</div>
+                    <h3>Synergy Amplification Protocol</h3>
+                    <p>Our multi-dimensional approach to participant interaction creates emergent collaborative dynamics that exceed the sum of individual contributions, generating exponential value multiplication.</p>
+                    <span class="framework-badge">REVOLUTIONARY</span>
+                </div>
+                
+                <div class="framework-card">
+                    <div class="framework-icon">◈</div>
+                    <h3>Holistic Experience Design</h3>
+                    <p>Every touchpoint is intentionally crafted to align with our core mission of fostering genuine human connection while maintaining scalability and reproducibility across diverse contexts.</p>
+                    <span class="framework-badge">AWARD-WINNING</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ecosystem" class="section">
+        <div class="container">
+            <h2 class="section-title">The Ecosystem</h2>
+            <p class="section-subtitle">Interconnected Pillars of Excellence</p>
+            
+            <div class="ecosystem-container">
+                <div class="ecosystem-item">
+                    <div class="eco-header">
+                        <span class="eco-number">01</span>
+                        <h3>Challenge Architecture</h3>
+                    </div>
+                    <p>Carefully designed engagement opportunities that push boundaries while maintaining accessibility. Each challenge represents weeks of research into optimal difficulty curves and psychological reward mechanisms.</p>
+                </div>
+                
+                <div class="ecosystem-item">
+                    <div class="eco-header">
+                        <span class="eco-number">02</span>
+                        <h3>Community Fabric</h3>
+                    </div>
+                    <p>More than just participants—we're cultivating a thriving network of forward-thinking individuals united by shared values and commitment to weekly excellence. This is where belonging meets purpose.</p>
+                </div>
+                
+                <div class="ecosystem-item">
+                    <div class="eco-header">
+                        <span class="eco-number">03</span>
+                        <h3>Innovation Pipeline</h3>
+                    </div>
+                    <p>Our dedicated team continuously iterates on the experience, incorporating cutting-edge research in gamification, behavioral psychology, and collective intelligence to ensure CONVERGENCE™ remains at the forefront.</p>
+                </div>
+                
+                <div class="ecosystem-item">
+                    <div class="eco-header">
+                        <span class="eco-number">04</span>
+                        <h3>Impact Measurement</h3>
+                    </div>
+                    <p>Through sophisticated analytics and qualitative feedback loops, we track multi-dimensional success metrics that go beyond traditional KPIs to capture the true essence of transformation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="impact" class="section dark">
+        <div class="container">
+            <h2 class="section-title">Measuring What Matters</h2>
+            <p class="section-subtitle">Data-Driven Insights, Human-Centered Outcomes</p>
+            
+            <div class="impact-grid">
+                <div class="impact-card">
+                    <div class="impact-stat">847%</div>
+                    <p class="impact-label">Increase in Meaningful Moments</p>
+                    <p class="impact-desc">Compared to baseline Sunday utilization metrics</p>
+                </div>
+                
+                <div class="impact-card">
+                    <div class="impact-stat">99.2%</div>
+                    <p class="impact-label">Participant Resonance Score</p>
+                    <p class="impact-desc">Based on proprietary emotional engagement algorithms</p>
+                </div>
+                
+                <div class="impact-card">
+                    <div class="impact-stat">∞</div>
+                    <p class="impact-label">Potential for Growth</p>
+                    <p class="impact-desc">Unlimited scalability within our proven framework</p>
+                </div>
+                
+                <div class="impact-card">
+                    <div class="impact-stat">1</div>
+                    <p class="impact-label">Unified Vision</p>
+                    <p class="impact-desc">Singular focus on transformative weekly experiences</p>
+                </div>
+            </div>
+            
+            <div class="testimonial">
+                <blockquote>
+                    "CONVERGENCE™ has fundamentally transformed how I conceptualize temporal engagement frameworks. This isn't just about showing up—it's about showing up intentionally."
+                </blockquote>
+                <cite>— Anonymous Participant, CONVERGENCE™ Cohort Alpha</cite>
+            </div>
+        </div>
+    </section>
+
+    <section id="join" class="section">
+        <div class="container">
+            <h2 class="section-title">Join the Movement</h2>
+            <p class="section-subtitle">Your Journey Toward Optimized Sundays Begins Here</p>
+            
+            <div class="join-content">
+                <p class="join-text">CONVERGENCE™ isn't for everyone. We're looking for dedicated individuals ready to commit to weekly excellence, embrace transformative challenges, and contribute to a community that values growth, connection, and the relentless pursuit of optimized engagement.</p>
+                
+                <div class="join-details">
+                    <div class="detail-item">
+                        <h4>When</h4>
+                        <p>Every Sunday. Without fail. Because transformation doesn't take breaks.</p>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Where</h4>
+                        <p>At the convergence point. (Details provided to accepted participants.)</p>
+                    </div>
+                    <div class="detail-item">
+                        <h4>What to Bring</h4>
+                        <p>An open mind, collaborative spirit, and unwavering commitment to excellence.</p>
+                    </div>
+                </div>
+                
+                <button class="cta-button">Request Invitation</button>
+                <p class="disclaimer">* Space is limited. Selection is based on alignment with CONVERGENCE™ core values and demonstrated commitment to personal growth trajectories.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>CONVERGENCE™</h4>
+                    <p>Reimagining human potential through synchronized weekly engagement paradigms.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Framework</h4>
+                    <ul>
+                        <li>Methodology</li>
+                        <li>Best Practices</li>
+                        <li>Research</li>
+                        <li>White Papers</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Community</h4>
+                    <ul>
+                        <li>Participant Portal</li>
+                        <li>Alumni Network</li>
+                        <li>Success Stories</li>
+                        <li>Thought Leadership</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li>Mission & Values</li>
+                        <li>Leadership</li>
+                        <li>Careers</li>
+                        <li>Contact</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 CONVERGENCE™. All rights reserved. Patent pending. Framework proprietary.</p>
+                <p class="footer-tagline">Building the future, one Sunday at a time.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
