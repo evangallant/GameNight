@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Do We Know Where Carbon Comes From?</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            animation: fadeInDown 1s ease;
+        }
+        
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        section {
+            margin-bottom: 60px;
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards;
+        }
+        
+        section:nth-child(1) { animation-delay: 0.2s; }
+        section:nth-child(2) { animation-delay: 0.4s; }
+        section:nth-child(3) { animation-delay: 0.6s; }
+        section:nth-child(4) { animation-delay: 0.8s; }
+        section:nth-child(5) { animation-delay: 1s; }
+        section:nth-child(6) { animation-delay: 1.2s; }
+        
+        h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-left: 5px solid #667eea;
+            padding-left: 15px;
+        }
+        
+        h3 {
+            color: #764ba2;
+            font-size: 1.5em;
+            margin: 30px 0 15px 0;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        .equation-box {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        
+        .equation-box code {
+            font-size: 1.1em;
+            color: #2c3e50;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            border: 2px solid #667eea;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 12px;
+            position: relative;
+        }
+        
+        .highlight-box::before {
+            content: "💡";
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: white;
+            padding: 0 10px;
+            font-size: 1.5em;
+        }
+        
+        .problem-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .solution-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .interactive-demo {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(10, 30px);
+            gap: 5px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .cell {
+            width: 30px;
+            height: 30px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .cell:hover {
+            transform: scale(1.1);
+        }
+        
+        .cell.source {
+            background: #ff6b6b;
+            animation: pulse 2s infinite;
+        }
+        
+        .cell.measured {
+            background: #4ecdc4;
+        }
+        
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            margin: 10px;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin: 15px 0;
+            border-left: 5px solid #667eea;
+        }
+        
+        .stat-number {
+            font-size: 3em;
+            font-weight: bold;
+            color: #667eea;
+            margin: 10px 0;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 0.8;
+            }
+        }
+        
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            font-size: 0.9em;
+        }
+        
+        .emoji {
+            font-size: 1.3em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>How Do We Know Where Carbon Comes From?</h1>
+            <p>A journey through atmospheric inversions</p>
+        </header>
+        
+        <div class="content">
+            <section>
+                <h2>The Problem</h2>
+                <p>Imagine you're standing in downtown San Francisco. You pull out a fancy CO₂ sensor and measure <strong>425 parts per million</strong> of carbon dioxide in the air around you.Great! But... where did that CO₂ come from? Was it from cars on the highway, power plants 50 miles away, orfarms in the Central Valley? Further, did forests absorb some, making the number lower than it would've been?</p>
+                
+                <p>This is the <strong>fundamental challenge</strong> atmospheric inversions seek to solve: e can measure CO₂ in the air pretty easily, but figuring out which sources (emissions) and sinks (things that absorb CO₂) created those measurements is really hard.</p>
+            </section>
+
+            <section>
+                <h2>Inversions</h2>
+                <p>At its core, an atmospheric inversion is about solving two related problems:</p>
+
+                <div class="highlight-box">
+                    <h3>Forward Problem ➡️</h3>
+                    <p><strong>"If we know the emissions, we can predict the measurements"</strong></p>
+                    <p>Example: If there's a power plant emitting 1000 tons of CO₂ per hour, and the wind is blowing east at 10 mph, we can calculate what CO₂ sensors downwind will measure.</p>
+                </div>
+                
+                <div class="highlight-box">
+                    <h3>Inverse Problem ⬅️</h3>
+                    <p><strong>"If we have measurements, can we figure out the emissions?"</strong></p>
+                    <p>This is what we actually need to do. We have CO₂ measurements from satellites and ground sensors, and we need to work backwards to figure out where the emissions are coming from.</p>
+                </div>
+                
+                <p>The main challenge of the inverse problem, which otherwise could be solved explicitly, is the presence of errors in the in-situ measurements, observations we want to use from satellites, and the atmospheric models themselves. Having these errors, which is unavoidable, means there are essentially infinite possible configurations of emissions and sequestration that could produce the same measurements when plugged into the inverse of the atmospheric transport model. This limits us to aiming for the most plausible configuration, given what we know about the errors.</p>
+            </section>
+                        
+            <section>
+                <h2>Solving the Inverse Problem with Bayesian Inference</h2>
+                
+                <p>We need some sort of additional information to pick the most plausible solution. For this we use Bayesian inference. The fundamental insight is that we can treat the emissions we're trying to predict as a probability distribution rather than seeking a single "true" answer. This is how we relate our initial best guess of what we think the emissions are with both the observations (in this case, satellite observations describing the average amount of CO₂ in a column of air), and how much we trust those observations. The last concept there, how much we trust the observations, basically quantifies how much of an impact a given satellite observation should have on our prediction of the actual emissions. If we the error is quite high in that region and we don't trust it very much, we want to limit how much it effects our predicted footprint of emissions.</p>
+                
+                <div class="equation-box">
+                    <code><strong>P(x | y) ∝ P(y | x) · P(x)</strong></code>
+                </div>
+                
+                <p>Where:</p>
+                <ul style="margin-left: 40px; margin-bottom: 20px;">
+                    <li style="margin: 10px 0;"><strong>P(x | y)</strong> = <em>posterior</em>: probability of emissions <strong>x</strong> given measurements <strong>y</strong>. This is what we are solving for</li>
+                    <li style="margin: 10px 0;"><strong>P(y | x)</strong> = <em>likelihood</em>: probability of observing measurements <strong>y</strong> given emissions <strong>x</strong>. How confident we are </li>
+                    <li style="margin: 10px 0;"><strong>P(x)</strong> = <em>prior</em>: our initial belief about emissions before seeing any measurements</li>
+                </ul>
+                
+                <p>With this approach we start with a prior guess about emissions (maybe from emission inventories, economic data, or previous years). Then we update that guess based on what the atmospheric measurements tell us, weighted by how much we trust each source of information. In practice, we assume both the prior and likelihood are <strong>Gaussian (normal) distributions</strong>. This isn't just mathematical convenience—it's justified by:</p>
+                <ul style="margin-left: 40px; margin-bottom: 20px;">
+                    <li><strong>Central Limit Theorem:</strong> Many small errors in the measurements, observations, and models sum to Gaussian noise</li>
+                    <li><strong>Maximum entropy:</strong> Gaussian is the "least informative" distribution for a given mean and variance</li>
+                    <li><strong>Computational tractability:</strong> Gaussian × Gaussian = Gaussian (stays in the same family)</li>
+                </ul>
+                
+                <div class="equation-box">
+                    <code>
+                        <strong>Prior:</strong> x ~ N(x<sub>a</sub>, B)<br>
+                        <strong>Likelihood:</strong> y | x ~ N(Hx + b, R)
+                    </code>
+                </div>
+                
+                <p>Where:</p>
+                <ul style="margin-left: 40px; margin-bottom: 20px;">
+                    <li style="margin: 10px 0;"><strong>x<sub>a</sub></strong> = the prior mean, which our best guess for emissions, e.g., from bottom-up inventories</li>
+                    <li style="margin: 10px 0;"><strong>B</strong> = the prior error covariance matrix, which quantifies how uncertain we are about our guess, and which emissions (and especially their errors) covary (i.e. if the errors in one observation go up and down in conjunction with the errors in another observation, they covary)</li>
+                    <li style="margin: 10px 0;"><strong>H</strong> = the atmospheric transport Jacobian matrix, which describes the sensitivity of measurements to emissions. It is derived by linearizing the atmospheric transport model around our prior estimate of emissions. This matrix quantifies the relationships of the atmospheric transport model it comes from, and is able to tell us how we should update our best guess of emissions in order to better match what we observed from the satellites</li>
+                    <li style="margin: 10px 0;"><strong>b</strong> = the background concentration (CO₂ that was already there from distant sources)</li>
+                    <li style="margin: 10px 0;"><strong>R</strong> = the observation error covariance matrix, which, similarly to the prior error covariance matrix, quantifies our uncertainty about and the relationships between errors in our measurements and the transport model</li>
+                </ul>
+
+                <h3>The Posterior Solution (Our Best Estimate)</h3>
+
+                <p>With Gaussian assumptions, we can actually solve for the most likely emissions analytically. This is called the Maximum A Posteriori (MAP) estimate - basically, the peak of the posterior probability distribution:</p>
+
+                <div class="equation-box">
+                    <code>
+                        <strong>x̂ = x<sub>a</sub> + (HB)<sup>T</sup>(HBH<sup>T</sup> + R)<sup>-1</sup>(y - Hx<sub>a</sub>)</strong>
+                    </code>
+                </div>
+
+                <p>Let's walk through what each piece means, starting from the inside out:</p>
+
+                <h3>Step 1: Calculate the Innovation (y - Hx<sub>a</sub>)</h3>
+
+                <div class="highlight-box">
+                    <p><strong>Hx<sub>a</sub></strong> represents what we would measure if our prior guess were exactly right. We take our prior emissions (x<sub>a</sub>), run them through the atmospheric transport model (H), and get predicted measurements.</p>
+                    
+                    <p><strong>y - Hx<sub>a</sub></strong> is the difference between what we actually measured (y) and what we predicted we'd measure (Hx<sub>a</sub>). This tells us "our prior was off by this much." It's called the innovation or residual - basically, the new information the measurements are giving us.</p>
+                </div>
+
+                <p><strong>Example:</strong> Say our prior thinks a power plant emits 100 tons/hour. Running that through atmospheric transport, we'd predict a sensor downwind measures 410 ppm CO₂. But we actually measure 415 ppm. The innovation is 415 - 410 = 5 ppm. This tells us we probably underestimated emissions somewhere upwind.</p>
+
+                <h3>Step 2: Weight by the Kalman Gain (HBH<sup>T</sup> + R)<sup>-1</sup></h3>
+
+                <p>This part determines <em>how much</em> we should adjust our prior based on the innovation. It's called the Kalman gain, and it balances three factors:</p>
+
+                <ul style="margin-left: 40px; margin-bottom: 20px;">
+                    <li style="margin: 10px 0;"><strong>HBH<sup>T</sup></strong> - This represents how our prior uncertainty (B) propagates through atmospheric transport (H) to create uncertainty in the predicted measurements. If we're very uncertain about our prior emissions, we should trust the measurements more, because an uncertain prior doesn't tell us much.</li>
+                    
+                    <li style="margin: 10px 0;"><strong>R</strong> - This is our measurement uncertainty. If the measurements are noisy or the transport model has errors, we should trust them less and stick closer to our prior.</li>
+                    
+                    <li style="margin: 10px 0;"><strong>(HBH<sup>T</sup> + R)<sup>-1</sup></strong> - The inverse of their sum gives us the optimal weighting. When prior uncertainty is high relative to measurement uncertainty, we trust measurements more (Kalman gain is larger). When measurement uncertainty is high, we trust the prior more (Kalman gain is smaller).</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <p><strong>Think of it like this:</strong> You have two friends estimating how many people are at a party. Friend A (the prior) counted 50 but admits they're pretty unsure (±20 people). Friend B (the measurements) counted 70 but is also somewhat uncertain (±10 people). The Kalman gain figures out the optimal way to combine these two estimates based on how confident each person is. You'd weight Friend B's estimate more heavily since they're more certain.</p>
+                </div>
+
+                <h3>Step 3: Map Back to Emissions Space with (HB)<sup>T</sup></h3>
+
+                <p>Now we know how much to adjust things in "measurement space" (those 5 ppm we were off by), but we need to figure out which emissions to adjust. That's what (HB)<sup>T</sup> does:</p>
+
+                <ul style="margin-left: 40px; margin-bottom: 20px;">
+                    <li style="margin: 10px 0;"><strong>H<sup>T</sup></strong> - The transpose of the transport matrix. This tells us "for each measurement residual, which upwind emissions are most likely responsible?" It's essentially asking "what's the footprint?" in reverse.</li>
+                    
+                    <li style="margin: 10px 0;"><strong>B</strong> - Our prior error covariance weights this by which emissions we think are most uncertain. If we're already pretty confident about power plant emissions but uncertain about diffuse soil respiration, we'll adjust the soil respiration more.</li>
+                </ul>
+
+                <p><strong>Example continued:</strong> That 5 ppm innovation at our sensor tells us something upwind needs adjusting. But which emissions? H<sup>T</sup> looks at the wind patterns and says "the sensor is most sensitive to emissions 10-30 km west." B says "we're most uncertain about that industrial area 25 km west." So we primarily adjust emissions in that region.</p>
+
+                <h3>Step 4: Add the Correction to Our Prior</h3>
+
+                <p>Finally, we take our prior (x<sub>a</sub>) and add the correction term we just calculated:</p>
+
+                <div class="equation-box">
+                    <code><strong>x̂ = x<sub>a</sub> + correction</strong></code>
+                </div>
+
+                <p>This gives us our posterior estimate (x̂) - our updated, improved guess at the emissions that best explains both our prior knowledge and the new measurements.</p>
+
+                <h3>A Simple Linear Example</h3>
+
+                <p>Let's walk through a toy problem to see this in action. Imagine we have:</p>
+
+                <ul style="margin-left: 40px; margin-bottom: 20px;">
+                    <li><strong>Two emission sources:</strong> A power plant and a highway</li>
+                    <li><strong>One measurement:</strong> A CO₂ sensor between them</li>
+                </ul>
+
+                <div class="problem-box">
+                    <h3>Setup</h3>
+                    <p><strong>Prior guess (x<sub>a</sub>):</strong></p>
+                    <ul style="margin-left: 20px;">
+                        <li>Power plant: 100 tons/hour</li>
+                        <li>Highway: 20 tons/hour</li>
+                    </ul>
+                    
+                    <p><strong>Prior uncertainty (B):</strong> We're ±30% uncertain about both (but let's assume they're independent for simplicity, so B is diagonal)</p>
+                    
+                    <p><strong>Atmospheric transport (H):</strong> Based on wind patterns:</p>
+                    <ul style="margin-left: 20px;">
+                        <li>1 ton from power plant → increases sensor by 0.5 ppm</li>
+                        <li>1 ton from highway → increases sensor by 0.8 ppm (it's closer)</li>
+                    </ul>
+                    <p>So H = [0.5, 0.8] (a 1×2 matrix)</p>
+                    
+                    <p><strong>Measurement (y):</strong> Sensor reads 425 ppm</p>
+                    <p><strong>Background (b):</strong> 410 ppm (what we'd measure with zero local emissions)</p>
+                    <p><strong>Measurement uncertainty (R):</strong> ±2 ppm</p>
+                </div>
+
+                <p><strong>Step 1: Calculate predicted measurement</strong></p>
+                <div class="equation-box">
+                    <code>
+                        Hx<sub>a</sub> + b = 0.5(100) + 0.8(20) + 410 = 50 + 16 + 410 = 476 ppm
+                    </code>
+                </div>
+
+                <p><strong>Step 2: Calculate innovation</strong></p>
+                <div class="equation-box">
+                    <code>
+                        y - Hx<sub>a</sub> = 425 - 476 = -51 ppm
+                    </code>
+                </div>
+
+                <p>We overestimated! Our prior predicted 51 ppm more CO₂ than we actually measured.</p>
+
+                <p><strong>Step 3: Calculate Kalman gain</strong></p>
+                <p>This requires a bit more linear algebra (calculating HBH<sup>T</sup> + R and inverting it), but the key insight is: <em>the Kalman gain will tell us to reduce both emissions, but reduce the highway more because the sensor is more sensitive to it (H = 0.8 vs 0.5).</em></p>
+
+                <p><strong>Step 4: Update emissions</strong></p>
+                <p>After running through the full calculation, we might get something like:</p>
+                <div class="equation-box">
+                    <code>
+                        x̂ = [85 tons/hour, 12 tons/hour]
+                    </code>
+                </div>
+
+                <p>We reduced both sources, with a larger relative reduction to the highway (40% tons vs 15%) because the sensor was more sensitive to it.</p>
+
+                <div class="solution-box">
+                    <p><strong>Key takeaway:</strong> The Bayesian inversion optimally combines our prior knowledge with new measurements, weighted by our confidence in each. We don't just "believe" the measurements blindly - we update our prior in a statistically principled way.</p>
+                </div>
+
+                <h3>What We Actually Learn: The Averaging Kernel</h3>
+
+                <p>Importantly, <strong>we don't perfectly recover the true emissions.</strong> What we get is a smoothed, blurred version of reality. This is quantified by the averaging kernel matrix (A):</p>
+
+                <div class="equation-box">
+                    <code><strong>x̂ ≈ Ax<sub>true</sub> + (I - A)x<sub>a</sub></strong></code>
+                </div>
+
+                <p>This equation tells us our posterior (x̂) is a weighted average of the true emissions (x<sub>true</sub>) and our prior (x<sub>a</sub>), with weights determined by A. Let's break down what this means:</p>
+
+                <ul style="margin-left: 40px; margin-bottom: 20px;">
+                    <li style="margin: 10px 0;"><strong>If A = I (identity matrix):</strong> Perfect recovery! x̂ = x<sub>true</sub>. This happens when measurements perfectly constrain every emission source.</li>
+                    
+                    <li style="margin: 10px 0;"><strong>If A = 0:</strong> No information learned. x̂ = x<sub>a</sub>. The measurements told us nothing, so we stick with our prior.</li>
+                    
+                    <li style="margin: 10px 0;"><strong>If 0 < A < I:</strong> Partial information. We learn something, but not everything. Our posterior is pulled toward the truth but doesn't reach it fully.</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <p><strong>In our example:</strong> Imagine the true emissions were actually [90, 18] tons/hour. With one measurement, we can't distinguish between "both sources are a bit lower" vs. "power plant is much lower, highway is the same." Our averaging kernel might weight both sources equally (A ≈ 0.5I), giving us a posterior somewhere between truth and prior, but not necessarily at the truth.</p>
+                </div>
+
+                <p>The averaging kernel reveals a fundamental limitation: <strong>not all emissions are equally observable.</strong> Factors that affect observability:</p>
+
+                <ul style="margin-left: 40px; margin-bottom: 20px;">
+                    <li>Sources directly upwind of sensors are better constrained than downwind sources</li>
+                    <li>Nearby sources are easier to distinguish than distant sources</li>
+                    <li>Frequent wind patterns from certain directions give us more information about those areas</li>
+                    <li>Two sources that always affect measurements together (correlated footprints) are hard to separate</li>
+                </ul>
+
+                <p>This is why we need <strong>dense observing networks</strong>! More measurements from different locations and times give us better coverage of all potential sources, pushing our averaging kernel closer to the identity matrix.</p>
+
+                <h3>Posterior Uncertainty: How Much Should We Trust This?</h3>
+
+                <p>Just like we started with uncertainty in our prior (B), we end with uncertainty in our posterior. The good news is: the uncertainty should be smaller! The measurements have taught us something.</p>
+
+                <div class="equation-box">
+                    <code><strong>B̂ = (I - KH)B</strong></code>
+                </div>
+
+                <p>Where K is the Kalman gain and B̂ is our posterior error covariance. This tells us:</p>
+
+                <ul style="margin-left: 40px; margin-bottom: 20px;">
+                    <li><strong>Diagonal elements:</strong> Uncertainty in individual emission estimates (e.g., ±15 tons/hour instead of ±30)</li>
+                    <li><strong>Off-diagonal elements:</strong> Correlations between emission uncertainties (if we overestimate source A, do we also overestimate source B?)</li>
+                </ul>
+
+                <div class="problem-box">
+                    <h3>The Observability Problem Revisited</h3>
+                    <p>Here's the catch: measurements only reduce uncertainty for emissions they can "see." If the wind never blows from a certain region toward our sensors, we learn nothing about emissions there. The posterior uncertainty for those areas equals the prior uncertainty - we're just guessing!</p>
+                    
+                    <p>This is exactly what the averaging kernel shows: regions with A ≈ 0 are unobservable, and their posterior uncertainty B̂ ≈ B (no reduction).</p>
+                </div>
+            </section>
+
+            <section>
+                <h2>The Computational Nightmare</h2>
+                
+                <p>Okay, so we have this beautiful mathematical framework for solving inverse problems. Great! Except... actually computing it is a nightmare. Let's see why.</p>
+                
+                <p>Remember that posterior equation?</p>
+                
+                <div class="equation-box">
+                    <code><strong>x̂ = x<sub>a</sub> + (HB)<sup>T</sup>(HBH<sup>T</sup> + R)<sup>-1</sup>(y - Hx<sub>a</sub>)</strong></code>
+                </div>
+                
+                <p>Every single one of those terms involving H requires us to know the atmospheric transport. And that means <strong>computing footprints.</strong></p>
+                
+                <h3>What's in a Footprint?</h3>
+                
+                <p>A footprint is basically the answer to: "For this one measurement, which upwind areas influenced it, and by how much?" To calculate this with a traditional physics model (like STILT - Stochastic Time-Inverted Lagrangian Transport), we:</p>
+                
+                <ol style="margin-left: 40px; margin-bottom: 20px;">
+                    <li style="margin: 15px 0;">Release thousands of air parcels backward in time from the measurement location</li>
+                    <li style="margin: 15px 0;">Track how they move through the atmosphere for 24-72 hours based on wind data</li>
+                    <li style="margin: 15px 0;">Record where they go and weight by atmospheric mixing</li>
+                    <li style="margin: 15px 0;">Build a map showing "emissions at location X contributed Y amount to this measurement"</li>
+                </ol>
+                
+                <p>This takes ~1 hour per footprint on a single CPU core.</strong></p>
+                
+                <h3>How Many Footprints Do We Need?</h3>
+                
+                <p>That depends on how many measurements we have and how fine-resolution we want:</p>
+                
+                <div class="problem-box">
+                    <h3>Example: High-Resolution Urban Carbon Monitoring</h3>
+                    <p><strong>Goal:</strong> Track CO₂ emissions in the San Francisco Bay Area at 1km resolution</p>
+                    <p><strong>Measurement network:</strong> 35 sensors taking hourly measurements</p>
+                    <p><strong>Time period:</strong> 1 week</p>
+                    
+                    <p><strong>Calculations:</strong></p>
+                    <ul style="margin-left: 20px;">
+                        <li>35 sensors × 24 hours/day × 7 days = 5,880 measurements</li>
+                        <li>We need 5,880 footprints</li>
+                        <li>At 1 hour per footprint: <strong>5,880 hours = 245 days of computation</strong></li>
+                        <li>Even with 32 parallel cores: <strong>7.6 days</strong></li>
+                    </ul>
+                    
+                    <p>And that's just for ONE week in ONE small region! To do this for:</p>
+                    <ul style="margin-left: 20px;">
+                        <li>A whole year: ~395 days</li>
+                        <li>All of California: multiply by ~50</li>
+                        <li>The whole US: multiply by ~500</li>
+                    </ul>
+                </div>
+                
+                <div class="stat-card">
+                    <p><strong>Storage is a problem too:</strong></p>
+                    <div class="stat-number">4 TB</div>
+                    <p>That's how much space you need to store the footprints for just ONE WEEK of data in a small region at high resolution. For continental-scale, year-long inversions? We're talking petabytes.</p>
+                </div>
+                
+                <h3>Why Can't We Just Pre-compute Everything?</h3>
+                
+                <p>You might think: "Just compute all the footprints once and save them!" But:</p>
+                
+                <ul style="margin-left: 40px; margin-bottom: 20px;">
+                    <li style="margin: 15px 0;"><strong>Storage costs are enormous</strong> (see above)</li>
+                    <li style="margin: 15px 0;"><strong>No flexibility:</strong> Want to add a new sensor location? Recompute everything.</li>
+                    <li style="margin: 15px 0;"><strong>No real-time monitoring:</strong> By the time you compute footprints for new data, it's months old</li>
+                    <li style="margin: 15px 0;"><strong>Can't explore alternatives:</strong> Want to test different atmospheric models or temporal windows? Start over.</li>
+                </ul>
+                
+                <div class="highlight-box">
+                    <p><strong>The fundamental bottleneck:</strong> 99% of the computational cost in atmospheric inversions is calculating H (the transport/footprints). The actual Bayesian inference (matrix operations in that posterior equation) is relatively fast once you have H.</p>
+                    
+                    <p>This is why most carbon flux studies work at very coarse resolution (100km × 100km) with sparse observations. <strong>We simply couldn't afford to do it at field scale.</strong></p>
+                </div>
+            </section>
+
+            <section>
+                <h2>Enter Machine Learning: The Game Changer</h2>
+                
+                <p>Here's the key insight that changes everything: <strong>we don't actually need to simulate every air parcel's trajectory. We just need to predict what the footprint will look like.</strong></p>
+                
+                <p>And that's a pattern recognition problem - perfect for machine learning!</p>
+                
+                <h3>The FootNet Approach</h3>
+                
+                <p>In 2025, researchers at University of Washington developed FootNet, a deep learning model that learns to emulate atmospheric transport:</p>
+                
+                <div class="solution-box">
+                    <h3>Training Phase (One-Time Cost)</h3>
+                    <ol style="margin-left: 20px;">
+                        <li style="margin: 10px 0;"><strong>Generate training data:</strong> Run STILT thousands of times for different meteorological conditions, locations, and times (maybe 50,000-100,000 examples)</li>
+                        <li style="margin: 10px 0;"><strong>Extract patterns:</strong> Train a U-Net neural network to learn "given these weather conditions and this sensor location, what does the footprint look like?"</li>
+                        <li style="margin: 10px 0;"><strong>Inputs the model learns from:</strong>
+                            <ul style="margin-left: 20px;">
+                                <li>Wind speed and direction (current and 6-12 hours prior)</li>
+                                <li>Planetary boundary layer height (atmospheric mixing)</li>
+                                <li>Surface pressure (proxy for topography)</li>
+                                <li>Distance from sensor</li>
+                            </ul>
+                        </li>
+                        <li style="margin: 10px 0;"><strong>Output:</strong> A 2D map (footprint) showing sensitivity of the measurement to upwind emissions at 1km resolution</li>
+                    </ol>
+                </div>
+                
+                <p>The genius here is that the neural network doesn't need to understand fluid dynamics or atmospheric physics. It just needs to recognize: "Oh, I've seen this pattern before - easterly winds at 5 m/s with a shallow boundary layer creates footprints that look like <em>this</em>."</p>
+                
+                <div class="stat-card">
+                    <div class="stat-number">650×</div>
+                    <p><strong>Faster than STILT</strong></p>
+                    <p>1 hour → ~5 seconds</p>
+                </div>
+                
+                <h3>What Makes This Different from Previous Attempts?</h3>
+                
+                <p>FootNet isn't the first ML approach to atmospheric transport, but it's the first that's actually practical for real inversions:</p>
+                
+                <ul style="margin-left: 40px; margin-bottom: 20px;">
+                    <li style="margin: 15px 0;"><strong>Fully independent:</strong> Once trained, needs zero STILT runs (previous methods still needed the physics model for far-field or to fill gaps)</li>
+                    <li style="margin: 15px 0;"><strong>True high resolution:</strong> Outputs 1km resolution consistently (previous methods were ~25-35km)</li>
+                    <li style="margin: 15px 0;"><strong>Fast enough for on-the-fly computation:</strong> Can generate footprints as needed during the inversion, no pre-computation or storage required</li>
+                    <li style="margin: 15px 0;"><strong>Attention mechanisms:</strong> The U-Net architecture with spatial/spectral attention helps it focus on the center pixel being classified while using surrounding context</li>
+                </ul>
+                
+                <h3>An Unexpected Bonus: ML Might Actually Be More Accurate!</h3>
+                
+                <p>Here's a surprising finding from the FootNet paper: <strong>inversions using ML footprints sometimes perform better than those using physics-model footprints.</strong></p>
+                
+                <p>Why? Because the neural network produces <em>smoother</em> footprints than STILT. STILT has sharp gradients and edges (because it's tracking discrete parcels). Small errors in wind speed or direction can cause STILT to put the sensitivity blob in slightly the wrong place. The smoother ML footprints are more robust to these transport errors.</p>
+                
+                <div class="highlight-box">
+                    <p><strong>The key lesson:</strong> "More realistic" (STILT's detailed physics) doesn't always mean "more accurate" (better performance in inversions). Sometimes a simpler, learned representation handles real-world messiness better!</p>
+                </div>
+                
+                <h3>What Does This Enable?</h3>
+                
+                <p>With 650× speedup, things that were impossible become routine:</p>
+                
+                <div class="solution-box">
+                    <h3>Near-Real-Time Monitoring</h3>
+                    <p>Get CO₂ flux estimates within days of satellite observations, not months later. Critical for:</p>
+                    <ul style="margin-left: 20px;">
+                        <li>Catching methane leaks quickly</li>
+                        <li>Tracking agricultural response to drought</li>
+                        <li>Verifying emissions reductions from policy</li>
+                    </ul>
+                </div>
+                
+                <div class="solution-box">
+                    <h3>Field-Scale Agriculture Monitoring</h3>
+                    <p>1km resolution means individual farm fields for large operations, small groups of fields for smaller farms. This enables:</p>
+                    <ul style="margin-left: 20px;">
+                        <li>Carbon credits for sustainable farming practices</li>
+                        <li>Monitoring effectiveness of cover crops, reduced tillage, etc.</li>
+                        <li>Understanding field-by-field variability in carbon sequestration</li>
+                    </ul>
+                </div>
+                
+                <div class="solution-box">
+                    <h3>Continental-Scale High-Resolution Inversions</h3>
+                    <p>For the first time, we could do daily 1km inversions across entire continents. The computational cost goes from "impossible" to "feasible on a university HPC cluster."</p>
+                </div>
+            </section>
+
+            <section>
+                <h2>The Road Ahead</h2>
+                
+                <p>This is where my PhD research comes in! While FootNet is a breakthrough, there's still a lot of work to do:</p>
+                
+                <div class="problem-box">
+                    <h3>Open Challenges</h3>
+                    <ol style="margin-left: 20px;">
+                        <li style="margin: 15px 0;"><strong>Scaling to continental domains:</strong> FootNet was trained on the San Francisco Bay Area. Can we train a model that works across all of North America's diverse ecosystems and terrain?</li>
+                        
+                        <li style="margin: 15px 0;"><strong>Uncertainty quantification:</strong> How do we propagate ML prediction uncertainty through the inversion? How do we know when the ML model is extrapolating beyond its training data?</li>
+                        
+                        <li style="margin: 15px 0;"><strong>Temporal patterns:</strong> FootNet produces time-integrated footprints. Can we extend it to time-resolved footprints for even better temporal resolution?</li>
+                        
+                        <li style="margin: 15px 0;"><strong>Integration with complementary data:</strong> Satellite observations of vegetation health (SIF), surface temperature, soil moisture - how do we optimally combine these with CO₂ inversions?</li>
+                        
+                        <li style="margin: 15px 0;"><strong>Translation to stakeholders:</strong> High-resolution CO₂ fluxes are great, but farmers need actionable information. How do we turn "your field sequestered 2.3 tons of CO₂ last month" into "here's what that means for your carbon credits and soil health"?</li>
+                    </ol>
+                </div>
+                
+                <div class="highlight-box">
+                    <p><strong>The goal:</strong> Make carbon monitoring fast, accurate, and cheap enough that we can:</p>
+                    <ul style="margin-left: 20px;">
+                        <li>Verify climate policies are working (or not)</li>
+                        <li>Reward sustainable agricultural practices at scale</li>
+                        <li>Understand Earth's carbon cycle at unprecedented resolution</li>
+                        <li>Support farmers in optimizing both productivity and carbon sequestration</li>
+                        <li>Track progress toward net-zero emissions targets</li>
+                    </ul>
+                </div>
+            </section>
+        
+        <footer>
+            <p>Made with 💜 for game night</p>
+            <p style="margin-top: 10px; opacity: 0.8;">Want to learn more? Check out the FootNet paper (He et al., 2025) or Jacob's lectures on inverse modeling!</p>
+        </footer>
+    </div>
+</body>
+</html>
