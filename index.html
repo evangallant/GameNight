@@ -15,7 +15,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #59c9c6 0%, #b0d1d0 100%);
             min-height: 100vh;
             padding: 20px;
         }
@@ -66,15 +66,15 @@
         section:nth-child(6) { animation-delay: 1.2s; }
         
         h2 {
-            color: #667eea;
+            color: #59c9c6;
             font-size: 2em;
             margin-bottom: 20px;
-            border-left: 5px solid #667eea;
+            border-left: 5px solid #59c9c6;
             padding-left: 15px;
         }
         
         h3 {
-            color: #764ba2;
+            color: #b0d1d0;
             font-size: 1.5em;
             margin: 30px 0 15px 0;
         }
@@ -86,7 +86,7 @@
         
         .equation-box {
             background: #f8f9fa;
-            border-left: 4px solid #667eea;
+            border-left: 4px solid #59c9c6;
             padding: 20px;
             margin: 20px 0;
             border-radius: 8px;
@@ -100,8 +100,8 @@
         }
         
         .highlight-box {
-            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
-            border: 2px solid #667eea;
+            background: linear-gradient(135deg, #59c9c615 0%, #b0d1d015 100%);
+            border: 2px solid #59c9c6;
             padding: 25px;
             margin: 25px 0;
             border-radius: 12px;
@@ -173,7 +173,7 @@
         }
         
         button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #59c9c6 0%, #b0d1d0 100%);
             color: white;
             border: none;
             padding: 15px 30px;
@@ -195,13 +195,13 @@
             border-radius: 12px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             margin: 15px 0;
-            border-left: 5px solid #667eea;
+            border-left: 5px solid #59c9c6;
         }
         
         .stat-number {
             font-size: 3em;
             font-weight: bold;
-            color: #667eea;
+            color: #59c9c6;
             margin: 10px 0;
         }
         
@@ -272,9 +272,9 @@
         <div class="content">
             <section>
                 <h2>The Problem</h2>
-                <p>Imagine you're standing in downtown San Francisco. You pull out a fancy CO₂ sensor and measure <strong>425 parts per million</strong> of carbon dioxide in the air around you.Great! But... where did that CO₂ come from? Was it from cars on the highway, power plants 50 miles away, orfarms in the Central Valley? Further, did forests absorb some, making the number lower than it would've been?</p>
+                <p>Imagine you're standing in downtown San Francisco. You pull out a fancy CO₂ sensor and measure <strong>425 parts per million</strong> of carbon dioxide in the air around you. Great! But... where did that CO₂ come from? Was it from cars on the highway, power plants 50 miles away, or farms in the Central Valley? Further, did forests absorb some, making the number lower than it would've been?</p>
                 
-                <p>This is the <strong>fundamental challenge</strong> atmospheric inversions seek to solve: e can measure CO₂ in the air pretty easily, but figuring out which sources (emissions) and sinks (things that absorb CO₂) created those measurements is really hard.</p>
+                <p>This is the fundamental challenge atmospheric inversions seek to solve: we can measure CO₂ in the air pretty easily, but figuring out which sources (emissions) and sinks (things that absorb CO₂) created those measurements is really hard.</p>
             </section>
 
             <section>
@@ -293,13 +293,13 @@
                     <p>This is what we actually need to do. We have CO₂ measurements from satellites and ground sensors, and we need to work backwards to figure out where the emissions are coming from.</p>
                 </div>
                 
-                <p>The main challenge of the inverse problem, which otherwise could be solved explicitly, is the presence of errors in the in-situ measurements, observations we want to use from satellites, and the atmospheric models themselves. Having these errors, which is unavoidable, means there are essentially infinite possible configurations of emissions and sequestration that could produce the same measurements when plugged into the inverse of the atmospheric transport model. This limits us to aiming for the most plausible configuration, given what we know about the errors.</p>
+                <p>The main challenge of the inverse problem, which otherwise could be solved explicitly, is the presence of errors in the in-situ measurements, observations we want to use from satellites, and the atmospheric models themselves. Having these errors, which is unavoidable, means there are essentially infinite possible configurations of emissions and sequestration that could produce the same measurements according to the atmospheric transport model. This limits us to aiming for the most plausible configuration, given what we know about the errors.</p>
             </section>
                         
             <section>
                 <h2>Solving the Inverse Problem with Bayesian Inference</h2>
                 
-                <p>We need some sort of additional information to pick the most plausible solution. For this we use Bayesian inference. The fundamental insight is that we can treat the emissions we're trying to predict as a probability distribution rather than seeking a single "true" answer. This is how we relate our initial best guess of what we think the emissions are with both the observations (in this case, satellite observations describing the average amount of CO₂ in a column of air), and how much we trust those observations. The last concept there, how much we trust the observations, basically quantifies how much of an impact a given satellite observation should have on our prediction of the actual emissions. If we the error is quite high in that region and we don't trust it very much, we want to limit how much it effects our predicted footprint of emissions.</p>
+                <p>We need some sort of additional information to pick the most plausible solution. For this we use Bayesian inference. The fundamental insight is that we can treat the emissions we're trying to predict as a probability distribution rather than seeking a single "true" answer. This is how we relate our initial best guess of what we think the emissions are with both the observations (in this case, satellite observations describing the average amount of CO₂ in a column of air), and how much we trust those observations. The last concept there, how much we trust the observations, basically quantifies how much of an impact a given satellite observation should have on our prediction of the actual emissions. If we think the error is quite high in that region and we don't trust it very much, we want to limit how much it effects our predicted footprint of emissions. Consider:</p>
                 
                 <div class="equation-box">
                     <code><strong>P(x | y) ∝ P(y | x) · P(x)</strong></code>
@@ -307,12 +307,12 @@
                 
                 <p>Where:</p>
                 <ul style="margin-left: 40px; margin-bottom: 20px;">
-                    <li style="margin: 10px 0;"><strong>P(x | y)</strong> = <em>posterior</em>: probability of emissions <strong>x</strong> given measurements <strong>y</strong>. This is what we are solving for</li>
-                    <li style="margin: 10px 0;"><strong>P(y | x)</strong> = <em>likelihood</em>: probability of observing measurements <strong>y</strong> given emissions <strong>x</strong>. How confident we are </li>
-                    <li style="margin: 10px 0;"><strong>P(x)</strong> = <em>prior</em>: our initial belief about emissions before seeing any measurements</li>
+                    <li style="margin: 10px 0;"><strong>P(x | y)</strong> = <em>posterior</em>: probability of emissions <strong>x</strong> given measurements <strong>y</strong>. This is what we are solving for.</li>
+                    <li style="margin: 10px 0;"><strong>P(y | x)</strong> = <em>likelihood</em>: probability of observing measurements <strong>y</strong> given emissions <strong>x</strong>. probability of observing measurements y given emissions x. This quantifies how likely the measurements are if our emission estimate is correct.</li>
+                    <li style="margin: 10px 0;"><strong>P(x)</strong> = <em>prior</em>: our initial belief about emissions before seeing any measurements.</li>
                 </ul>
                 
-                <p>With this approach we start with a prior guess about emissions (maybe from emission inventories, economic data, or previous years). Then we update that guess based on what the atmospheric measurements tell us, weighted by how much we trust each source of information. In practice, we assume both the prior and likelihood are <strong>Gaussian (normal) distributions</strong>. This isn't just mathematical convenience—it's justified by:</p>
+                <p>With this approach we start with a prior guess about emissions (maybe from emission inventories, economic data, or previous years). Then we update that guess based on what the atmospheric measurements tell us, weighted by how much we trust each source of information. In practice, we assume both the prior and likelihood are <strong>Gaussian (normal) distributions</strong>. This choice is justified by:</p>
                 <ul style="margin-left: 40px; margin-bottom: 20px;">
                     <li><strong>Central Limit Theorem:</strong> Many small errors in the measurements, observations, and models sum to Gaussian noise</li>
                     <li><strong>Maximum entropy:</strong> Gaussian is the "least informative" distribution for a given mean and variance</li>
@@ -330,9 +330,9 @@
                 <ul style="margin-left: 40px; margin-bottom: 20px;">
                     <li style="margin: 10px 0;"><strong>x<sub>a</sub></strong> = the prior mean, which our best guess for emissions, e.g., from bottom-up inventories</li>
                     <li style="margin: 10px 0;"><strong>B</strong> = the prior error covariance matrix, which quantifies how uncertain we are about our guess, and which emissions (and especially their errors) covary (i.e. if the errors in one observation go up and down in conjunction with the errors in another observation, they covary)</li>
-                    <li style="margin: 10px 0;"><strong>H</strong> = the atmospheric transport Jacobian matrix, which describes the sensitivity of measurements to emissions. It is derived by linearizing the atmospheric transport model around our prior estimate of emissions. This matrix quantifies the relationships of the atmospheric transport model it comes from, and is able to tell us how we should update our best guess of emissions in order to better match what we observed from the satellites</li>
+                    <li style="margin: 10px 0;"><strong>H</strong> = the atmospheric transport Jacobian matrix, which describes how atmospheric transport relates emissions to measurements - essentially, if we change emissions at location X by 1 ton, how much does that change the measurement at sensor Y? This matrix tells us how we should update our best guess of emissions in order to better match what we observed from the satellites</li>
                     <li style="margin: 10px 0;"><strong>b</strong> = the background concentration (CO₂ that was already there from distant sources)</li>
-                    <li style="margin: 10px 0;"><strong>R</strong> = the observation error covariance matrix, which, similarly to the prior error covariance matrix, quantifies our uncertainty about and the relationships between errors in our measurements and the transport model</li>
+                    <li style="margin: 10px 0;"><strong>R</strong> = the observation error covariance matrix, which, similarly to the prior error covariance matrix, quantifies our uncertainty about and the relationships between errors in our measurements, and those in the transport model</li>
                 </ul>
 
                 <h3>The Posterior Solution (Our Best Estimate)</h3>
@@ -453,11 +453,7 @@
                     </code>
                 </div>
 
-                <p>We reduced both sources, with a larger relative reduction to the highway (40% tons vs 15%) because the sensor was more sensitive to it.</p>
-
-                <div class="solution-box">
-                    <p><strong>Key takeaway:</strong> The Bayesian inversion optimally combines our prior knowledge with new measurements, weighted by our confidence in each. We don't just "believe" the measurements blindly - we update our prior in a statistically principled way.</p>
-                </div>
+                <p>We reduced both sources, with a larger relative reduction to the highway (40% vs 15%) because the sensor was more sensitive to it. The key takeaway here is that the Bayesian inversion optimally combines our prior knowledge with new measurements, weighted by our confidence in each. We don't just "believe" the measurements blindly, we update our prior in a statistically principled way.</p>
 
                 <h3>What We Actually Learn: The Averaging Kernel</h3>
 
@@ -490,7 +486,7 @@
                     <li>Two sources that always affect measurements together (correlated footprints) are hard to separate</li>
                 </ul>
 
-                <p>This is why we need <strong>dense observing networks</strong>! More measurements from different locations and times give us better coverage of all potential sources, pushing our averaging kernel closer to the identity matrix.</p>
+                <p>This is why we need dense satellite observing networks like OCO-2 and OCO-3 (which, by the way, in case you got it this far and want something to be frustrated about, Trump has apparently ordered to have intentionally burned up in the atmosphere. Thank god we're finally fighting the real demon, spectorscopy). More measurements from different locations and times give us better coverage of all potential sources, pushing our averaging kernel closer to the identity matrix.</p>
 
                 <h3>Posterior Uncertainty: How Much Should We Trust This?</h3>
 
@@ -584,23 +580,13 @@
                     <li style="margin: 15px 0;"><strong>Can't explore alternatives:</strong> Want to test different atmospheric models or temporal windows? Start over.</li>
                 </ul>
                 
-                <div class="highlight-box">
-                    <p><strong>The fundamental bottleneck:</strong> 99% of the computational cost in atmospheric inversions is calculating H (the transport/footprints). The actual Bayesian inference (matrix operations in that posterior equation) is relatively fast once you have H.</p>
-                    
-                    <p>This is why most carbon flux studies work at very coarse resolution (100km × 100km) with sparse observations. <strong>We simply couldn't afford to do it at field scale.</strong></p>
-                </div>
+                <p>This is the fundamental bottleneck. 99% of the computational cost in atmospheric inversions is calculating H (the transport/footprints). The actual Bayesian inference (matrix operations in that posterior equation) is relatively fast once you have H. This is why most carbon flux studies work at very coarse resolution (100km × 100km) with sparse observations. We simply couldn't afford to do it at field scale.</p>
             </section>
 
             <section>
-                <h2>Enter Machine Learning: The Game Changer</h2>
+                <h2>Machine Learning Emulation</h2>
                 
-                <p>Here's the key insight that changes everything: <strong>we don't actually need to simulate every air parcel's trajectory. We just need to predict what the footprint will look like.</strong></p>
-                
-                <p>And that's a pattern recognition problem - perfect for machine learning!</p>
-                
-                <h3>The FootNet Approach</h3>
-                
-                <p>In 2025, researchers at University of Washington developed FootNet, a deep learning model that learns to emulate atmospheric transport:</p>
+                <p>Crucially, we don't actually need to simulate every air parcel's trajectory, we just need to predict what the footprint will look like. It's a really well suited pattern recognition problem for machine learning. People have already started working on this approach (yes, I'm a hack, sue me). In 2025, researchers at University of Washington developed FootNet, a deep learning model that learns to emulate atmospheric transport:</p>
                 
                 <div class="solution-box">
                     <h3>Training Phase (One-Time Cost)</h3>
@@ -619,34 +605,17 @@
                     </ol>
                 </div>
                 
-                <p>The genius here is that the neural network doesn't need to understand fluid dynamics or atmospheric physics. It just needs to recognize: "Oh, I've seen this pattern before - easterly winds at 5 m/s with a shallow boundary layer creates footprints that look like <em>this</em>."</p>
+                <p>The neural network doesn't need to understand fluid dynamics or atmospheric physics. It just needs to recognize: "Oh, I've seen this pattern before - easterly winds at 5 m/s with a shallow boundary layer creates footprints that look like <em>this</em>." The model was way faster than STILT, taking around ~5 seconds per footprint as opposed to 1 hour. Pretty neat :)</p>
                 
-                <div class="stat-card">
-                    <div class="stat-number">650×</div>
-                    <p><strong>Faster than STILT</strong></p>
-                    <p>1 hour → ~5 seconds</p>
-                </div>
+                <h3>What Makes This Different from Previous Attempts? (or, maybe I'm not a hack?)</h3>
                 
-                <h3>What Makes This Different from Previous Attempts?</h3>
-                
-                <p>FootNet isn't the first ML approach to atmospheric transport, but it's the first that's actually practical for real inversions:</p>
-                
-                <ul style="margin-left: 40px; margin-bottom: 20px;">
-                    <li style="margin: 15px 0;"><strong>Fully independent:</strong> Once trained, needs zero STILT runs (previous methods still needed the physics model for far-field or to fill gaps)</li>
-                    <li style="margin: 15px 0;"><strong>True high resolution:</strong> Outputs 1km resolution consistently (previous methods were ~25-35km)</li>
-                    <li style="margin: 15px 0;"><strong>Fast enough for on-the-fly computation:</strong> Can generate footprints as needed during the inversion, no pre-computation or storage required</li>
-                    <li style="margin: 15px 0;"><strong>Attention mechanisms:</strong> The U-Net architecture with spatial/spectral attention helps it focus on the center pixel being classified while using surrounding context</li>
-                </ul>
+                <p>FootNet isn't the first ML approach to atmospheric transport, but it's the first that's actually practical for real inversions. Once trained, it needs zero STILT runs (previous methods still needed the physics model for far-field or to fill gaps), outputs 1km resolution consistently (previous methods were ~25-35km), and it can generate footprints as needed during the inversion (doesn't need to pre-compute anything).
                 
                 <h3>An Unexpected Bonus: ML Might Actually Be More Accurate!</h3>
                 
                 <p>Here's a surprising finding from the FootNet paper: <strong>inversions using ML footprints sometimes perform better than those using physics-model footprints.</strong></p>
                 
-                <p>Why? Because the neural network produces <em>smoother</em> footprints than STILT. STILT has sharp gradients and edges (because it's tracking discrete parcels). Small errors in wind speed or direction can cause STILT to put the sensitivity blob in slightly the wrong place. The smoother ML footprints are more robust to these transport errors.</p>
-                
-                <div class="highlight-box">
-                    <p><strong>The key lesson:</strong> "More realistic" (STILT's detailed physics) doesn't always mean "more accurate" (better performance in inversions). Sometimes a simpler, learned representation handles real-world messiness better!</p>
-                </div>
+                <p>Why? Because the neural network produces <em>smoother</em> footprints than STILT. STILT has sharp gradients and edges (because it's tracking discrete parcels). Small errors in wind speed or direction can cause STILT to put the sensitivity blob in slightly the wrong place. The smoother ML footprints are more robust to these transport errors. "More realistic" (STILT's detailed physics) doesn't always mean "more accurate" (better performance in inversions). Sometimes a simpler, learned representation handles real-world messiness better.</p>
                 
                 <h3>What Does This Enable?</h3>
                 
@@ -711,8 +680,7 @@
             </section>
         
         <footer>
-            <p>Made with 💜 for game night</p>
-            <p style="margin-top: 10px; opacity: 0.8;">Want to learn more? Check out the FootNet paper (He et al., 2025) or Jacob's lectures on inverse modeling!</p>
+            <p>Thanks for reading <3</p>
         </footer>
     </div>
 </body>
