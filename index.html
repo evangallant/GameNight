@@ -486,7 +486,7 @@
                     <li>Two sources that always affect measurements together (correlated footprints) are hard to separate</li>
                 </ul>
 
-                <p>This is why we need dense satellite observing networks like OCO-2 and OCO-3 (which, by the way, in case you got it this far and want something to be frustrated about, Trump has apparently ordered to have intentionally burned up in the atmosphere. Thank god we're finally fighting the real demon, spectorscopy). More measurements from different locations and times give us better coverage of all potential sources, pushing our averaging kernel closer to the identity matrix.</p>
+                <p>This is why we need dense satellite observing networks like OCO-2 and OCO-3 (which, by the way, in case you got it this far and want something to be frustrated about, Trump has apparently ordered to have intentionally burned up in the atmosphere. Thank god we're finally fighting the real demon, spectroscopy). More measurements from different locations and times give us better coverage of all potential sources, pushing our averaging kernel closer to the identity matrix.</p>
 
                 <h3>Posterior Uncertainty: How Much Should We Trust This?</h3>
 
@@ -607,15 +607,11 @@
                 
                 <p>The neural network doesn't need to understand fluid dynamics or atmospheric physics. It just needs to recognize: "Oh, I've seen this pattern before - easterly winds at 5 m/s with a shallow boundary layer creates footprints that look like <em>this</em>." The model was way faster than STILT, taking around ~5 seconds per footprint as opposed to 1 hour. Pretty neat :)</p>
                 
-                <h3>What Makes This Different from Previous Attempts? (or, maybe I'm not a hack?)</h3>
+                <h3>What Makes This Different from Previous Attempts?</h3>
                 
                 <p>FootNet isn't the first ML approach to atmospheric transport, but it's the first that's actually practical for real inversions. Once trained, it needs zero STILT runs (previous methods still needed the physics model for far-field or to fill gaps), outputs 1km resolution consistently (previous methods were ~25-35km), and it can generate footprints as needed during the inversion (doesn't need to pre-compute anything).
                 
-                <h3>An Unexpected Bonus: ML Might Actually Be More Accurate!</h3>
-                
-                <p>Here's a surprising finding from the FootNet paper: <strong>inversions using ML footprints sometimes perform better than those using physics-model footprints.</strong></p>
-                
-                <p>Why? Because the neural network produces <em>smoother</em> footprints than STILT. STILT has sharp gradients and edges (because it's tracking discrete parcels). Small errors in wind speed or direction can cause STILT to put the sensitivity blob in slightly the wrong place. The smoother ML footprints are more robust to these transport errors. "More realistic" (STILT's detailed physics) doesn't always mean "more accurate" (better performance in inversions). Sometimes a simpler, learned representation handles real-world messiness better.</p>
+                <p>Interestingly, inversions using ML footprints sometimes performed better than those using physics-model footprints. The researchers said this was because the neural network produces <em>smoother</em> footprints than STILT. STILT has sharp gradients and edges (because it's tracking discrete parcels). Small errors in wind speed or direction can cause STILT to put the sensitivity blob in slightly the wrong place. The smoother ML footprints are more robust to these transport errors. "More realistic" (STILT's detailed physics) doesn't always mean "more accurate" (better performance in inversions). Sometimes a simpler, learned representation handles real-world messiness better.</p>
                 
                 <h3>What Does This Enable?</h3>
                 
@@ -648,9 +644,9 @@
             </section>
 
             <section>
-                <h2>The Road Ahead</h2>
+                <h2>My Interests (or, maybe I'm not a hack?)</h2>
                 
-                <p>This is where my PhD research comes in! While FootNet is a breakthrough, there's still a lot of work to do:</p>
+                <p>While FootNet is a breakthrough, there are opportunities to expand on it dramatically:</p>
                 
                 <div class="problem-box">
                     <h3>Open Challenges</h3>
@@ -667,20 +663,18 @@
                     </ol>
                 </div>
                 
-                <div class="highlight-box">
-                    <p><strong>The goal:</strong> Make carbon monitoring fast, accurate, and cheap enough that we can:</p>
-                    <ul style="margin-left: 20px;">
-                        <li>Verify climate policies are working (or not)</li>
-                        <li>Reward sustainable agricultural practices at scale</li>
-                        <li>Understand Earth's carbon cycle at unprecedented resolution</li>
-                        <li>Support farmers in optimizing both productivity and carbon sequestration</li>
-                        <li>Track progress toward net-zero emissions targets</li>
-                    </ul>
-                </div>
+                <p>The goal is to make carbon monitoring fast, accurate, and cheap enough that we can:</p>
+                <ul style="margin-left: 20px;">
+                    <li>Verify climate policies are working (or not)</li>
+                    <li>Reward sustainable agricultural practices at scale</li>
+                    <li>Understand Earth's carbon cycle at unprecedented resolution</li>
+                    <li>Support farmers in optimizing both productivity and carbon sequestration</li>
+                    <li>Track progress toward net-zero emissions targets</li>
+                </ul>
             </section>
         
         <footer>
-            <p>Thanks for reading <3</p>
+            <p>Thanks for reading <3 You can read the lecture notes this was based on <a href"https://drive.google.com/file/d/1iufj0muYyVkL-_IY0QkgYiiCEeNGmXIw/view?usp=sharing">here</a></p>
         </footer>
     </div>
 </body>
